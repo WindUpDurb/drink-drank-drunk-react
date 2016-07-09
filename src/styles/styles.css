@@ -428,6 +428,7 @@ h2 {
 
 
 .header-container {
+    margin-top: 0px;
     height: 500px;
     background-color: #1a2242;
     background-image: url("http://www.transparenttextures.com/patterns/ag-square.png");
@@ -442,6 +443,7 @@ h2 {
 }
 
 .drink-drank-drunk-header-text {
+    margin-top: 0px;
     position: relative;
     top: 21px;
     right: -232px;

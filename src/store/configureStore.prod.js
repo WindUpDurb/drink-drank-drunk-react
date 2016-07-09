@@ -1,9 +1,7 @@
 "use strict";
 
 import { createStore, applyMiddleware } from "redux";
-//import rootReducer from "../reducers";
-//remove for production:
-//import reduxImmutableStateInvariant from "redux-immutable-state-invariant";
+import rootReducer from "../reducers";
 import thunk from "redux-thunk";
 
 export default function configureStore(initialState) {
