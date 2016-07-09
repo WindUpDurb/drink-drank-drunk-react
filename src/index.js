@@ -10,6 +10,7 @@ import configureStore from "./store/configureStore.dev";
 import {Provider} from "react-redux";
 import { Router, browserHistory } from "react-router";
 import routes from "./routes";
+import {loadBeerDirectory} from "./actions/BeerActions";
 import "../node_modules/jquery/dist/jquery.min";
 import "./styles/styles.css"; //Webpack can also import CSS files;
 import "../node_modules/react-bootstrap/dist/react-bootstrap.min";
@@ -20,7 +21,7 @@ import "../node_modules/bootstrap-material-design/dist/css/bootstrap-material-de
 const store = configureStore();
 
 //store.dispatch(loadCourses());
-
+store.dispatch(loadBeerDirectory());
 
 render(
     <Provider store={store}>

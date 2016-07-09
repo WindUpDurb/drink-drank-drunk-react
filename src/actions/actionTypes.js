@@ -1,5 +1,8 @@
-/*"use strict";
+"use strict";
 
+export const LOAD_BEER_DIRECTORY_SUCCESS = "LOAD_BEER_DIRECTORY_SUCCESS";
+
+/*
 export const BEGIN_AJAX_CALL = "BEGIN_AJAX_CALL";
 export const AJAX_CALL_ERROR = "AJAX_CALL_ERROR";
 

@@ -11,14 +11,21 @@ class BeerStyleDirectoryPage extends React.Component {
     }
 
     render() {
-
+        console.log("Props: ", this.props);
         return (
             <div>
                 <h1>Beer Directory</h1>
             </div>
-        )
+        );
     }
 
 }
 
-export default BeerStyleDirectoryPage;
+function mapStateToProps(state, ownProps) {
+    //defining an object that returns the properties we want exposed on our component
+    return {
+        beerStyles: state.beerDirectories
+    };
+}
+
+export default connect(mapStateToProps)(BeerStyleDirectoryPage);
