@@ -12,7 +12,6 @@ class HomePage extends React.Component {
             <div className="container-fluid">
                 <DrinkDrankDrunkSection/>
                 <DescriptionSection/>
-                <FooterSection/>
             </div>
         );
     }

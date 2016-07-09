@@ -3,7 +3,7 @@
 
 import React, { PropTypes } from "react";
 import Header from "./common/Header";
-import HomePage from "./home/HomePage";
+import FooterSection from "./common/FooterSection";
 //because this is a connected component, need:
 import {connect} from "react-redux";
 
@@ -13,6 +13,7 @@ class App extends React.Component {
             <div className="container-fluid">
                 <Header/>
                 {this.props.children}
+                <FooterSection/>
             </div>
         );
     }
