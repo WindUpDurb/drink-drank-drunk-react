@@ -2,15 +2,32 @@
 
 import express from 'express';
 import webpack from 'webpack';
-import path from 'path';
 import config from '../webpack.config.dev';
-import open from 'open';
+import morgan from "morgan";
+import bodyParser from "body-parser";
+import cookieParser from "cookie-parser";
+import mongoose from "mongoose";
+import path from "path";
+
+const PORT = process.env.PORT || 3000;
+const app = express();
+const MONGOURL = process.env.MONGODB_URI || "mongodb://localhost/brewery-app";
+const compiler = webpack(config);
 
 /* eslint-disable no-console */
 
-const port = 3000;
-const app = express();
-const compiler = webpack(config);
+
+mongoose.connect(MONGOURL, function (error) {
+    console.log(error || `Connected to MongoDB at ${MONGOURL}`);
+});
+
+
+app.use(bodyParser.urlencoded({extended : true}));
+app.use(bodyParser.json());
+app.use(cookieParser());
+app.use(morgan("dev"));
+
+
 
 app.use(require('webpack-dev-middleware')(compiler, {
     noInfo: true,
@@ -20,11 +37,10 @@ app.use(require('webpack-dev-middleware')(compiler, {
 
 app.use(require('webpack-hot-middleware')(compiler));
 
-//single page app, so index will be served for all requests
-app.get('*', function(req, res) {
-    res.sendFile(path.join( __dirname, '../src/index.html'));
-});
+app.use("/", require("./routes/index"));
+app.use("api", require("./routes/api"));
 
-app.listen(port, function(err) {
-    console.log(err || `Listening on port ${port}`);
+
+app.listen(PORT, function(err) {
+    console.log(err || `Listening on port ${PORT}`);
 });

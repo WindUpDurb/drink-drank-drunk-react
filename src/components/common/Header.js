@@ -22,7 +22,7 @@ export default class Header extends React.Component {
                     <div className="navbar-collapse collapse navbar-responsive-collapse">
                         <ul className="nav navbar-nav">
                             <li><IndexLink to="/" activeClassName="active">Home</IndexLink></li>
-                            <li><IndexLink to="/browseBeers" activeClassName="active">Browse Beers</IndexLink></li>
+                            <li><Link to="/beerStyles" activeClassName="active">Browse Beers</Link></li>
                             <li><IndexLink to="/beerLog" activeClassName="active">Beer Log</IndexLink></li>
                             <li><IndexLink to="/beerLog" activeClassName="active">Beer Log</IndexLink></li>
                         </ul>
