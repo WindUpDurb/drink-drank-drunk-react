@@ -5,7 +5,7 @@ import {Link} from "react-router";
 
 const BeerStyle = ({beerStyle}) => {
     return (
-        <li>{beerStyle.name}</li>
+        <li><Link to={`style/${beerStyle.name}`}>{beerStyle.name}</Link></li>
     );
 };
 
