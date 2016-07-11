@@ -11,14 +11,13 @@ class BeerStylePage extends React.Component {
     }
 
     render() {
-        console.log("This here, this here: ", this.props)
         return (
             <div>
                 <h1>The styles be hurr</h1>
                 <BeerStyleDetails beerStyle={this.props.currentStyle}/>
                 {
                     this.props.currentStyle.styleContents.map((beer, index) =>
-                        <ListedBeer index={index} beerDetails={beer}/>
+                        <ListedBeer key={index} beerDetails={beer}/>
                     )
                 }
 
@@ -28,7 +27,6 @@ class BeerStylePage extends React.Component {
 }
 
 BeerStylePage.propTypes = {
-    //currentStyle: PropTypes.object.isRequired
     currentStyle: PropTypes.object.isRequired
 };
 

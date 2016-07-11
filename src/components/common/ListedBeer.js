@@ -4,6 +4,7 @@ import React, {PropTypes} from "react";
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 import * as BeerActions from "../../actions/BeerActions";
+import {browserHistory} from "react-router";
 
 
 class ListedBeer extends React.Component {
@@ -15,7 +16,7 @@ class ListedBeer extends React.Component {
     fetchBeerAndSet() {
         this.props.actions.fetchBeerData(this.props.beerDetails.id)
             .then(response => {
-
+                browserHistory.push(`/beer/${this.props.beerDetails.name}`);
             })
             .catch(error => {
                console.log("Error: ", error);
@@ -24,7 +25,6 @@ class ListedBeer extends React.Component {
 
     render() {
         let beer = this.props.beerDetails;
-        console.log("Beer details: ", this.props.beerDetails);
         return (
             <div className="container-fluid toDrinkEntry">
                 <div className="container">

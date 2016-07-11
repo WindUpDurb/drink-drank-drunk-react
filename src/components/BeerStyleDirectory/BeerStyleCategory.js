@@ -5,7 +5,6 @@ import {Link} from "react-router";
 import BeerStyle from "./BeerStyle";
 
 const BeerStyleCategory = (beerCategory) => {
-    console.log("Beer category: ", beerCategory);
     return (
         <div className="col-sm-3">
             <h5>{beerCategory.beerCategory[0].category.name}</h5>

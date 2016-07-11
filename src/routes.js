@@ -6,6 +6,7 @@ import App from "./components/App";
 import HomePage from "./components/home/HomePage";
 import BeerStyleDirectory from "./components/BeerStyleDirectory/BeerStyleDirectoryPage";
 import BeerStylePage from "./components/BeerStyle/BeerStylePage";
+import BeerViewPage from "./components/BeerViewSingle/SingleBeerPage";
 
 //Indexroute for the index; so if it is slash, as indicated
 //in Route, it'll go HomePage
@@ -15,6 +16,7 @@ export default (
         <IndexRoute component={HomePage} />
         <Route path="beerStyles" component={BeerStyleDirectory}/>
         <Route path="/beerStyles/:style" component={BeerStylePage}/>
+        <Route path="/beer/:beerId" component={BeerViewPage}/>
     </Route>
 );
 

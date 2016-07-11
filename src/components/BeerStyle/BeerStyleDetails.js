@@ -3,7 +3,6 @@
 import React, {PropTypes} from "react";
 
 const BeerStyleDescription = (beerStyle) => {
-    console.log("The beer style: ", beerStyle)
     return (
         <div className="container">
             <div className="row">
