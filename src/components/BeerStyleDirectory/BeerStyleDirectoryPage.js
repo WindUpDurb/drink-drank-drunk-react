@@ -12,6 +12,7 @@ class BeerStyleDirectoryPage extends React.Component {
     }
 
     render() {
+        console.log("The props: ", this.props)
         let row1 = [this.props.beerStyles[1], this.props.beerStyles[2], this.props.beerStyles[3]];
         let row2 = [this.props.beerStyles[4], this.props.beerStyles[5], this.props.beerStyles[6]];
         let row3 = [this.props.beerStyles[7], this.props.beerStyles[8], this.props.beerStyles[9]];
@@ -33,8 +34,10 @@ BeerCategoryRow.propTypes = {
 
 function mapStateToProps(state, ownProps) {
     //defining an object that returns the properties we want exposed on our component
+    console.log("State in map: ", state);
+    console.log("ownProps : ", ownProps);
     return {
-        beerStyles: state.beerDirectories
+        beerStyles: state.beerDirectories.beerDirectories
     };
 }
 

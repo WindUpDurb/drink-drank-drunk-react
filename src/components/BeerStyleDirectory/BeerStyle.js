@@ -14,11 +14,11 @@ class BeerStyle extends React.Component {
 
     grabStyleContentsAndSet() {
         console.log("Working");
-        this.props.actions.fetchStyleContents(this.props.beerStyle.shortName, 1)
+        this.props.actions.fetchStyleContents(this.props.beerStyle.shortName, 1);
     }
 
+
     render() {
-        console.log("Here: ", this.props.beerStyle);
         return (
             <li onClick={this.grabStyleContentsAndSet}>{this.props.beerStyle.name}</li>
         );

@@ -12,10 +12,11 @@ export function fetchBeerStylesDirectoriesSuccess(beerStyles) {
     };
 }
 
-export function fetchStyleContentsSuccess(styleContents) {
+export function fetchStyleContentsSuccess(styleContents, pageNumber) {
     return {
         type: types.FETCH_STYLE_CONTENTS_SUCCESS,
-        styleContents: styleContents
+        styleContents: styleContents,
+        pageNumber: pageNumber
     };
 }
 
@@ -28,6 +29,9 @@ export function fetchStyleContents(beerStyle, pageNumber) {
             })
             .then(parsedResponse => {
                 console.log("Check out this data: ", parsedResponse);
+                if (parsedResponse.status === "success") {
+                    dispatch(fetchStyleContentsSuccess(parsedResponse.data, parsedResponse.currentPage));
+                }
             })
             .catch(error => {
                 console.log("Error fetching: ", error);
