@@ -24,6 +24,10 @@ export default function beerDirectoriesReducer(state = initialState, action) {
                     }})
             );
 
+        case types.FETCH_BEER_DATA_SUCCESS:
+            return (
+              Object.assign({}, state, {currentBeer: action.beerData})
+            );
         default:
             return state;
     }

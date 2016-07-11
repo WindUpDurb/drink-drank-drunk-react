@@ -20,6 +20,35 @@ export function fetchStyleContentsSuccess(styleContents, styleDescription, pageN
     };
 }
 
+export function fetchBeerDataSuccess(beerData) {
+    return {
+        type: types.FETCH_BEER_DATA_SUCCESS,
+        beerData: beerData
+    };
+}
+
+export function fetchBeerData(beerId) {
+    return function(dispatch) {
+        dispatch(requestStatusActions.requestSent());
+        return fetch(`/api/breweryAPI/beerMeSingle/${beerId}`)
+            .then(response => {
+                return response.json();
+            })
+            .then(parsedResponse => {
+                dispatch(requestStatusActions.receivedRequestSuccess());
+                console.log("The fetched beer: ", parsedResponse);
+                dispatch(fetchBeerDataSuccess(parsedResponse.data));
+                return parsedResponse;
+
+            })
+            .catch(error => {
+                dispatch(requestStatusActions.receivedRequestError());
+                return error;
+            });
+
+    };
+}
+
 export function fetchStyleContents(beerStyle, pageNumber) {
     console.log("Fetching");
     return function(dispatch) {

@@ -1,11 +1,25 @@
 "use strict";
 
 import React, {PropTypes} from "react";
+import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
+import * as BeerActions from "../../actions/BeerActions";
+
 
 class ListedBeer extends React.Component {
     constructor(props) {
         super(props);
+        this.fetchBeerAndSet = this.fetchBeerAndSet.bind(this);
+    }
+
+    fetchBeerAndSet() {
+        this.props.actions.fetchBeerData(this.props.beerDetails.id)
+            .then(response => {
+
+            })
+            .catch(error => {
+               console.log("Error: ", error);
+            });
     }
 
     render() {
@@ -14,9 +28,9 @@ class ListedBeer extends React.Component {
         return (
             <div className="container-fluid toDrinkEntry">
                 <div className="container">
-                    <img src='https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'/>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"/>
                     <div className="beerLogDetails">
-                        <a href="/#/beer/{{beer.id}}"><p className="beerLogDetailsBeer">{beer.name}</p></a>
+                        <a onClick={this.fetchBeerAndSet}><p className="beerLogDetailsBeer">{beer.name}</p></a>
                         <p className="beerLogDetailsBrewery">{beer.breweries[0].name}</p>
                     </div>
                     <div className="col-sm-2 col-sm-offset-9">
@@ -37,9 +51,15 @@ class ListedBeer extends React.Component {
 }
 
 ListedBeer.propTypes = {
-    beerDetails: PropTypes.object.isRequired
+    beerDetails: PropTypes.object.isRequired,
+    actions: PropTypes.object.isRequired
 };
 
+function mapDispatchToProps(dispatch) {
+    return {
+        actions: bindActionCreators(BeerActions, dispatch)
+    };
+}
 
 function mapStateToProps(state, ownProps) {
     return {
@@ -47,4 +67,4 @@ function mapStateToProps(state, ownProps) {
     };
 }
 
-export default connect(mapStateToProps)(ListedBeer);
+export default connect(mapStateToProps, mapDispatchToProps)(ListedBeer);
