@@ -2,10 +2,14 @@
 
 import * as types from "./actionTypes";
 
-export function sendOutRequest() {
-    return {type: types.SEND_OUT_REQUEST};
+export function requestSent() {
+    return {type: types.REQUEST_SENT};
 }
 
-export function sentRequestError() {
-    return {type: types.REQUEST_SENT_ERROR};
+export function receivedRequestSuccess() {
+    return {type: types.REQUEST_RECEIVED_SUCCESSFUL};
+}
+
+export function receivedRequestError() {
+    return {type: types.REQUEST_RECEIVED_ERROR};
 }

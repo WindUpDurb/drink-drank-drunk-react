@@ -4,6 +4,7 @@ import React, {PropTypes} from "react";
 import * as BeerActions from "../../actions/BeerActions";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
+import {browserHistory} from "react-router";
 
 class BeerStyle extends React.Component {
 
@@ -13,8 +14,13 @@ class BeerStyle extends React.Component {
     }
 
     grabStyleContentsAndSet() {
-        console.log("Working");
-        this.props.actions.fetchStyleContents(this.props.beerStyle.shortName, 1);
+        this.props.actions.fetchStyleContents(this.props.beerStyle, 1)
+            .then(response => {
+                browserHistory.push(`/style/${this.props.beerStyle.shortName}`);
+            })
+            .catch(error => {
+                console.log("Error: ", error);
+            });
     }
 
 
@@ -39,6 +45,7 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state, ownProps) {
     return {
+        state: state,
         beerStyle: ownProps.beerStyle
     };
 }

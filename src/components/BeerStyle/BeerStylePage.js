@@ -12,8 +12,6 @@ class BeerStylePage extends React.Component {
     }
 
     render() {
-        console.log("OWn: ", this.props.ownProps)
-        console.log("OWn: ", this.props)
         return (
             <div>
                 <h1>The styles be hurr</h1>

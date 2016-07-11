@@ -8,17 +8,23 @@ import initialState from "./initialState";
 }*/
 
 export default function requestStatusReducer(state = initialState.requestsInProgress, action) {
-    if (action.type === types.SEND_OUT_REQUEST) {
-        return (
-            Object.assign({}, state, {requestsInProgress: state.requestsInProgress + 1})
-        );
-        //add an || condition for when a request is successful
-    } else if (action.type === types.REQUEST_SENT_ERROR) {
-        return (
-            Object.assign({}, state, {requestsInProgress: state.requestsInProgress - 1})
-        );
+
+    switch(action.type) {
+        case types.REQUEST_SENT:
+            return (
+                Object.assign({}, state, {requestsInProgress: state.requestsInProgress + 1})
+            );
+        case types.REQUEST_RECEIVED_SUCCESSFUL:
+            return (
+                Object.assign({}, state, {requestsInProgress: state.requestsInProgress - 1})
+            );
+        case types.REQUEST_RECEIVED_ERROR:
+            return (
+                Object.assign({}, state, {requestsInProgress: state.requestsInProgress - 1})
+            );
+        default:
+            return state;
     }
-    return state;
 }
 
 
