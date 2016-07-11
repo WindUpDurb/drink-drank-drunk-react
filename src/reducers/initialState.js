@@ -3,6 +3,7 @@
 
 export default {
     beerDirectories: [],
-    courses: [],
-    ajaxCallsInProgress: 0
+    currentBeerStyle: {},
+    currentBeer: [],
+    requestsInProgress: 0
 };

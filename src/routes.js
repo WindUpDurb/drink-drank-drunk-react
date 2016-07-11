@@ -14,7 +14,7 @@ export default (
     <Route path="/" component={App}>
         <IndexRoute component={HomePage} />
         <Route path="beerStyles" component={BeerStyleDirectory}/>
-        <Route path="style/:style" component={BeerStylePage}/>
+        <Route path="/style/:style" component={BeerStylePage}/>
     </Route>
 );
 

@@ -1,8 +1,10 @@
 "use strict";
 
-import React from "react";
+import React, {PropTypes} from "react";
 import {connect} from "react-redux";
 import {browserHistory} from "react-router";
+import * as beerActions from "../../actions/BeerActions";
+
 
 class BeerStylePage extends React.Component {
     constructor(props) {
@@ -10,6 +12,8 @@ class BeerStylePage extends React.Component {
     }
 
     render() {
+        console.log("OWn: ", this.props.ownProps)
+        console.log("OWn: ", this.props)
         return (
             <div>
                 <h1>The styles be hurr</h1>
@@ -18,8 +22,22 @@ class BeerStylePage extends React.Component {
     }
 }
 
+BeerStylePage.propTypes = {
+    //currentStyle: PropTypes.object.isRequired
+    ownProps: PropTypes.object
+};
+
 function mapStateToProps(state, ownProps) {
 
+    return {
+        ownProps: ownProps
+    };
 }
 
-export default connect(mapStateToProps)(BeerStylePage);
+function mapDispatchToProps(dispatch) {
+    return {
+        // getStyleContents: style => dispatch(beerActions.fetchStyleContents(style))
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(BeerStylePage);

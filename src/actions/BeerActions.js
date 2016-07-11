@@ -1,12 +1,37 @@
 "use strict";
 
 import * as types from "./actionTypes";
+import * as requestStatus from "./requestStatusActions";
+
 
 export function fetchBeerStylesDirectoriesSuccess(beerStyles) {
     console.log("In Success");
     return {
         type: types.LOAD_BEER_DIRECTORY_SUCCESS,
         beerStyles: beerStyles
+    };
+}
+
+export function fetchStyleContentsSuccess(styleContents) {
+    return {
+        type: types.FETCH_STYLE_CONTENTS_SUCCESS,
+        styleContents: styleContents
+    };
+}
+
+export function fetchStyleContents(beerStyle, pageNumber) {
+    console.log("Fetching")
+    return function(dispatch) {
+        return fetch(`/api/breweryAPI/beerCategoryContents/${beerStyle}/${pageNumber}`)
+            .then(response => {
+                return response.json();
+            })
+            .then(parsedResponse => {
+                console.log("Check out this data: ", parsedResponse);
+            })
+            .catch(error => {
+                console.log("Error fetching: ", error);
+            });
     };
 }
 
