@@ -37,8 +37,8 @@ app.use(require('webpack-dev-middleware')(compiler, {
 
 app.use(require('webpack-hot-middleware')(compiler));
 
-app.use("/", require("./routes/index"));
 app.use("/api", require("./routes/api"));
+app.use("*", require("./routes/index"));
 
 
 app.listen(PORT, function(err) {

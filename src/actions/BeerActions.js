@@ -42,7 +42,9 @@ export function fetchStyleContents(beerStyle, pageNumber) {
 export function loadBeerDirectory () {
 
     return function(dispatch) {
-
+        if (localStorage.beerDirectories) {
+            return dispatch(fetchBeerStylesDirectoriesSuccess(JSON.parse(localStorage.beerDirectories)));
+        }
       return fetch("/api/breweryAPI/beerDirectories")
           .then(response => {
               return response.json();
@@ -59,6 +61,7 @@ export function loadBeerDirectory () {
                   }
               }
               console.log("Beer directories: ", beerDirectories);
+              localStorage.setItem("beerDirectories", JSON.stringify(beerDirectories));
               dispatch(fetchBeerStylesDirectoriesSuccess(beerDirectories));
           })
           .catch(error => {
