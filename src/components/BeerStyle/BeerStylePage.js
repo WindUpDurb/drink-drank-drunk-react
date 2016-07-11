@@ -2,9 +2,8 @@
 
 import React, {PropTypes} from "react";
 import {connect} from "react-redux";
-import {browserHistory} from "react-router";
-import * as beerActions from "../../actions/BeerActions";
-
+import BeerStyleDetails from "./BeerStyleDetails";
+import ListedBeer from "../common/ListedBeer";
 
 class BeerStylePage extends React.Component {
     constructor(props) {
@@ -12,9 +11,17 @@ class BeerStylePage extends React.Component {
     }
 
     render() {
+        console.log("This here, this here: ", this.props)
         return (
             <div>
                 <h1>The styles be hurr</h1>
+                <BeerStyleDetails beerStyle={this.props.currentStyle}/>
+                {
+                    this.props.currentStyle.styleContents.map((beer, index) =>
+                        <ListedBeer index={index} beerDetails={beer}/>
+                    )
+                }
+
             </div>
         );
     }
@@ -22,20 +29,15 @@ class BeerStylePage extends React.Component {
 
 BeerStylePage.propTypes = {
     //currentStyle: PropTypes.object.isRequired
-    ownProps: PropTypes.object
+    currentStyle: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
 
     return {
-        ownProps: ownProps
+        currentStyle: state.beerDirectories.currentBeerStyle
     };
 }
 
-function mapDispatchToProps(dispatch) {
-    return {
-        // getStyleContents: style => dispatch(beerActions.fetchStyleContents(style))
-    };
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(BeerStylePage);
+export default connect(mapStateToProps)(BeerStylePage);
