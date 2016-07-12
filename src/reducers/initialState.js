@@ -5,5 +5,6 @@ export default {
     beerDirectories: {},
     currentBeerStyle: {},
     currentBeer: {},
-    requestsInProgress: 0
+    requestsInProgress: 0,
+    newRegistration: {}
 };

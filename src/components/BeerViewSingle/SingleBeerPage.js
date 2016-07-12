@@ -3,6 +3,7 @@
 import React, {PropTypes} from "react";
 import BeerViewHead from "./BeerViewHead";
 import BeerViewSubHeadDetails from "./BeerViewSubHeadDetails";
+import BeerViewAddButtons from "./BeerViewAddButtons";
 import {connect} from "react-redux";
 
 
@@ -17,6 +18,7 @@ class SingleBeerPage extends React.Component {
                 <h1>Beer View</h1>
                 <BeerViewHead beerData={this.props.beerData}/>
                 <BeerViewSubHeadDetails beerData={this.props.beerData}/>
+                <BeerViewAddButtons/>
             </div>
         );
     }
