@@ -4,8 +4,11 @@
 import React, { PropTypes } from "react";
 import Header from "./common/Header";
 import FooterSection from "./common/FooterSection";
+import $ from "jquery";
+import * as material from "../../node_modules/bootstrap-material-design/dist/js/material.min"
 //because this is a connected component, need:
 import {connect} from "react-redux";
+
 
 class App extends React.Component {
     render() {
@@ -14,6 +17,12 @@ class App extends React.Component {
                 <Header/>
                 {this.props.children}
                 <FooterSection/>
+
+                <script>
+                    $(document).ready(function () {
+                    $.material.init()
+                     });
+                </script>
             </div>
         );
     }
@@ -31,5 +40,3 @@ function mapStateToProps(state, ownProps) {
 }
 
 export default connect(mapStateToProps)(App);
-
-

@@ -34,7 +34,7 @@ export default class Header extends React.Component {
                         <ul className="nav navbar-nav navbar-right">
                             <li><IndexLink to="/register" activeClassName="active">Register</IndexLink></li>
                             <li className="dropdown">
-                                <a data-target="#" className="dropdown-toggle" data-toggle="dropdown">Profile
+                                <a href="bootstrap-elements.html" data-target="#" className="dropdown-toggle" data-toggle="dropdown">Dropdown
                                     <b className="caret"/></a>
                                 <ul className="dropdown-menu">
                                     <li><IndexLink to="/login" activeClassName="active">Login</IndexLink></li>
