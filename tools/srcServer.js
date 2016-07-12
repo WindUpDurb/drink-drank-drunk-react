@@ -11,7 +11,7 @@ import path from "path";
 
 const PORT = process.env.PORT || 3000;
 const app = express();
-const MONGOURL = process.env.MONGODB_URI || "mongodb://localhost/brewery-app";
+const MONGOURL = process.env.MONGODB_URI || "mongodb://localhost/brewery-app-react";
 const compiler = webpack(config);
 
 /* eslint-disable no-console */

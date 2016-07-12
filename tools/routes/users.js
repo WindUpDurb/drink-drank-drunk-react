@@ -18,6 +18,7 @@ router.route("/")
         });
     })
     .post(function (request, response) {
+        console.log("Request: ", request);
         let newUserData = request.body;
         User.registerNewUser(newUserData, function (error, createdUser) {
             if (error) response.status(400).send(error);

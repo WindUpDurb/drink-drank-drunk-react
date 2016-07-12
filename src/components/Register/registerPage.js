@@ -2,8 +2,11 @@
 
 import React, {PropTypes} from "react";
 import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
+import {browserHistory} from "react-router";
 import RegisterForm from "./registerForm";
 import SubHeader from "../common/SubHeader";
+import * as UserActions from "../../actions/UserActions";
 import toastr from "toastr";
 
 
@@ -24,6 +27,15 @@ class RegisterPage extends React.Component {
         if (this.state.newRegistration.password !== this.state.newRegistration.passwordConfirm) {
             return toastr.error("Your passwords must be the same");
         }
+        this.props.UserActions.submitRegistrationForm(this.state.newRegistration)
+            .then(response => {
+                browserHistory.push("/");
+                toastr.info("Registration Successful. You can now login.");
+            })
+            .catch(error => {
+               console.log("Error: ", error);
+                toastr.error("It seems like there was an error");
+            });
         console.log("Here");
         console.log("New registration: ", this.state.newRegistration);
     }
@@ -49,7 +61,7 @@ class RegisterPage extends React.Component {
 }
 
 RegisterPage.propTypes = {
-    //newRegistration: PropTypes.object.isRequired
+    UserActions: PropTypes.object.isRequired
 };
 
 
@@ -59,4 +71,10 @@ function mapStateToProps(state, ownProps) {
     };
 }
 
-export default connect(mapStateToProps)(RegisterPage);
+function mapDispatchToProps(dispatch) {
+    return {
+        UserActions: bindActionCreators(UserActions, dispatch)
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterPage);

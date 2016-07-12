@@ -94,7 +94,9 @@ userSchema.statics.obtainUsers = function (callback) {
 
 
 userSchema.statics.registerNewUser = function (newUserData, callback) {
+    console.log("New user data: ", newUserData);
     User.findOne({ email: newUserData.email }, function (error, databaseUser) {
+        console.log("Error in here: ", error)
         if (error || databaseUser) return callback(error || {error: "The email is already registered to a user."});
         bcrypt.hash(newUserData.password, 12, function (error, hash) {
             if (error) return callback(error);
