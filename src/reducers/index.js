@@ -10,8 +10,8 @@ const rootReducer = combineReducers({
     //or short-hand property name of just: `courses`
     //ajaxCallsInProgress: ajaxCallsInProgress
     beerDirectories: beerDirectoriesReducer,
-    userAndAuth: userAndAuthReducer,
-    requestStatusReducer: requestStatusReducer
+    userAndAuth: userAndAuthReducer
+   // requestStatusReducer: requestStatusReducer
 });
 
 export default rootReducer;

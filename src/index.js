@@ -23,6 +23,7 @@ import "../node_modules/bootstrap-material-design/dist/js/material.min";
 const store = configureStore();
 
 store.dispatch(loadBeerDirectory());
+store.dispatch({type: "CHECK_ACTIVE_USER"});
 
 render(
     <Provider store={store}>

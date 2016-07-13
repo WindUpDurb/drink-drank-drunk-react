@@ -1,11 +1,16 @@
 "use strict";
 //in this file, will centralize declarations about what is in state
 
-export default {
+export const beerDirectories = {
     beerDirectories: {},
     currentBeerStyle: {},
-    currentBeer: {},
-    requestsInProgress: 0,
-    newRegistration: {},
-    activeUser: null
+    currentBeer: {}
+};
+
+export const requestsInProgress = 0;
+
+export const activeUser = null;
+
+export const forms = {
+  newRegistration: {}  
 };

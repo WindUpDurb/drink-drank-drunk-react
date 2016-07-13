@@ -19,7 +19,7 @@ class BeerViewSubHeadDetails extends React.Component {
                 <div className="row">
                     <div className="col-sm-6 col-sm-offset-3">
                         <div id="beerImageWell" className="well center-block">
-                            <img src='https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'/>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"/>
                         </div>
                     </div>
                 </div>
@@ -31,7 +31,7 @@ class BeerViewSubHeadDetails extends React.Component {
 }
 
 BeerViewSubHeadDetails.propTypes = {
-   // beerData: Prototype.object.isRequired
+   //beerData: Prototype.object.isRequired
 };
 
 function mapStateToProps(state, ownProps) {

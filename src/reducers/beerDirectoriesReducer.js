@@ -1,10 +1,10 @@
 "use strict";
 
 import * as types from "../actions/actionTypes";
-import initialState from "./initialState";
+import * as initialState from "./initialState";
 
 
-export default function beerDirectoriesReducer(state = initialState, action) {
+export default function beerDirectoriesReducer(state = initialState.beerDirectories, action) {
 
     switch(action.type) {
         case types.LOAD_BEER_DIRECTORY_SUCCESS:

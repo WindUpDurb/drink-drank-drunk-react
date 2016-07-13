@@ -24,8 +24,8 @@ class BeerViewHead extends React.Component {
                 <div className="row">
                     <div className="form-group">
                         <div className="col-sm-1">
-                            <label for="select111" className="control-label">Rate this beer:</label>
-                            <select id="select111" className="form-control">
+                            <label className="control-label">Rate this beer:</label>
+                            <select className="form-control">
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -53,7 +53,7 @@ BeerViewHead.propTypes = {
 function mapStateToProps(state, ownProps) {
     return {
         beerData: ownProps
-    }
+    };
 }
 
 export default connect(mapStateToProps)(BeerViewHead);

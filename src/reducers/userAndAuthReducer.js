@@ -1,16 +1,14 @@
 "use strict";
 
 import * as types from "../actions/actionTypes";
-import initialState from "./initialState";
+import * as initialState from "./initialState";
 
-export default function userAndAuthReducer(state = initialState, action) {
+export default function userAndAuthReducer(state = initialState.activeUser, action) {
 
     switch(action.type) {
         case types.ACTIVE_USER_CONFIRMED:
-            console.log("The state: ", state);
-            console.log("The action: ", action);
             return (
-                Object.assign({}, state, {activeUser: action.activeUser})
+                Object.assign({}, state, action.activeUser)
             );
 
         default:

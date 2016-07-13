@@ -18,12 +18,12 @@ class App extends React.Component {
 
     }
 
-    checkActiveUser() {
+ /*   checkActiveUser() {
         this.props.UserActions.confirmActiveUser();
-    }
+    }*/
 
     render() {
-        this.checkActiveUser();
+        //this.checkActiveUser();
         return (
             <div className="container-fluid">
                 <Header/>

@@ -10,6 +10,21 @@ export function activeUserConfirmed(activeUser) {
     };
 }
 
+
+export function dispatchSecuritySearchAction() {
+    return {
+        type: types.DO_YOU_BELONG_HERE
+    };
+}
+
+export function securitySearch() {
+    console.log("Searching now: ");
+    return function(dispatch){
+        dispatch(dispatchSecuritySearchAction());
+    };
+}
+
+
 export function confirmActiveUser() {
     return function (dispatch) {
         let options = {
@@ -48,13 +63,13 @@ export function submitLogin(loginData) {
                 return response.json();
             })
             .then(parsedResponse => {
-                console.log("Parsed response: ", parsedResponse)
+                console.log("Parsed response: ", parsedResponse);
                 dispatch(requestStatusActions.receivedRequestSuccess());
 
             })
             .catch(error => {
                 dispatch(requestStatusActions.receivedRequestError());
-                console.log("Error: ", error)
+                console.log("Error: ", error);
                 return error;
             });
 
