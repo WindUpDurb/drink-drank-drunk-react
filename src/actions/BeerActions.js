@@ -72,7 +72,6 @@ export function fetchStyleContents(beerStyle, pageNumber) {
 }
 
 export function loadBeerDirectory () {
-
     return function(dispatch) {
         if (localStorage.beerDirectories) {
             return dispatch(fetchBeerStylesDirectoriesSuccess(JSON.parse(localStorage.beerDirectories)));

@@ -22,7 +22,6 @@ import "../node_modules/bootstrap-material-design/dist/js/material.min";
 
 const store = configureStore();
 
-//store.dispatch(loadCourses());
 store.dispatch(loadBeerDirectory());
 
 render(

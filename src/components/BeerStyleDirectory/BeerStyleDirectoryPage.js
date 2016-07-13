@@ -12,7 +12,6 @@ class BeerStyleDirectoryPage extends React.Component {
     }
 
     render() {
-        console.log("The props: ", this.props)
         let row1 = [this.props.beerStyles[1], this.props.beerStyles[2], this.props.beerStyles[3]];
         let row2 = [this.props.beerStyles[4], this.props.beerStyles[5], this.props.beerStyles[6]];
         let row3 = [this.props.beerStyles[7], this.props.beerStyles[8], this.props.beerStyles[9]];

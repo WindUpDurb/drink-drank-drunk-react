@@ -1,4 +1,5 @@
 "use strict";
+require("dotenv").load();
 
 import express from 'express';
 import path from 'path';
@@ -13,7 +14,9 @@ const app = express();
 app.use(compression());
 app.use(express.static("dist"));
 
-//single page app, so index will be served for all requests
+
+app.use("/api", require("./routes/api"));
+
 app.get('*', function(req, res) {
     res.sendFile(path.join( __dirname, '../dist/index.html'));
 });

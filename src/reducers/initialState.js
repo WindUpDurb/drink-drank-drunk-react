@@ -6,5 +6,6 @@ export default {
     currentBeerStyle: {},
     currentBeer: {},
     requestsInProgress: 0,
-    newRegistration: {}
+    newRegistration: {},
+    activeUser: null
 };

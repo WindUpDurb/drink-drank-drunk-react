@@ -65,18 +65,13 @@ userSchema.statics.saveBeerRating = function (dataToSave, callback) {
 userSchema.statics.addBeerMemory = function (beerMemory, callback) {
     User.findById(beerMemory._id, function (error, databaseUser) {
         if (error || !databaseUser) return callback(error || { error: "There is no user." });
-        console.log("Before Push: ", databaseUser);
-        console.log("Image url: ", typeof beerMemory.imageUrl);
         let beerMemoryObject = {
             beerPhotoUrl: beerMemory.imageUrl
         };
         for (let i = 0; i < databaseUser.sampledBeers.length; i++) {
             if (databaseUser.sampledBeers[i].beerId === beerMemory.beerId) {
                 databaseUser.sampledBeers[i].beerMemories.push(beerMemoryObject);
-                console.log("after push: ", databaseUser);
                 databaseUser.save(function (error, savedUser) {
-
-                    console.log("SavedUser: ", savedUser);
                     return callback(error, savedUser);
                 });
             }
@@ -94,9 +89,7 @@ userSchema.statics.obtainUsers = function (callback) {
 
 
 userSchema.statics.registerNewUser = function (newUserData, callback) {
-    console.log("New user data: ", newUserData);
     User.findOne({ email: newUserData.email }, function (error, databaseUser) {
-        console.log("Error in here: ", error)
         if (error || databaseUser) return callback(error || {error: "The email is already registered to a user."});
         bcrypt.hash(newUserData.password, 12, function (error, hash) {
             if (error) return callback(error);
@@ -224,7 +217,6 @@ userSchema.statics.authenticate = function (loginData, callback) {
 userSchema.statics.authorization = function () {
     return function (request, response, next) {
         let token = request.cookies.accessToken;
-        console.log("token: ", token);
         jwt.decode(JWT_SECRET, token, function (error, payload) {
             if (error) return response.status(401).send({ error: "Authentication failed." });
             User.findById(payload._id, function (error, user) {

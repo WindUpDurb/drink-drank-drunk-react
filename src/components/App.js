@@ -5,13 +5,25 @@ import React, { PropTypes } from "react";
 import Header from "./common/Header";
 import FooterSection from "./common/FooterSection";
 import $ from "jquery";
+import * as UserActions from "../actions/UserActions";
+import {bindActionCreators} from "redux";
 import * as material from "../../node_modules/bootstrap-material-design/dist/js/material.min"
 //because this is a connected component, need:
 import {connect} from "react-redux";
 
 
 class App extends React.Component {
+    constructor(props) {
+        super(props);
+
+    }
+
+    checkActiveUser() {
+        this.props.UserActions.confirmActiveUser();
+    }
+
     render() {
+        this.checkActiveUser();
         return (
             <div className="container-fluid">
                 <Header/>
@@ -27,10 +39,13 @@ class App extends React.Component {
         );
     }
 }
+
+
 //prop type validation; where children is a required proptype
 App.propTypes = {
     children: PropTypes.object.isRequired,
-    loading: PropTypes.bool.isRequired
+    loading: PropTypes.bool.isRequired,
+    UserActions: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
@@ -39,4 +54,10 @@ function mapStateToProps(state, ownProps) {
     };
 }
 
-export default connect(mapStateToProps)(App);
+function mapDispatchToProps(dispatch) {
+    return {
+        UserActions: bindActionCreators(UserActions, dispatch)
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

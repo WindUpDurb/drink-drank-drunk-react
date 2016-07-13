@@ -18,7 +18,6 @@ router.route("/")
         });
     })
     .post(function (request, response) {
-        console.log("Request: ", request);
         let newUserData = request.body;
         User.registerNewUser(newUserData, function (error, createdUser) {
             if (error) response.status(400).send(error);
@@ -27,7 +26,6 @@ router.route("/")
     })
     .put(function (request, response) {
         let userToUpdate = request.body;
-        console.log("Request.body: ", request.body);
         User.updateUserAccount(userToUpdate, function (error, updatedUser) {
             if (error) response.status(400).send(error);
             response.send(updatedUser);
@@ -76,8 +74,6 @@ router.post("/saveBeerRating", function (request, response) {
 });
 
 router.post("/uploadPhoto/:userId/:beerId", upload.single("newBeerPhoto"), function (request, response, next) {
-    console.log("userId: ", request.params.userId);
-    console.log("beerId: ", request.params.beerId);
     S3.upload(request.file, function (error, returnData) {
         if (error) response.status(400).send(error);
         let beerMemory = {
@@ -87,7 +83,6 @@ router.post("/uploadPhoto/:userId/:beerId", upload.single("newBeerPhoto"), funct
         };
         User.addBeerMemory(beerMemory, function (error, updatedUser) {
             if (error) response.status(400).send(error);
-            console.log("the update :", updatedUser);
             response.send();
         });
     });

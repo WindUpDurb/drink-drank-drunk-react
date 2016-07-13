@@ -1,4 +1,6 @@
 "use strict";
+require("dotenv").load();
+
 
 import express from 'express';
 import webpack from 'webpack';
@@ -7,7 +9,6 @@ import morgan from "morgan";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import mongoose from "mongoose";
-import path from "path";
 
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -37,7 +38,9 @@ app.use(require('webpack-dev-middleware')(compiler, {
 
 app.use(require('webpack-hot-middleware')(compiler));
 
+
 app.use("/api", require("./routes/api"));
+
 app.use("*", require("./routes/index"));
 
 
