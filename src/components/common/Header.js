@@ -2,11 +2,30 @@
 
 import React, {PropTypes} from "react";
 import { Link, IndexLink } from "react-router";
+import * as UserActions from "../../actions/UserActions";
+import {bindActionCreators} from "redux";
+import {browserHistory, connect} from "react-redux";
+
 //import LoadingDots from "./LoadingDots";
 
 
-export default class Header extends React.Component {
+class Header extends React.Component {
+    constructor(props){
+        super(props);
+        this.sendLogout = this.sendLogout.bind(this);
+    }
 
+
+    sendLogout() {
+        this.props.UserActions.dispatchLogout()
+            .then(response => {
+                console.log("Respnse: ", response);
+            })
+            .catch(error => {
+                console.log("Error: ", error);
+            });
+    }
+    
     render() {
         return (
             <div className="navbar navbar-default" id="navbar-container">
@@ -23,8 +42,8 @@ export default class Header extends React.Component {
                         <ul className="nav navbar-nav">
                             <li><IndexLink to="/" activeClassName="active">Home</IndexLink></li>
                             <li><Link to="/beerStyles" activeClassName="active">Browse Beers</Link></li>
-                            <li><IndexLink to="/beerLog" activeClassName="active">Beer Log</IndexLink></li>
-                            <li><IndexLink to="/beerLog" activeClassName="active">Beer Log</IndexLink></li>
+                            <li><Link to="/beerLog" activeClassName="active">Beer Log</Link></li>
+                            <li><Link to="/beerLog" activeClassName="active">Beer Log</Link></li>
                         </ul>
                         <form className="navbar-form navbar-left">
                             <div className="form-group">
@@ -32,15 +51,15 @@ export default class Header extends React.Component {
                             </div>
                         </form>
                         <ul className="nav navbar-nav navbar-right">
-                            <li><IndexLink to="/register" activeClassName="active">Register</IndexLink></li>
+                            <li><Link to="/register" activeClassName="active">Register</Link></li>
                             <li className="dropdown">
                                 <a href="bootstrap-elements.html" data-target="#" className="dropdown-toggle" data-toggle="dropdown">Dropdown
                                     <b className="caret"/></a>
                                 <ul className="dropdown-menu">
-                                    <li><IndexLink to="/login" activeClassName="active">Login</IndexLink></li>
-                                    <li><IndexLink to="/account" activeClassName="active">Account</IndexLink></li>
+                                    <li><Link to="/login" activeClassName="active">Login</Link></li>
+                                    <li><Link to="/account" activeClassName="active">Account</Link></li>
                                     <li className="divider"/>
-                                    <li><IndexLink to="/logout" activeClassName="active">Logout</IndexLink></li>
+                                    <li onClick={this.sendLogout}><Link to="" activeClassName="active">Logout</Link></li>
                                 </ul>
                             </li>
                         </ul>
@@ -53,5 +72,18 @@ export default class Header extends React.Component {
 }
 
 Header.propTypes = {
-    //loading: PropTypes.bool.isRequired
+    UserActions: PropTypes.object.isRequired
 };
+
+
+function mapStateToProps(state, ownProps) {
+    return {};
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        UserActions: bindActionCreators(UserActions, dispatch)
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

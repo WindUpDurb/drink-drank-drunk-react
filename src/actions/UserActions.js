@@ -10,6 +10,11 @@ export function activeUserConfirmed(activeUser) {
     };
 }
 
+export function dispatchLogoutAction() {
+    return {
+        type: types.LOGOUT_USER
+    };
+}
 
 export function dispatchSecuritySearchAction() {
     return {
@@ -18,12 +23,29 @@ export function dispatchSecuritySearchAction() {
 }
 
 export function securitySearch() {
-    console.log("Searching now: ");
     return function(dispatch){
         dispatch(dispatchSecuritySearchAction());
     };
 }
 
+
+export function dispatchLogout() {
+    return function(dispatch) {
+        let options = {
+            credentials: "include",
+            method: "DELETE"
+        };
+        fetch("/api/users/logout", options)
+            .then(response => {
+                dispatch(dispatchLogoutAction());
+                return true;
+            })
+            .catch(error => {
+                console.log("Error: ", error);
+            });
+
+    };
+}
 
 export function confirmActiveUser() {
     return function (dispatch) {
@@ -63,8 +85,13 @@ export function submitLogin(loginData) {
                 return response.json();
             })
             .then(parsedResponse => {
-                console.log("Parsed response: ", parsedResponse);
+                if (parsedResponse.error) {
+                    dispatch(requestStatusActions.receivedRequestSuccess());
+                    return parsedResponse;
+                }
                 dispatch(requestStatusActions.receivedRequestSuccess());
+                dispatch(activeUserConfirmed(parsedResponse));
+                return {success: "Drink-Drink"};
 
             })
             .catch(error => {

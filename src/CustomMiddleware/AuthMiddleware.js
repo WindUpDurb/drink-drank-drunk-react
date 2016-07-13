@@ -17,7 +17,6 @@ const CheckActiveUser = store => next => action => {
             return response.json();
         })
         .then(parsedResponse => {
-            console.log("Parsed : ", parsedResponse);
             if(!parsedResponse.error) {
                 store.dispatch(UserActions.activeUserConfirmed(parsedResponse));
             }
@@ -26,15 +25,12 @@ const CheckActiveUser = store => next => action => {
 
         })
         .catch(error => {
-            console.log("Error: ", error);
             return next(action);
         });
 };
 
 const UserOnlyRoute = store => next => action => {
     if (action.type !== types.DO_YOU_BELONG_HERE) return next(action);
-    console.log("Lets see now 1")
-
     function checkCookies(cookies) {
         for (let i = 0; i < cookies.length; i++) {
             if (cookies[i].includes("accessToken")) {
@@ -43,15 +39,8 @@ const UserOnlyRoute = store => next => action => {
         }
         return null;
     }
-    console.log("Lets see now 2")
-
-    console.log("first: ", document.cookie.split(";"))
-    console.log("second: ", store.getState().userAndAuth)
-
     let clearance = checkCookies(document.cookie.split(";")) || store.getState().userAndAuth;
-    console.log("Clearance: ", clearance)
     if (!clearance) {
-        console.log("Lets see now")
         browserHistory.push("/");
         toastr.error("You need to be logged in.");
     }

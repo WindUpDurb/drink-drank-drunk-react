@@ -23,7 +23,18 @@ class LoginPage extends React.Component {
 
     submitLogin(event) {
         event.preventDefault();
-        this.props.UserActions.submitLogin(this.state.loginForm);
+        this.props.UserActions.submitLogin(this.state.loginForm)
+            .then(response => {
+                if (response.error) {
+                    toastr.error(response.error);
+                } else {
+                    browserHistory.push("/");
+                    toastr.info("Login Successful.");
+                }
+            })
+            .catch(error => {
+                toastr.error(error);
+            });
     }
 
 
