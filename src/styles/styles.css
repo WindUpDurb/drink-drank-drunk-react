@@ -557,6 +557,10 @@ body {
     margin-top: 40px;
 }
 
+.dearBeerLogIcons {
+    display: inline-block;
+}
+
 .findmesection {
     background-color: #f6f6f6;
     height: 200px;
