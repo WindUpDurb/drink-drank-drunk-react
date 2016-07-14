@@ -22,7 +22,7 @@ class BeerStyleDirectoryPage extends React.Component {
                 <div className="container">
                     <div className="row">
                         <div className="col-sm-3 col-sm-offset-9">
-                            <img src="/statics/bar-sign.png" class="img-responsive"/>
+                            <img src="/statics/bar-sign.png" className="img-responsive"/>
                         </div>
                     </div>
                     <BeerCategoryRow categories={row1}/>

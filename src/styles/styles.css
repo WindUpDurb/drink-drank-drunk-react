@@ -553,6 +553,18 @@ body {
     font-weight: 400;
 }
 
+.styleStats {
+    margin-left: 35px;
+}
+
+.beerTapRow {
+    margin-top: 50px;
+}
+
+.currentStyleRow {
+    margin-top: 10px;
+}
+
 .breweryExternalSiteText {
     margin-top: 40px;
 }

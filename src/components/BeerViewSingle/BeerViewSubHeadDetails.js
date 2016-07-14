@@ -3,7 +3,12 @@
 import React, {PropTypes} from "react";
 
 export const BeerViewSubHeadDetails = ({beerData}) => {
-    let beerImage = beerData.labels.large || beerData.labels.medium || "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg";
+    let beerImage;
+    if (beerData.labels) {
+        beerImage = beerData.labels.large || beerData.labels.medium;
+    } else {
+        beerImage = "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg";
+    }
     return (
         <div className="container">
             <h1 className="text-center">{beerData.name}</h1>

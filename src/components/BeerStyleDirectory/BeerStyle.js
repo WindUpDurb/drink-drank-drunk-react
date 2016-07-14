@@ -26,7 +26,7 @@ class BeerStyle extends React.Component {
 
     render() {
         return (
-            <li onClick={this.grabStyleContentsAndSet}>{this.props.beerStyle.name}</li>
+            <li onClick={this.grabStyleContentsAndSet}><a>{this.props.beerStyle.name}</a></li>
         );
     }
 

@@ -40,7 +40,7 @@ class SingleBeerPage extends React.Component {
 }
 
 SingleBeerPage.propTypes = {
-    beerData: PropTypes.object.isRequired,
+    beerData: PropTypes.object,
     BeerActions: PropTypes.object.isRequired,
     beerId: PropTypes.string.isRequired,
     activeUser: PropTypes.object

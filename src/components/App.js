@@ -11,13 +11,12 @@ import * as material from "../../node_modules/bootstrap-material-design/dist/js/
 //because this is a connected component, need:
 import {connect} from "react-redux";
 
-
 class App extends React.Component {
     constructor(props) {
         super(props);
 
     }
-
+    
  /*   checkActiveUser() {
         this.props.UserActions.confirmActiveUser();
     }*/
@@ -26,7 +25,7 @@ class App extends React.Component {
         //this.checkActiveUser();
         return (
             <div className="container-fluid">
-                <Header/>
+]                <Header/>
                 {this.props.children}
                 <FooterSection/>
 

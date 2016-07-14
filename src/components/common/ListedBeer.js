@@ -25,10 +25,16 @@ class ListedBeer extends React.Component {
 
     render() {
         let beer = this.props.beerDetails;
+        let beerLabel;
+        if (beer.labels) {
+            beerLabel = beer.labels.medium || beer.labels.icon;
+        } else {
+            beerLabel = "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg";
+        }
         return (
             <div className="container-fluid toDrinkEntry">
                 <div className="container">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"/>
+                    <img src={beerLabel}/>
                     <div className="beerLogDetails">
                         <a onClick={this.fetchBeerAndSet}><p className="beerLogDetailsBeer">{beer.name}</p></a>
                         <p className="beerLogDetailsBrewery">{beer.breweries[0].name}</p>
