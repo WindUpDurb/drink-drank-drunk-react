@@ -7,7 +7,7 @@ const BeerStyleDescription = (beerStyle) => {
         <div className="container">
             <div className="row">
                 <div className="col-sm-3 col-sm-offset-2">
-                    <img src="/images/beer-tap.png" className="img-responsive"/>
+                    <img src="/statics/beer-tap.png" className="img-responsive"/>
                 </div>
             </div>
             <div className="row">

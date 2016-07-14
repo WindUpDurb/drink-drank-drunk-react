@@ -553,6 +553,10 @@ body {
     font-weight: 400;
 }
 
+.breweryExternalSiteText {
+    margin-top: 40px;
+}
+
 .findmesection {
     background-color: #f6f6f6;
     height: 200px;

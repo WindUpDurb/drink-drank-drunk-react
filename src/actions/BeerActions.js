@@ -49,11 +49,10 @@ export function fetchBeerData(beerId) {
     };
 }
 
-export function fetchStyleContents(beerStyle, pageNumber) {
-    console.log("Fetching");
+export function fetchStyleContents(beerStyle, pageNumber, fromReload) {
     return function(dispatch) {
         dispatch(requestStatusActions.requestSent());
-        return fetch(`/api/breweryAPI/beerCategoryContents/${beerStyle.shortName}/${pageNumber}`)
+        return fetch(`/api/breweryAPI/beerCategoryContents/${beerStyle.shortName || beerStyle}/${pageNumber}`)
             .then(response => {
                 return response.json();
             })
@@ -62,7 +61,11 @@ export function fetchStyleContents(beerStyle, pageNumber) {
                 dispatch(requestStatusActions.receivedRequestSuccess());
                 if (parsedResponse.status === "success") {
                     dispatch(fetchStyleContentsSuccess(parsedResponse.data, beerStyle,parsedResponse.currentPage));
+                    if (fromReload) {
+                        return parsedResponse.data;
+                    }
                 }
+                
             })
             .catch(error => {
                 dispatch(requestStatusActions.receivedRequestError());

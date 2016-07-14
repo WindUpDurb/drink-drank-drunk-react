@@ -12,7 +12,7 @@ const FooterSection = () => {
                         <br/>
                             <h4>Find me and this project on Github at:</h4>
                             <br/>
-                                <a><img src="/images/GitHub-Mark-32px.png"/></a>
+                                <a><img src="/statics/GitHub-Mark-32px.png"/></a>
                     </div>
                 </div>
             </div>

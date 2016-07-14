@@ -1,26 +1,19 @@
 "use strict";
 
-import React, {Prototype} from "react";
-import {connect} from "react-redux";
+import React, {PropTypes} from "react";
 
+export const BeerViewHead = ({activeUser}) => {
 
-class BeerViewHead extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        let beerData = this.props.beerData;
-        console.log("Beer data: ", beerData);
+    if (activeUser) {
         return (
             <div className="container">
                 <div className="row">
-                    <button className="btn btn-default btn-fab"><img src="/images/beerRating.png"/></button>
+                    <button className="btn btn-default btn-fab"><img src="/statics/beerRating.png"/></button>
                 </div>
-                <span className="pull-right"><img src="/images/updatePending64.png"/></span>
-                <span className="pull-right"><img src="/images/thumbUp64.png"/></span>
-                <span className="pull-right"><img src="/images/beerIconConsumed64.png"/></span>
-                <span className="pull-right"><img src="/images/beerIconNoConsumed64.png" /></span>
+                <span className="pull-right"><img src="/statics/updatePending64.png"/></span>
+                <span className="pull-right"><img src="/statics/thumbUp64.png"/></span>
+                <span className="pull-right"><img src="/statics/beerIconConsumed64.png"/></span>
+                <span className="pull-right"><img src="/statics/beerIconNoConsumed64.png" /></span>
                 <div className="row">
                     <div className="form-group">
                         <div className="col-sm-1">
@@ -41,23 +34,24 @@ class BeerViewHead extends React.Component {
                     </div>
                 </div>
             </div>
-
         );
     }
-}
 
-BeerViewHead.propTypes = {
-    //beerData: Prototype.object.isRequired
+    return (
+        <div className="container">
+            <div className="row"></div>
+            <span className="pull-right"><img src="/statics/updatePending64.png"/></span>
+            <span className="pull-right"><img src="/statics/thumbUp64.png"/></span>
+            <div className="row">
+            </div>
+        </div>
+    );
+
 };
 
-function mapStateToProps(state, ownProps) {
-    return {
-        beerData: ownProps
-    };
-}
-
-export default connect(mapStateToProps)(BeerViewHead);
-
+BeerViewHead.propTypes = {
+    activeUser: PropTypes.object
+};
 
 
 

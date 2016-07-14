@@ -9,12 +9,13 @@ import morgan from "morgan";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import mongoose from "mongoose";
+import path from "path";
 
 const PORT = process.env.PORT || 3000;
 const app = express();
 const MONGOURL = process.env.MONGODB_URI || "mongodb://localhost/brewery-app-react";
 const compiler = webpack(config);
-
+// const pathToStatic = path.join(__dirname);
 /* eslint-disable no-console */
 
 
@@ -27,6 +28,9 @@ app.use(bodyParser.urlencoded({extended : true}));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(morgan("dev"));
+
+
+app.use(express.static(__dirname));
 
 
 

@@ -1,15 +1,10 @@
 "use strict";
 
-import React, {Prototype} from "react";
-import {connect} from "react-redux";
+import React, {PropTypes} from "react";
 
+export const BeerViewAddButtons = (activeUser) => {
 
-class BeerViewAddButtons extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
+    if (activeUser.activeUser) {
         return (
             <div className="container">
                 <div className="row text-center">
@@ -21,23 +16,26 @@ class BeerViewAddButtons extends React.Component {
                     <button type="button" className="btn btn-raised btn-primary">Actually, I've never had this beer.</button>
                 </div>
             </div>
-
         );
     }
-}
 
-BeerViewAddButtons.propTypes = {
-    // beerData: Prototype.object.isRequired
+    if (!activeUser.activeUser) {
+        return (
+            <div className="container">
+                <div className="row text-center">
+                    <a type="button" className="btn btn-raised btn-primary">Register to Rate and Save Beers</a>
+                </div>
+            </div>
+        );
+
+    }
+    
 };
 
-function mapStateToProps(state, ownProps) {
+BeerViewAddButtons.propTypes = {
+    activeUser: PropTypes.object
+};
 
-    return {
-        beerData: ownProps
-    };
-}
-
-export default connect(mapStateToProps)(BeerViewAddButtons);
 
 
 

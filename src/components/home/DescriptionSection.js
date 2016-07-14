@@ -14,7 +14,7 @@ const DescriptionSection = () => {
             </div>
             <div className="row">
                 <div className="col-sm-4 col-sm-offset-3 hidden-xs">
-                    <img className="raise-beerimage" src="images/beerRaised.png"/>
+                    <img className="raise-beerimage" src="statics/beerRaised.png"/>
                 </div>
             </div>
             <div className="text-center">

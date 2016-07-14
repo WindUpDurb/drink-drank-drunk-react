@@ -41,7 +41,7 @@ const UserOnlyRoute = store => next => action => {
     }
     let clearance = checkCookies(document.cookie.split(";")) || store.getState().userAndAuth;
     if (!clearance) {
-        browserHistory.push("/");
+       browserHistory.push("/");
         toastr.error("You need to be logged in.");
     }
 };
