@@ -4,10 +4,16 @@ import * as types from "./actionTypes";
 import * as requestStatusActions from "./requestStatusActions";
 
 export function fetchBeerStylesDirectoriesSuccess(beerStyles) {
-    console.log("In Success");
     return {
         type: types.LOAD_BEER_DIRECTORY_SUCCESS,
         beerStyles: beerStyles
+    };
+}
+
+export function updateActiveUser(activeUserData) {
+    return {
+        type: types.UPDATE_ACTIVE_USER,
+        activeUser: activeUserData
     };
 }
 
@@ -105,14 +111,42 @@ export function loadBeerDirectory () {
     };
 }
 
-export function changeBeerStatus(action, beerData, activeUser) {
+export function changeIfConsumed(consumed, beer, activeUser) {
     return function(dispatch){
-        switch(action) {
-            case "addBeer":
-                console.log("Action: ", action);
-                console.log("beerData: ", beerData);
-                console.log("activeUser: ", activeUser);
-                break;
+        let headers = new Headers();
+        headers.append("Content-Type", "application/json");
+        let beerImage;
+        if(beer.labels && beer.labels.medium) {
+            beerImage = beer.labels.medium;
         }
+        activeUser.beerData = {
+            beerImage: beerImage || `https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg`,
+            breweryName: beer.breweries[0].name,
+            beerId: beer.id,
+            beerName: beer.name,
+            consumed: consumed
+        };
+        let options = {
+            method: "PUT",
+            credentials: "same-origin",
+            headers: headers,
+            mode: "cors",
+            cache: "default",
+            body: JSON.stringify(activeUser)
+        };
+        dispatch(requestStatusActions.requestSent());
+        return fetch("/api/breweryAPI/updateHasConsumed", options)
+            .then(response => {
+                return response.json();
+            })
+            .then(parsedResponse => {
+                dispatch(updateActiveUser(parsedResponse));
+                dispatch(requestStatusActions.receivedRequestSuccess());
+            })
+            .catch(error => {
+                console.log("The error: ", error);
+                dispatch(requestStatusActions.receivedRequestError());
+            });
+
     };
 }

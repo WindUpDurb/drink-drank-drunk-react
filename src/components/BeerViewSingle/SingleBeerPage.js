@@ -29,7 +29,9 @@ class SingleBeerPage extends React.Component {
     addButtonsMethods(action) {
         let beerData = this.state.beerData || this.props.beerData;
         let activeUser = this.props.activeUser;
-        this.props.BeerActions.changeBeerStatus(action, beerData, activeUser);
+        if (action === "addBeer") {
+            this.props.BeerActions.changeIfConsumed(true, beerData, activeUser);
+        }
     }
 
     render(){

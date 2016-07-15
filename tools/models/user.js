@@ -138,35 +138,19 @@ userSchema.statics.updateConsumedBeer = function (toUpdateWith, callback) {
         if (error || !databaseUser) return callback(error || { error: "There is no such user." });
         let currentBeerId;
         let currentBeerConsumed;
-        //If the beer to modify is not in the BeerLogs
-        if (toUpdateWith.nonBeerMeBeer) {
-            if (toUpdateWith.nonBeerMeBeer.consumed) {
-                databaseUser.sampledBeers.push(toUpdateWith.nonBeerMeBeer);
-            } else {
-                for (let i = 0; i < databaseUser.sampledBeers.length; i++) {
-                    if (databaseUser.sampledBeers[i].beerId === toUpdateWith.nonBeerMeBeer.beerId) {
-                        databaseUser.sampledBeers.splice(i, 1);
-                    }
-                }
-            }
-            currentBeerId = toUpdateWith.nonBeerMeBeer.beerId;
-            currentBeerConsumed = toUpdateWith.nonBeerMeBeer.consumed;
+        if (toUpdateWith.beerData.consumed) {
+            databaseUser.sampledBeers.push(toUpdateWith.beerData);
         } else {
-        //If the beer to modify is from the BeerLogs
-            databaseUser.beerSeen = toUpdateWith.beerSeen;
-            //adding to beersConsumed
-            if (toUpdateWith.beerModifying.consumed) {
-                databaseUser.sampledBeers.push(toUpdateWith.beerModifying);
-            } else {
-                for (let i = 0; i < databaseUser.sampledBeers.length; i++) {
-                    if (databaseUser.sampledBeers[i].beerId === toUpdateWith.beerModifying.beerId) {
-                        databaseUser.sampledBeers.splice(i, 1);
-                    }
+            for (let i = 0; i < databaseUser.sampledBeers.length; i++) {
+                if (databaseUser.sampledBeers[i].beerId === toUpdateWith.beerData.beerId) {
+                    databaseUser.sampledBeers.splice(i, 1);
+                    return;
                 }
             }
-            currentBeerId = toUpdateWith.beerModifying.beerId;
-            currentBeerConsumed = toUpdateWith.beerModifying.consumed;
         }
+        currentBeerId = toUpdateWith.beerData.beerId;
+        currentBeerConsumed = toUpdateWith.beerData.consumed;
+      
         databaseUser = User.updateToDrink(currentBeerId, currentBeerConsumed, databaseUser, null);
         databaseUser.save(function (error, savedUser) {
             savedUser.password = null;
