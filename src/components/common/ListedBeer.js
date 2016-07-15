@@ -14,9 +14,9 @@ class ListedBeer extends React.Component {
     }
 
     fetchBeerAndSet() {
-        this.props.actions.fetchBeerData(this.props.beerDetails.id)
+        this.props.actions.fetchBeerData(this.props.beerDetails.id || this.props.beerDetails.beerId)
             .then(response => {
-                browserHistory.push(`/beer/${this.props.beerDetails.id}`);
+                browserHistory.push(`/beer/${this.props.beerDetails.id || this.props.beerDetails.beerId}`);
             })
             .catch(error => {
                console.log("Error: ", error);
@@ -36,8 +36,8 @@ class ListedBeer extends React.Component {
                 <div className="container">
                     <img src={beerLabel}/>
                     <div className="beerLogDetails">
-                        <a onClick={this.fetchBeerAndSet}><p className="beerLogDetailsBeer">{beer.name}</p></a>
-                        <p className="beerLogDetailsBrewery">{beer.breweries[0].name}</p>
+                        <a onClick={this.fetchBeerAndSet}><p className="beerLogDetailsBeer">{beer.name || beer.beerName}</p></a>
+                        <p className="beerLogDetailsBrewery">{beer.breweryName ||beer.breweries[0].name}</p>
                     </div>
                     <div className="col-sm-2 col-sm-offset-9">
                         <span className="pull-right"><img src="/statics/updatePending64.png"/></span>

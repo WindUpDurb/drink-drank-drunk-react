@@ -34,7 +34,7 @@ class BeerLogPage extends React.Component {
     render(){
         switch(this.state.beerLogPage) {
             case "Drank":
-                this.currentBeerPage = <BeerLogPageDrank/>;
+                this.currentBeerPage = <BeerLogPageDrank beersDrank={this.props.activeUser.sampledBeers}/>;
                 break;
             case "To-Drink":
                 this.currentBeerPage = <BeerLogPageToDrink/>;
@@ -59,7 +59,6 @@ BeerLogPage.propTypes = {
 };
 
 function mapStateToProps(state, ownProps) {
-    console.log("State ni hurr: ", state);
     return {
         activeUser: state.userAndAuth
     };

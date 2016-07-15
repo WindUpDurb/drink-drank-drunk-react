@@ -139,6 +139,7 @@ export function addToDrink(beer, activeUser) {
                 return response.json();
             })
             .then(parsedResponse => {
+                console.log("parsed response : '", parsedResponse);
                 dispatch(updateActiveUser(parsedResponse));
             })
             .catch(error => {

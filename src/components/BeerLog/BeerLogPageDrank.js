@@ -1,9 +1,10 @@
 "use strict";
 
-import React from "react";
+import React, {PropTypes} from "react";
+import ListedBeer from "../common/ListedBeer";
 
-export const BeerLogPageDrank = () => {
-
+export const BeerLogPageDrank = ({beersDrank}) => {
+    console.log("Active user in here: ", beersDrank);
     return (
         <div>
             <div className="row">
@@ -29,10 +30,13 @@ export const BeerLogPageDrank = () => {
             <div className="subjectBreak container-fluid"></div>
             <div className="container-fluid">
                 <div className="container">
-
+                    {beersDrank.map((beer, index) => <ListedBeer key={index} beerDetails={beer}/>)}
                 </div>
             </div>
         </div>
-
     );
+};
+
+BeerLogPageDrank.propTypes = {
+    beersDrank: PropTypes.array.isRequired
 };
