@@ -2,9 +2,10 @@
 
 import React, {PropTypes} from "react";
 
-export const IveHadThisBeerButton = ({addButtonMethods ,boolean}) => {
+export const IveHadThisBeerButton = ({consumed, addButtonMethods}) => {
     const addBeer = () => {addButtonMethods("addBeer");};
-    if (!boolean) {
+    console.log("Consumed in button: ", consumed);
+    if (!consumed) {
         return (
             <button onClick={addBeer} type="button" className="btn btn-raised btn-primary">I've had this beer</button>
         );
@@ -15,7 +16,7 @@ export const IveHadThisBeerButton = ({addButtonMethods ,boolean}) => {
 };
 
 IveHadThisBeerButton.propTypes = {
-    boolean: PropTypes.bool,
+    consumed: PropTypes.bool,
     addButtonMethods: PropTypes.func
 };
 

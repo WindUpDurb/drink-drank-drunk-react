@@ -10,7 +10,19 @@ import {bindActionCreators} from "redux";
 import * as BeerActions from "../../actions/BeerActions";
 
 
+function checkIfConsumed (beerId, activeUser) {
+    console.log("BeeerID: ", beerId);
+    console.log("BeeerID: ", activeUser);
+    for (let i = 0; i < activeUser.sampledBeers.length; i++) {
+        if (activeUser.sampledBeers[i].beerId === beerId) {
+            return true;
+        }
+    }
+    return false;
+}
+
 class SingleBeerPage extends React.Component {
+
     constructor(props){
         super(props);
         this.addButtonsMethods = this.addButtonsMethods.bind(this);
@@ -38,13 +50,19 @@ class SingleBeerPage extends React.Component {
         console.log("This active user: ", this.props.activeUser);
         console.log("Beer data on page: ", this.props.beerData);
         console.log("Current state: ", this.state);
+        let consumed;
+        let beerData = this.state.beerData || this.props.beerData;
+        let activeUser = this.props.activeUser || null;
+        if (activeUser) {
+            consumed = checkIfConsumed(beerData.id, activeUser);
+        }
                 return (
             <div>
                 <h1>Beer View</h1>
-                <BeerViewHead beerData={this.state.beerData || this.props.beerData} activeUser={this.props.activeUser}/>
-                <BeerViewSubHeadDetails beerData={this.state.beerData || this.props.beerData}/>
-                <BeerViewAddButtons addButtonMethods={this.addButtonsMethods} activeUser={this.props.activeUser}/>
-                <BeerDetailsAndStats beerData={this.state.beerData || this.props.beerData}/>
+                <BeerViewHead beerData={beerData} activeUser={activeUser}/>
+                <BeerViewSubHeadDetails beerData={beerData}/>
+                <BeerViewAddButtons consumed={consumed} addButtonMethods={this.addButtonsMethods} activeUser={activeUser}/>
+                <BeerDetailsAndStats beerData={beerData}/>
 
             </div>
         );

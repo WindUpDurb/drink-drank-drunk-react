@@ -13,6 +13,9 @@ let userSchema = new mongoose.Schema({
     firstName: { type: String },
     lastName: {type: String },
     password: { type: String, required: true },
+    //for to Drink and sampled beers, consider storing in an object,
+    //and using Object.assign() to replace it with modifications;
+    //Quicker look-up, quicker modifications
     toDrink: [{
         beerName: { type: String },
         beerId: { type: String },
