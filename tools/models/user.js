@@ -144,10 +144,11 @@ userSchema.statics.updateConsumedBeer = function (toUpdateWith, callback) {
         if (toUpdateWith.beerData.consumed) {
             databaseUser.sampledBeers.push(toUpdateWith.beerData);
         } else {
+
             for (let i = 0; i < databaseUser.sampledBeers.length; i++) {
                 if (databaseUser.sampledBeers[i].beerId === toUpdateWith.beerData.beerId) {
                     databaseUser.sampledBeers.splice(i, 1);
-                    return;
+                    break;
                 }
             }
         }

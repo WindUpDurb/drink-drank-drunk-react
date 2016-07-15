@@ -47,7 +47,6 @@ router.get("/beerMeSingle/:beerId", function (request, response) {
 });
 
 router.put("/updateHasConsumed", function (request, response) {
-    console.log(request.body);
     User.updateConsumedBeer(request.body, function (error, databaseUser) {
         if (error) response.status(400).send(error);
         response.send(databaseUser);

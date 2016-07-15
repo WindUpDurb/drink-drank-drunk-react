@@ -2,9 +2,8 @@
 
 import React, {PropTypes} from "react";
 
-export const IveHadThisBeerButton = ({consumed, addButtonMethods}) => {
-    const addBeer = () => {addButtonMethods("addBeer");};
-    console.log("Consumed in button: ", consumed);
+export const IveHadThisBeerButton = ({consumed, updateConsumed}) => {
+    const addBeer = () => {updateConsumed(true);};
     if (!consumed) {
         return (
             <button onClick={addBeer} type="button" className="btn btn-raised btn-primary">I've had this beer</button>
@@ -17,7 +16,7 @@ export const IveHadThisBeerButton = ({consumed, addButtonMethods}) => {
 
 IveHadThisBeerButton.propTypes = {
     consumed: PropTypes.bool,
-    addButtonMethods: PropTypes.func
+    updateConsumed: PropTypes.func
 };
 
 

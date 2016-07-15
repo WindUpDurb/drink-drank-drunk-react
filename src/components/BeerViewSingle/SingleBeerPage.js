@@ -25,7 +25,7 @@ class SingleBeerPage extends React.Component {
 
     constructor(props){
         super(props);
-        this.addButtonsMethods = this.addButtonsMethods.bind(this);
+        this.updateConsumed = this.updateConsumed.bind(this);
         this.state = {
             beerData: ""
         };
@@ -38,11 +38,13 @@ class SingleBeerPage extends React.Component {
         }
     }
 
-    addButtonsMethods(action) {
+    updateConsumed(consumed) {
         let beerData = this.state.beerData || this.props.beerData;
         let activeUser = this.props.activeUser;
-        if (action === "addBeer") {
+        if (consumed) {
             this.props.BeerActions.changeIfConsumed(true, beerData, activeUser);
+        } else {
+            this.props.BeerActions.changeIfConsumed(false, beerData, activeUser);
         }
     }
 
@@ -61,7 +63,7 @@ class SingleBeerPage extends React.Component {
                 <h1>Beer View</h1>
                 <BeerViewHead beerData={beerData} activeUser={activeUser}/>
                 <BeerViewSubHeadDetails beerData={beerData}/>
-                <BeerViewAddButtons consumed={consumed} addButtonMethods={this.addButtonsMethods} activeUser={activeUser}/>
+                <BeerViewAddButtons consumed={consumed} updateConsumed={this.updateConsumed} activeUser={activeUser}/>
                 <BeerDetailsAndStats beerData={beerData}/>
 
             </div>

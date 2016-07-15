@@ -119,7 +119,8 @@ export function changeIfConsumed(consumed, beer, activeUser) {
         if(beer.labels && beer.labels.medium) {
             beerImage = beer.labels.medium;
         }
-        activeUser.beerData = {
+        let dataToUpdate = Object.assign({}, activeUser);
+        dataToUpdate.beerData = {
             beerImage: beerImage || `https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg`,
             breweryName: beer.breweries[0].name,
             beerId: beer.id,
@@ -132,20 +133,17 @@ export function changeIfConsumed(consumed, beer, activeUser) {
             headers: headers,
             mode: "cors",
             cache: "default",
-            body: JSON.stringify(activeUser)
+            body: JSON.stringify(dataToUpdate)
         };
-        dispatch(requestStatusActions.requestSent());
         return fetch("/api/breweryAPI/updateHasConsumed", options)
             .then(response => {
                 return response.json();
             })
             .then(parsedResponse => {
                 dispatch(updateActiveUser(parsedResponse));
-                dispatch(requestStatusActions.receivedRequestSuccess());
             })
             .catch(error => {
                 console.log("The error: ", error);
-                dispatch(requestStatusActions.receivedRequestError());
             });
 
     };
