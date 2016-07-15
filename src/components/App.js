@@ -7,14 +7,13 @@ import FooterSection from "./common/FooterSection";
 import $ from "jquery";
 import * as UserActions from "../actions/UserActions";
 import {bindActionCreators} from "redux";
-import * as material from "../../node_modules/bootstrap-material-design/dist/js/material.min"
+import * as material from "../../node_modules/bootstrap-material-design/dist/js/material.min";
 //because this is a connected component, need:
 import {connect} from "react-redux";
 
 class App extends React.Component {
     constructor(props) {
         super(props);
-
     }
     
  /*   checkActiveUser() {
@@ -25,7 +24,7 @@ class App extends React.Component {
         //this.checkActiveUser();
         return (
             <div className="container-fluid">
-]                <Header/>
+                <Header/>
                 {this.props.children}
                 <FooterSection/>
 

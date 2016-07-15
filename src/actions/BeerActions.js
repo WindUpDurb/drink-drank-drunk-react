@@ -29,24 +29,23 @@ export function fetchBeerDataSuccess(beerData) {
 
 export function fetchBeerData(beerId) {
     return function(dispatch) {
-        dispatch(requestStatusActions.requestSent());
-        return fetch(`/api/breweryAPI/beerMeSingle/${beerId}`)
-            .then(response => {
-                return response.json();
-            })
-            .then(parsedResponse => {
-                dispatch(requestStatusActions.receivedRequestSuccess());
-                console.log("The fetched beer: ", parsedResponse);
-                dispatch(fetchBeerDataSuccess(parsedResponse.data));
-                return parsedResponse;
+            dispatch(requestStatusActions.requestSent());
+            return fetch(`/api/breweryAPI/beerMeSingle/${beerId}`)
+                .then(response => {
+                    return response.json();
+                })
+                .then(parsedResponse => {
+                    dispatch(requestStatusActions.receivedRequestSuccess());
+                    localStorage.setItem(beerId, JSON.stringify(parsedResponse.data));
+                    dispatch(fetchBeerDataSuccess(parsedResponse.data));
+                    return parsedResponse;
 
-            })
-            .catch(error => {
-                dispatch(requestStatusActions.receivedRequestError());
-                return error;
-            });
-
-    };
+                })
+                .catch(error => {
+                    dispatch(requestStatusActions.receivedRequestError());
+                    return error;
+                });
+        };
 }
 
 export function fetchStyleContents(beerStyle, pageNumber, fromReload) {
@@ -103,5 +102,17 @@ export function loadBeerDirectory () {
               dispatch(requestStatusActions.receivedRequestError());
               console.log("Error: ", error);
           });
+    };
+}
+
+export function changeBeerStatus(action, beerData, activeUser) {
+    return function(dispatch){
+        switch(action) {
+            case "addBeer":
+                console.log("Action: ", action);
+                console.log("beerData: ", beerData);
+                console.log("activeUser: ", activeUser);
+                break;
+        }
     };
 }

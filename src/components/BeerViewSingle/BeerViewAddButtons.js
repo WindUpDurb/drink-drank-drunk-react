@@ -1,25 +1,25 @@
 "use strict";
 
 import React, {PropTypes} from "react";
+import {AddToToDrinkButton} from "./AddToToDrinkButton";
+import {IveHadThisBeerButton} from "./IveHadThisBeerButton";
+import {NevermindThisBeerButton} from "./NevermindThisBeerButton";
 
-export const BeerViewAddButtons = (activeUser) => {
 
-    if (activeUser.activeUser) {
+export const BeerViewAddButtons = ({addButtonMethods, activeUser}) => {
+    console.log("Active User: ", activeUser);
+    console.log("Add button methods: ", addButtonMethods);
+    if (activeUser) {
         return (
             <div className="container">
                 <div className="row text-center">
-                    <a type="button" className="btn btn-raised btn-primary">Register to Rate and Save Beers</a>
-                    <div>
-                        <button type="button" className="btn btn-raised">Add to your To-Drink List</button>
-                    </div>
-                    <button type="button" className="btn btn-raised btn-primary">I've had this beer</button>
-                    <button type="button" className="btn btn-raised btn-primary">Actually, I've never had this beer.</button>
+                    <IveHadThisBeerButton addButtonMethods={addButtonMethods}/>
                 </div>
             </div>
         );
     }
 
-    if (!activeUser.activeUser) {
+    if (!activeUser) {
         return (
             <div className="container">
                 <div className="row text-center">
@@ -33,7 +33,9 @@ export const BeerViewAddButtons = (activeUser) => {
 };
 
 BeerViewAddButtons.propTypes = {
-    activeUser: PropTypes.object
+    activeUser: PropTypes.object,
+    addButtonMethods: PropTypes.func.isRequired,
+    boolean: PropTypes.bool
 };
 
 
