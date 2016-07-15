@@ -111,6 +111,44 @@ export function loadBeerDirectory () {
     };
 }
 
+export function addToDrink(beer, activeUser) {
+    return function(dispatch){
+        let headers = new Headers();
+        headers.append("Content-Type", "application/json");
+        let beerImage;
+        if(beer.labels && beer.labels.medium) {
+            beerImage = beer.labels.medium;
+        }
+        let dataToUpdateWith = Object.assign({}, activeUser);
+        dataToUpdateWith.beerData = {
+            beerImage: beerImage || `https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg`,
+            breweryName: beer.breweries[0].name,
+            beerId: beer.id,
+            beerName: beer.name
+        };
+        let options = {
+            method: "POST",
+            credentials: "same-origin",
+            headers: headers,
+            mode: "cors",
+            cache: "default",
+            body: JSON.stringify(dataToUpdateWith)
+        };
+        return fetch("/api/users/addToToDrink", options)
+            .then(response => {
+                return response.json();
+            })
+            .then(parsedResponse => {
+                dispatch(updateActiveUser(parsedResponse));
+            })
+            .catch(error => {
+               console.log("Error: ", error); 
+            });
+
+    };
+
+}
+
 export function changeIfConsumed(consumed, beer, activeUser) {
     return function(dispatch){
         let headers = new Headers();
@@ -119,8 +157,8 @@ export function changeIfConsumed(consumed, beer, activeUser) {
         if(beer.labels && beer.labels.medium) {
             beerImage = beer.labels.medium;
         }
-        let dataToUpdate = Object.assign({}, activeUser);
-        dataToUpdate.beerData = {
+        let dataToUpdateWith = Object.assign({}, activeUser);
+        dataToUpdateWith.beerData = {
             beerImage: beerImage || `https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg`,
             breweryName: beer.breweries[0].name,
             beerId: beer.id,
@@ -133,7 +171,7 @@ export function changeIfConsumed(consumed, beer, activeUser) {
             headers: headers,
             mode: "cors",
             cache: "default",
-            body: JSON.stringify(dataToUpdate)
+            body: JSON.stringify(dataToUpdateWith)
         };
         return fetch("/api/breweryAPI/updateHasConsumed", options)
             .then(response => {

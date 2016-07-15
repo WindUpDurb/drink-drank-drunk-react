@@ -2,11 +2,11 @@
 
 import React, {PropTypes} from "react";
 
-export const AddToToDrinkButton = ({addButtonMethods, boolean}) => {
-    console.log("Add: ", addButtonMethods);
-    if (boolean) {
+export const AddToToDrinkButton = ({inToDrink, updateToDrink, consumed}) => {
+    const oneDay = () => {updateToDrink();};
+    if (consumed && !inToDrink) {
         return (
-            <button onClick={addButtonMethods} type="button" className="btn btn-raised btn-primary">Add To Your To-Drink List</button>
+            <button onClick={oneDay} type="button" className="btn btn-raised btn-primary">Add To Your To-Drink List</button>
         );
     } else {
         return <div></div>;
@@ -15,8 +15,9 @@ export const AddToToDrinkButton = ({addButtonMethods, boolean}) => {
 };
 
 AddToToDrinkButton.propTypes = {
-    boolean: PropTypes.bool,
-    addButtonMethods: PropTypes.func.isRequired
+    inToDrink: PropTypes.bool,
+    consumed: PropTypes.bool,
+    updateToDrink: PropTypes.func.isRequired
 };
 
 

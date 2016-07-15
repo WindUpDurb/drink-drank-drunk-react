@@ -6,13 +6,14 @@ import {IveHadThisBeerButton} from "./IveHadThisBeerButton";
 import {NevermindThisBeerButton} from "./NevermindThisBeerButton";
 
 
-export const BeerViewAddButtons = ({consumed, updateConsumed, activeUser}) => {
+export const BeerViewAddButtons = ({consumed, updateConsumed, updateToDrink, inToDrink, activeUser}) => {
     if (activeUser) {
         return (
             <div className="container">
                 <div className="row text-center">
                     <IveHadThisBeerButton consumed={consumed} updateConsumed={updateConsumed}/>
                     <NevermindThisBeerButton consumed={consumed} updateConsumed={updateConsumed}/>
+                    <AddToToDrinkButton inToDrink={inToDrink} updateToDrink={updateToDrink} consumed={consumed}/>
                 </div>
             </div>
         );
@@ -32,9 +33,11 @@ export const BeerViewAddButtons = ({consumed, updateConsumed, activeUser}) => {
 };
 
 BeerViewAddButtons.propTypes = {
+    inToDrink: PropTypes.bool,
     consumed: PropTypes.bool,
     activeUser: PropTypes.object,
     updateConsumed: PropTypes.func.isRequired,
+    updateToDrink: PropTypes.func.isRequired,
     boolean: PropTypes.bool
 };
 

@@ -44,7 +44,7 @@ let userSchema = new mongoose.Schema({
 userSchema.statics.addToToDrink = function (toUpdateWith, callback) {
     User.findById(toUpdateWith._id, function (error, databaseUser) {
         if (error || !databaseUser) return callback(error || { error: "There is no user" });
-        databaseUser.toDrink.push(toUpdateWith.newToDrink);
+        databaseUser.toDrink.push(toUpdateWith.beerData);
         databaseUser.save(function (error, savedUser) {
             callback(error, savedUser);
         });
