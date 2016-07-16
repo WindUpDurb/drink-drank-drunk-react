@@ -14,21 +14,14 @@ import {connect} from "react-redux";
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.confirmLocationPopup = this.confirmLocationPopup.bind(this);
-    }
-    
-    confirmLocationPopup(){
-       this.props.UserActions.updateCurrentUserLocation();
     }
 
     render() {
-        this.confirmLocationPopup();
         return (
             <div>
                 <Header/>
                 {this.props.children}
                 <FooterSection/>
-
                 <script>
                     $(document).ready(function () {
                     $.material.init()

@@ -61,6 +61,7 @@ export const HeaderPresentation = ({sendLogout, activeUser }) => {
                     <ul className="nav navbar-nav">
                         <li><IndexLink to="/" activeClassName="active">Home</IndexLink></li>
                         <li><Link to="/beerStyles" activeClassName="active">Browse Beers</Link></li>
+                        <li><Link to="/breweriesNearby" activeClassName="active">Find Nearby Breweries</Link></li>
                         <li><Link to="/beerLog" activeClassName="active">Beer Log</Link></li>
                     </ul>
                     <form className="navbar-form navbar-left">
