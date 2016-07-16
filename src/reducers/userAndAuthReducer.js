@@ -6,6 +6,11 @@ import * as initialState from "./initialState";
 export default function userAndAuthReducer(state = initialState.activeUser, action) {
 
     switch(action.type) {
+        case types.UPDATE_USER_LOCATION: 
+            return (
+                Object.assign({}, state, action.coordinates)  
+            );
+            
         case types.UPDATE_ACTIVE_USER:
             return (
                 Object.assign({}, state, action.activeUser)

@@ -10,6 +10,13 @@ export function activeUserConfirmed(activeUser) {
     };
 }
 
+export function dispatchUpdatedUserLocation(coordinates){
+    return {
+        type: types.UPDATE_USER_LOCATION,
+        coordinates: coordinates
+    };
+}
+
 export function dispatchLogoutAction() {
     return {
         type: types.LOGOUT_USER
@@ -100,6 +107,18 @@ export function submitLogin(loginData) {
                 return error;
             });
 
+    };
+}
+
+export function updateCurrentUserLocation() {
+    return function(dispatch){
+        navigator.geolocation.getCurrentPosition(position => {
+            let coordinates = {
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude
+            };
+            dispatch(dispatchUpdatedUserLocation(coordinates));
+        });
     };
 }
 

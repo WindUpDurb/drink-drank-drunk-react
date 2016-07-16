@@ -10,12 +10,17 @@ const Yelp = new YelpAPI({
 });
 
 let YelpOperations = {
-    brewerySearch: function (callback) {
-        console.log("Herer")
-        Yelp.search({term: "brewery", location: "91780"})
-            .then(function(data) {
-               console.log("The data: ", data);
-            });
+    brewerySearch: function (coordinates, callback) {
+        let options = {
+            term: "brewery",
+            ll: `${coordinates.latitude}, ${coordinates.longitude}`,
+            sort: 1,
+            category_filter: "breweries"
+        };
+        console.log("The options: ", options);
+        Yelp.search(options, function (error, breweryData) {
+            callback(error, breweryData);
+        });
     }
 };
 

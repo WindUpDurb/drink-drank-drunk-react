@@ -80,9 +80,6 @@ class SingleBeerPage extends React.Component {
     }
 
     render(){
-        console.log("This active user: ", this.props.activeUser);
-        console.log("Beer data on page: ", this.props.beerData);
-        console.log("Current state: ", this.state);
         let consumed;
         let inToDrink;
         let personalRating;

@@ -14,14 +14,15 @@ import {connect} from "react-redux";
 class App extends React.Component {
     constructor(props) {
         super(props);
+        this.confirmLocationPopup = this.confirmLocationPopup.bind(this);
     }
     
- /*   checkActiveUser() {
-        this.props.UserActions.confirmActiveUser();
-    }*/
+    confirmLocationPopup(){
+       this.props.UserActions.updateCurrentUserLocation();
+    }
 
     render() {
-        //this.checkActiveUser();
+        this.confirmLocationPopup();
         return (
             <div>
                 <Header/>
