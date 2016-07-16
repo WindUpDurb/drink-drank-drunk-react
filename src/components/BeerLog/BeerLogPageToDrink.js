@@ -1,9 +1,9 @@
 "use strict";
 
-import React from "react";
+import React, {PropTypes} from "react";
+import ListedBeer from "../common/ListedBeer";
 
-export const BeerLogPageToDrink = () => {
-
+export const BeerLogPageToDrink = ({toDrinks}) => {
     return (
         <div>
             <div className="row">
@@ -28,10 +28,14 @@ export const BeerLogPageToDrink = () => {
             <div className="subjectBreak container-fluid"></div>
             <div className="container-fluid">
                 <div className="container">
-
+                    {toDrinks.map((beer, index) => <ListedBeer key={index} beerDetails={beer}/>)}
                 </div>
             </div>
         </div>
 
     );
+};
+
+BeerLogPageToDrink.propTypes = {
+    toDrinks: PropTypes.array
 };

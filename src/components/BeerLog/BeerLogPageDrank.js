@@ -38,5 +38,5 @@ export const BeerLogPageDrank = ({beersDrank}) => {
 };
 
 BeerLogPageDrank.propTypes = {
-    beersDrank: PropTypes.array.isRequired
+    beersDrank: PropTypes.array
 };

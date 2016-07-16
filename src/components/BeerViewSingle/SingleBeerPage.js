@@ -9,6 +9,7 @@ import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import * as BeerActions from "../../actions/BeerActions";
 
+//combine into one function that spits out all three:
 function checkIfConsumed (beerId, activeUser) {
     for (let i = 0; i < activeUser.sampledBeers.length; i++) {
         if (activeUser.sampledBeers[i].beerId === beerId) {
@@ -27,6 +28,14 @@ function checkIfInToDrink (beerId, activeUser) {
     return false;
 }
 
+function returnBeerRating(beerId, activeUser) {
+    for (let i = 0; i < activeUser.sampledBeers.length; i++) {
+        if (activeUser.sampledBeers[i].beerId === beerId) {
+            return activeUser.sampledBeers[i].beerRating;
+        }
+    }
+}
+
 class SingleBeerPage extends React.Component {
 
     constructor(props){
@@ -36,6 +45,7 @@ class SingleBeerPage extends React.Component {
         };
         this.updateConsumed = this.updateConsumed.bind(this);
         this.updateToDrink = this.updateToDrink.bind(this);
+        this.updateBeerRating = this.updateBeerRating.bind(this);
     }
 
     componentWillMount() {
@@ -54,6 +64,13 @@ class SingleBeerPage extends React.Component {
             this.props.BeerActions.changeIfConsumed(false, beerData, activeUser);
         }
     }
+    
+    updateBeerRating(event) {
+        let beerData = this.state.beerData || this.props.beerData;
+        let activeUser = this.props.activeUser;
+        let newRating = event.target.value;
+        this.props.BeerActions.saveBeerRating(beerData, activeUser, newRating);
+    }
 
     updateToDrink() {
         let beerData = this.state.beerData || this.props.beerData;
@@ -67,16 +84,22 @@ class SingleBeerPage extends React.Component {
         console.log("Current state: ", this.state);
         let consumed;
         let inToDrink;
+        let personalRating;
         let beerData = this.state.beerData || this.props.beerData;
         let activeUser = this.props.activeUser || null;
         if (activeUser) {
             consumed = checkIfConsumed(beerData.id, activeUser);
             inToDrink = checkIfInToDrink(beerData.id, activeUser);
+            personalRating = returnBeerRating(beerData.id, activeUser);
         }
                 return (
             <div>
                 <h1>Beer View</h1>
-                <BeerViewHead beerData={beerData} activeUser={activeUser}/>
+                <BeerViewHead consumed={consumed}
+                              personalRating={personalRating}
+                              updateBeerRating={this.updateBeerRating}
+                              beerData={beerData} 
+                              activeUser={activeUser}/>
                 <BeerViewSubHeadDetails beerData={beerData}/>
                 <BeerViewAddButtons consumed={consumed} 
                                     updateConsumed={this.updateConsumed}  

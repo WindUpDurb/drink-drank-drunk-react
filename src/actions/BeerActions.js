@@ -145,9 +145,35 @@ export function addToDrink(beer, activeUser) {
             .catch(error => {
                console.log("Error: ", error); 
             });
-
     };
+}
 
+export function saveBeerRating(beerData, activeUser, newRating) {
+    return function(dispatch){
+        let headers = new Headers();
+        headers.append("Content-Type", "application/json");
+        let dataToUpdateWith = Object.assign({}, activeUser);
+        dataToUpdateWith.beerId = beerData.id;
+        dataToUpdateWith.newBeerRating = newRating;
+        let options = {
+            method: "POST",
+            credentials: "same-origin",
+            headers: headers,
+            mode: "cors",
+            cache: "default",
+            body: JSON.stringify(dataToUpdateWith)
+        };
+        return fetch("/api/users/saveBeerRating", options)
+            .then(response => {
+                return response.json();
+            })
+            .then(parsedResponse => {
+                dispatch(updateActiveUser(parsedResponse));
+            })
+            .catch(error => {
+                console.log("Error: ", error);
+            });
+    };
 }
 
 export function changeIfConsumed(consumed, beer, activeUser) {

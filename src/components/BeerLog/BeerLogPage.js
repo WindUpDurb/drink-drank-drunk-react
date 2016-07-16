@@ -26,7 +26,6 @@ class BeerLogPage extends React.Component {
     }
 
     leafThroughPages(event) {
-        console.log(event.target.value);
         this.setState({beerLogPage: event.target.value});
     }
 
@@ -37,7 +36,7 @@ class BeerLogPage extends React.Component {
                 this.currentBeerPage = <BeerLogPageDrank beersDrank={this.props.activeUser.sampledBeers}/>;
                 break;
             case "To-Drink":
-                this.currentBeerPage = <BeerLogPageToDrink/>;
+                this.currentBeerPage = <BeerLogPageToDrink toDrinks={this.props.activeUser.toDrink}/>;
                 break;
             default:
                 this.currentBeerPage = null;
@@ -55,7 +54,7 @@ class BeerLogPage extends React.Component {
 
 BeerLogPage.propTypes = {
     UserActions: PropTypes.object.isRequired,
-    activeUser: PropTypes.object.isRequired
+    activeUser: PropTypes.object
 };
 
 function mapStateToProps(state, ownProps) {
