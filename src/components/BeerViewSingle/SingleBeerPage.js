@@ -7,6 +7,7 @@ import {BeerViewAddButtons} from "./BeerViewAddButtons";
 import {BeerDetailsAndStats} from "./BeerViewDetailsAndStats";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
+import SubHeader from "../common/SubHeader";
 import * as BeerActions from "../../actions/BeerActions";
 
 //combine into one function that spits out all three:
@@ -94,6 +95,7 @@ class SingleBeerPage extends React.Component {
         }
                 return (
             <div>
+                <SubHeader/>
                 <h1>Beer View</h1>
                 <BeerViewHead consumed={consumed}
                               personalRating={personalRating}

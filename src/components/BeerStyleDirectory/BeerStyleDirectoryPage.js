@@ -17,7 +17,7 @@ class BeerStyleDirectoryPage extends React.Component {
         let row2 = [this.props.beerStyles[4], this.props.beerStyles[5], this.props.beerStyles[6]];
         let row3 = [this.props.beerStyles[7], this.props.beerStyles[8], this.props.beerStyles[9]];
         return (
-            <div className="container-fluid">
+            <div>
                 <SubHeader/>
                 <div className="container">
                     <div className="row">

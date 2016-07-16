@@ -23,7 +23,7 @@ class App extends React.Component {
     render() {
         //this.checkActiveUser();
         return (
-            <div className="container-fluid">
+            <div>
                 <Header/>
                 {this.props.children}
                 <FooterSection/>

@@ -10,7 +10,7 @@ import $ from "jquery";
 class HomePage extends React.Component {
     render() {
         return (
-            <div className="container-fluid">
+            <div>
                 <DrinkDrankDrunkSection/>
                 <DescriptionSection/>
             </div>
