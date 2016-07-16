@@ -32,7 +32,6 @@ export const BeerViewHead = ({consumed, personalRating, updateBeerRating,beerDat
     }
 
     if (activeUser) {
-        console.log("LEngth: ", beerRating)
         return (
             <div className="container">
                 <div className="row">

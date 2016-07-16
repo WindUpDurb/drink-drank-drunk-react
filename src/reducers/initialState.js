@@ -7,6 +7,8 @@ export const beerDirectories = {
     currentBeer: {}
 };
 
+export const breweryResults = null;
+
 export const requestsInProgress = 0;
 
 export const activeUser = null;

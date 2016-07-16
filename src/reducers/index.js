@@ -3,6 +3,7 @@
 import { combineReducers } from "redux";
 import beerDirectoriesReducer from "./beerDirectoriesReducer";
 import userAndAuthReducer from "./userAndAuthReducer";
+import breweriesReducer from "./breweriesReducer";
 import requestStatusReducer from "./requestStatusReducer";
 
 const rootReducer = combineReducers({
@@ -10,7 +11,8 @@ const rootReducer = combineReducers({
     //or short-hand property name of just: `courses`
     //ajaxCallsInProgress: ajaxCallsInProgress
     beerDirectories: beerDirectoriesReducer,
-    userAndAuth: userAndAuthReducer
+    userAndAuth: userAndAuthReducer,
+    breweryResults: breweriesReducer
    // requestStatusReducer: requestStatusReducer
 });
 

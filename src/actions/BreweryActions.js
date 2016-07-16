@@ -26,7 +26,9 @@ export function fetchNearbyBreweryData(coordinates) {
                 return response.json();
             })
             .then(parsedResponse => {
-                console.log("Response here: ", parsedResponse);
+                if(parsedResponse.total > 0) {
+                    dispatch(dispatchNearbyBreweryResults(parsedResponse));
+                }
             })
             .catch(error => {
                 console.log("Error: ", error);

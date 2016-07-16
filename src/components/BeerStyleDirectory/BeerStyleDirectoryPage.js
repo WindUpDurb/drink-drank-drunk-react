@@ -37,13 +37,11 @@ class BeerStyleDirectoryPage extends React.Component {
 
 //remember: props validation.
 BeerCategoryRow.propTypes = {
-    beerStyles: PropTypes.object.isRequired
+    beerStyles: PropTypes.object
 };
 
 function mapStateToProps(state, ownProps) {
     //defining an object that returns the properties we want exposed on our component
-    console.log("State in map: ", state);
-    console.log("ownProps : ", ownProps);
     return {
         beerStyles: state.beerDirectories.beerDirectories
     };
