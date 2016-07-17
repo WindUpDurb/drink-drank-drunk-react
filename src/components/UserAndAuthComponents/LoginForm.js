@@ -1,8 +1,11 @@
 "use strict";
 
 import React, {PropTypes} from "react";
+import GoogleLogin from 'react-google-login';
+
 
 const LoginForm = ({onChange, onSubmit, loginForm}) => {
+    console.log("environment variable: ", process.env)
     return (
         <div className="row">
             <div className="col-sm-6 ">

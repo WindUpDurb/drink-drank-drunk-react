@@ -54,7 +54,7 @@ export function fetchBeerData(beerId) {
         };
 }
 
-export function fetchStyleContents(beerStyle, pageNumber, fromReload) {
+export function fetchStyleContents(beerStyle, pageNumber) {
     return function(dispatch) {
         dispatch(requestStatusActions.requestSent());
         return fetch(`/api/breweryAPI/beerCategoryContents/${beerStyle.shortName || beerStyle}/${pageNumber}`)
@@ -66,9 +66,7 @@ export function fetchStyleContents(beerStyle, pageNumber, fromReload) {
                 dispatch(requestStatusActions.receivedRequestSuccess());
                 if (parsedResponse.status === "success") {
                     dispatch(fetchStyleContentsSuccess(parsedResponse.data, beerStyle,parsedResponse.currentPage));
-                    if (fromReload) {
-                        return parsedResponse.data;
-                    }
+                    localStorage.setItem(`${beerStyle}${pageNumber}`, JSON.stringify(parsedResponse.data));
                 }
                 
             })

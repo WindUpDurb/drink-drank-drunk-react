@@ -442,6 +442,13 @@ h2 {
     background-color: #1a2242;
     color: white;
     box-shadow: 5px 5px 2px #888888;
+}
+
+#customSearchButton {
+    background-color: #1a2242;
+    background-image: url("http://www.transparenttextures.com/patterns/assault.png");
+    color: white;
+    box-shadow: 5px 5px 2px #888888;
 
 }
 
@@ -614,6 +621,15 @@ body {
     margin-top: 100px;
     margin-bottom: 70px;
     width: 60%;
+    height: 1px;
+    background-color: #757575;
+    border-radius: 2px;
+}
+
+.subjectBreakListedBeer {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    width: 100%;
     height: 1px;
     background-color: #757575;
     border-radius: 2px;

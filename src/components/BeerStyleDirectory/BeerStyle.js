@@ -16,7 +16,7 @@ class BeerStyle extends React.Component {
     grabStyleContentsAndSet() {
         this.props.actions.fetchStyleContents(this.props.beerStyle, 1)
             .then(response => {
-                browserHistory.push(`/beerStyles/${this.props.beerStyle.shortName}`);
+                browserHistory.push(`/beerStyles/${this.props.beerStyle.shortName}/1`);
             })
             .catch(error => {
                 console.log("Error: ", error);

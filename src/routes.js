@@ -21,7 +21,7 @@ export default (
             
         <Route path="/beerStyles" component={BeerStyleDirectory}/>
         <Route path="/breweriesNearby" component={BreweriesNearbyPage}/>
-        <Route path="/beerStyles/:style" component={BeerStylePage}/>
+        <Route path="/beerStyles/:style/:page" component={BeerStylePage}/>
         <Route path="/beerLog" component={BeerLogPage} />
         <Route path="/beer/:beerId" component={BeerViewPage}/>
         <Route path="/register" component={RegisterPage}/>
