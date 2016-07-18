@@ -6,6 +6,7 @@ import BeerStyleDetails from "./BeerStyleDetails";
 import ListedBeer from "../common/ListedBeer";
 import {bindActionCreators} from "redux";
 import * as BeerActions from "../../actions/BeerActions";
+import {browserHistory} from "react-router";
 
 function grabDirectoryDetails (currentDirectory, directories) {
 
@@ -21,20 +22,19 @@ class BeerStylePage extends React.Component {
 
     componentWillMount() {
         let storedData = localStorage[this.props.localStorageKey];
-        if (storedData) {
-            this.setState({styleContents: JSON.parse(storedData)});
+        let dataInState = this.props.currentStyle;
+        if (storedData || dataInState) {
+            this.setState({styleContents: dataInState || JSON.parse(storedData)});
         } else {
-            this.props.BeerActions.fetchStyleContents(this.props.currentStyleParam, 1);
+            browserHistory.push("/");
         }
 
     }
 
     render() {
-        console.log("This props: " , this.state)
         return (
             <div>
-                <h1>The styles be hurr</h1>
-                <BeerStyleDetails beerStyle={this.props.currentStyle}/>
+                <BeerStyleDetails beerStyle={this.props.styleDescription}/>
                 {
                     this.state.styleContents.map((beer, index) =>
                         <ListedBeer key={index} beerDetails={beer}/>
@@ -47,17 +47,23 @@ class BeerStylePage extends React.Component {
 }
 
 BeerStylePage.propTypes = {
-    currentStyle: PropTypes.object.isRequired,
+    currentStyle: PropTypes.array,
+    styleDescription: PropTypes.object,
     BeerActions: PropTypes.object.isRequired,
     currentStyleParam: PropTypes.string.isRequired,
     localStorageKey: PropTypes.string.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
-    console.log("Own Props ereere: ", ownProps);
-    console.log("Own state ereere: ", state);
+    console.log("State heheehe: ", state.beerDirectories)
+    let styleInState, styleDescription;
+    if (state.beerDirectories.currentBeerStyle) {
+        styleInState = state.beerDirectories.currentBeerStyle.styleContents;
+        styleDescription = state.beerDirectories.currentBeerStyle.styleDescription;
+    }
     return {
-        currentStyle: state.beerDirectories.currentBeerStyle,
+        currentStyle: styleInState,
+        styleDescription: styleDescription,
         currentStyleParam: ownProps.routeParams.style,
         localStorageKey: `${ownProps.params.style}${ownProps.params.page}`
     };

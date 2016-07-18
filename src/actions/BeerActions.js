@@ -76,10 +76,11 @@ export function fetchStyleContents(beerStyle, pageNumber) {
                 if (parsedResponse.status === "success") {
                     dispatch(fetchStyleContentsSuccess(parsedResponse.data, beerStyle,parsedResponse.currentPage));
                     localStorage.setItem(`${beerStyle}${pageNumber}`, JSON.stringify(parsedResponse.data));
-                }
+                    return {success: "Got it."};                }
                 
             })
             .catch(error => {
+                console.log("Error: ", error);
                 dispatch(requestStatusActions.receivedRequestError());
                 return error;
             });
