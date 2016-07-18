@@ -2,7 +2,7 @@
 //This component handles the App template used on every page.
 
 import React, { PropTypes } from "react";
-import Header from "./common/HeaderContainer";
+import NavbarContainer from "./common/NavbarContainer";
 import FooterSection from "./common/FooterSection";
 import $ from "jquery";
 import * as UserActions from "../actions/UserActions";
@@ -19,7 +19,7 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <Header/>
+                <NavbarContainer/>
                 {this.props.children}
                 <FooterSection/>
                 <script>

@@ -4,6 +4,7 @@ import { combineReducers } from "redux";
 import beerDirectoriesReducer from "./beerDirectoriesReducer";
 import userAndAuthReducer from "./userAndAuthReducer";
 import breweriesReducer from "./breweriesReducer";
+import beerSearchReducer from "./beerSearchReducer";
 import requestStatusReducer from "./requestStatusReducer";
 
 const rootReducer = combineReducers({
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
     //ajaxCallsInProgress: ajaxCallsInProgress
     beerDirectories: beerDirectoriesReducer,
     userAndAuth: userAndAuthReducer,
-    breweryResults: breweriesReducer
+    breweryResults: breweriesReducer,
+    beerSearch: beerSearchReducer
    // requestStatusReducer: requestStatusReducer
 });
 

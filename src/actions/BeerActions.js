@@ -2,6 +2,7 @@
 
 import * as types from "./actionTypes";
 import * as requestStatusActions from "./requestStatusActions";
+import toastr from "toastr";
 
 export function fetchBeerStylesDirectoriesSuccess(beerStyles) {
     return {
@@ -23,6 +24,14 @@ export function fetchStyleContentsSuccess(styleContents, styleDescription, pageN
         styleDescription: styleDescription,
         styleContents: styleContents,
         pageNumber: pageNumber
+    };
+}
+
+export function fetchBeerSearchSuccess(searchResults, query) {
+    return {
+        type: types.FETCH_BEER_SEARCH_SUCCESS,
+        searchResults: searchResults,
+        query: query
     };
 }
 
@@ -171,6 +180,28 @@ export function saveBeerRating(beerData, activeUser, newRating) {
             .catch(error => {
                 console.log("Error: ", error);
             });
+    };
+}
+
+export function fetchBeerSearchResults(query) {
+    return function(dispatch) {
+        let queryString = query.replace(/\s/gi, "%20");
+        return fetch(`/api/breweryAPI/beerSearch/${queryString}`)
+            .then(response => {
+                return response.json();
+            })
+            .then(parsedResponse => {
+                if(parsedResponse.totalResults > 0) {
+                    dispatch(fetchBeerSearchSuccess(parsedResponse.data, query));
+                    return({success: "Got them beers"});
+                } else {
+                    toastr.error(`Your search for ${query} yielded no results. Try another beer, or double-check the spelling.`);
+                }
+            })
+            .catch(error => {
+                console.log("Error: ", error);
+            });
+
     };
 }
 

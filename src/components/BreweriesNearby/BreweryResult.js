@@ -3,9 +3,10 @@
 import React, {PropTypes} from "react";
 
 export const BreweryResult = ({brewery}) => {
-    console.log("Brewry: ", brewery);
-    let breweryPhone = `(${brewery.phone.substr(0, 3)}) ${brewery.phone.substr(3, 3)}-${brewery.phone.substr(6, 4)}`;
-
+    let breweryPhone;
+    if (brewery.phone) {
+        breweryPhone = `(${brewery.phone.substr(0, 3)}) ${brewery.phone.substr(3, 3)}-${brewery.phone.substr(6, 4)}`;
+    }
     return (
         <div className="col-sm-8">
             <div className="breweryBottomTopBorders container-fluid"></div>

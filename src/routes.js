@@ -4,6 +4,7 @@ import React from "react";
 import { Route, IndexRoute } from "react-router";
 import App from "./components/App";
 import HomePage from "./components/home/HomePage";
+import BeerSearchPage from "./components/BeerSearch/BeerSearchPage";
 import BeerStyleDirectory from "./components/BeerStyleDirectory/BeerStyleDirectoryPage";
 import BeerStylePage from "./components/BeerStyle/BeerStylePage";
 import BeerViewPage from "./components/BeerViewSingle/SingleBeerPage";
@@ -21,6 +22,7 @@ export default (
             
         <Route path="/beerStyles" component={BeerStyleDirectory}/>
         <Route path="/breweriesNearby" component={BreweriesNearbyPage}/>
+        <Route path="/beerSearch" component={BeerSearchPage}/>
         <Route path="/beerStyles/:style/:page" component={BeerStylePage}/>
         <Route path="/beerLog" component={BeerLogPage} />
         <Route path="/beer/:beerId" component={BeerViewPage}/>

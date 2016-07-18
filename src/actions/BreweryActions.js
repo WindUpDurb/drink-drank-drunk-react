@@ -1,6 +1,7 @@
 "use strict";
 
 import * as types from "./actionTypes";
+import toastr from "toastr";
 
 export function dispatchNearbyBreweryResults(breweries) {
     return {
@@ -26,8 +27,11 @@ export function fetchNearbyBreweryData(coordinates) {
                 return response.json();
             })
             .then(parsedResponse => {
+                console.log("Parsed Response: ", parsedResponse)
                 if(parsedResponse.total > 0) {
-                    dispatch(dispatchNearbyBreweryResults(parsedResponse));
+                    dispatch(dispatchNearbyBreweryResults(parsedResponse.businesses));
+                } else {
+                    toastr.error("It looks like there are no breweries nearby");
                 }
             })
             .catch(error => {

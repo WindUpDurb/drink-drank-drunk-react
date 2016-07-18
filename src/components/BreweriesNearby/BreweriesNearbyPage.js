@@ -73,7 +73,7 @@ BreweriesNearbyPage.propTypes = {
     BreweryActions: PropTypes.object.isRequired,
     UserActions: PropTypes.object.isRequired,
     coordinates: PropTypes.object,
-    breweries: PropTypes.object
+    breweries: PropTypes.array
 };
 
 function mapDispatchToProps(dispatch) {

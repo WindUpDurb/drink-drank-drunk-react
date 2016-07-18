@@ -4,7 +4,7 @@ import React, {PropTypes} from "react";
 import { Link, IndexLink } from "react-router";
 
 
-export const HeaderPresentation = ({sendLogout, activeUser }) => {
+export const NavbarPresentation = ({sendLogout, activeUser, updateSearchFieldState,beerSearch }) => {
     if (activeUser) {
         return (
             <div className="navbar navbar-default" id="navbar-container">
@@ -24,9 +24,13 @@ export const HeaderPresentation = ({sendLogout, activeUser }) => {
                             <li><Link to="/breweriesNearby" activeClassName="active">Find Nearby Breweries</Link></li>
                             <li><Link to="/beerLog" activeClassName="active">Beer Log</Link></li>
                         </ul>
-                        <form className="navbar-form navbar-left">
+                        <form className="navbar-form navbar-left" onSubmit={beerSearch}>
                             <div className="form-group">
-                                <input type="text" className="form-control col-sm-8" placeholder="Search"/>
+                                <input
+                                    type="text"
+                                    onChange={updateSearchFieldState}
+                                    className="form-control col-sm-8"
+                                    placeholder="Search"/>
                             </div>
                         </form>
                         <ul className="nav navbar-nav navbar-right">
@@ -64,9 +68,12 @@ export const HeaderPresentation = ({sendLogout, activeUser }) => {
                         <li><Link to="/breweriesNearby" activeClassName="active">Find Nearby Breweries</Link></li>
                         <li><Link to="/beerLog" activeClassName="active">Beer Log</Link></li>
                     </ul>
-                    <form className="navbar-form navbar-left">
+                    <form className="navbar-form navbar-left"  onSubmit={beerSearch}>
                         <div className="form-group">
-                            <input type="text" className="form-control col-sm-8" placeholder="Search"/>
+                            <input type="text"
+                                   onChange={updateSearchFieldState}
+                                   className="form-control col-sm-8"
+                                   placeholder="Search"/>
                         </div>
                     </form>
                     <ul className="nav navbar-nav navbar-right">
@@ -86,8 +93,10 @@ export const HeaderPresentation = ({sendLogout, activeUser }) => {
 
 };
 
-HeaderPresentation.propTypes = {
+NavbarPresentation.propTypes = {
     sendLogout: PropTypes.func.isRequired,
+    beerSearch: PropTypes.func.isRequired,
+    updateSearchFieldState: PropTypes.func.isRequired,
     activeUser: PropTypes.object
 };
 

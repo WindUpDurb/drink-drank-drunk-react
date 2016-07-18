@@ -7,7 +7,7 @@ let BREWERY_DB = process.env.BREWERY_DB;
 let BeerAPI = {
 
     beerSearch: function (query, callback) {
-        requestNPM(`http://api.brewerydb.com/v2/search/?key=${BREWERY_DB}&q=${query}&withBreweries=Y`, function (error, response, body) {
+        requestNPM(`http://api.brewerydb.com/v2/search/?key=${BREWERY_DB}&q=${query}&type=beer&withBreweries=Y`, function (error, response, body) {
             callback(error, body);    
         });
     },

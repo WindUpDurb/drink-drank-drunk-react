@@ -617,6 +617,16 @@ body {
     width: 20%;
 }
 
+#beerSearchHeader {
+    margin-top: 75px;
+    margin-bottom: 50px;
+}
+
+#beerSearchDivider {
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
 .subjectBreak {
     margin-top: 100px;
     margin-bottom: 70px;

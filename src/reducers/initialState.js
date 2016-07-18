@@ -13,6 +13,8 @@ export const requestsInProgress = 0;
 
 export const activeUser = null;
 
+export const beerSearch = null;
+
 export const forms = {
   newRegistration: {}  
 };

@@ -7,7 +7,7 @@ export default function breweriesReducer(state = initialState.breweryResults, ac
     switch(action.type) {
         case types.FETCH_NEARBY_BREWERIES_SUCCESS:
             return (
-                Object.assign({}, state, action.breweries)
+                action.breweries
             );
 
         default:

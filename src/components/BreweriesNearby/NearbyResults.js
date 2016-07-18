@@ -4,7 +4,8 @@ import React, {PropTypes} from "react";
 import {BreweryResult} from "./BreweryResult";
 
 export const NearbyResultsHeader = ({breweries}) => {
-    const breweryResults = breweries.businesses.map((brewery, index) => <BreweryResult brewery={brewery} key={index}/>);
+    console.log("Brewereies in header: ", breweries)
+    const breweryResults = breweries.map((brewery, index) => <BreweryResult brewery={brewery} key={index}/>);
     return (
         <div className="container">
             <div className="col-sm-offset-1">
@@ -17,5 +18,5 @@ export const NearbyResultsHeader = ({breweries}) => {
 };
 
 NearbyResultsHeader.propTypes = {
-    breweries: PropTypes.object
+    breweries: PropTypes.array
 };
