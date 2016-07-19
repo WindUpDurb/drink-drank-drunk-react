@@ -1,7 +1,7 @@
 "use strict";
 
 import React, {PropTypes} from "react";
-import {CustomSearch} from "./SearchButtonAndInput"
+import {CustomSearch} from "./SearchButtonAndInput";
 
 
 export const FindNearbyButton = ({findNearby}) => {

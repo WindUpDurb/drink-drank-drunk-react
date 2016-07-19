@@ -53,7 +53,6 @@ class BreweriesNearbyPage extends React.Component {
     render() {
         //have button in the middle of the page that gets nearby
         //or an input to search location
-        console.log(this.props);
         this.confirmLocationPopup();
         let initialFindNearby;
         let breweryResults;

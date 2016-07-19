@@ -1,9 +1,9 @@
 "use strict";
 //This component handles the App template used on every page.
-
 import React, { PropTypes } from "react";
 import NavbarContainer from "./common/NavbarContainer";
 import FooterSection from "./common/FooterSection";
+import LoadingBar from "react-redux-loading-bar";
 import $ from "jquery";
 import * as UserActions from "../actions/UserActions";
 import {bindActionCreators} from "redux";
@@ -19,6 +19,7 @@ class App extends React.Component {
     render() {
         return (
             <div>
+                <LoadingBar style={{backgroundColor: "yellow", height: "3px"}}/>
                 <NavbarContainer/>
                 {this.props.children}
                 <FooterSection/>

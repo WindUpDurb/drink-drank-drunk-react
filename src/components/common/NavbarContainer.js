@@ -43,7 +43,7 @@ class NavbarContainer extends React.Component {
     sendLogout() {
         this.props.UserActions.dispatchLogout()
             .then(response => {
-                console.log("Respnse: ", response);
+                
             })
             .catch(error => {
                 console.log("Error: ", error);

@@ -71,7 +71,6 @@ export function fetchStyleContents(beerStyle, pageNumber) {
                 return response.json();
             })
             .then(parsedResponse => {
-                console.log("Check out this data: ", parsedResponse);
                 dispatch(requestStatusActions.receivedRequestSuccess());
                 if (parsedResponse.status === "success") {
                     dispatch(fetchStyleContentsSuccess(parsedResponse.data, beerStyle,parsedResponse.currentPage));
@@ -80,7 +79,6 @@ export function fetchStyleContents(beerStyle, pageNumber) {
                 
             })
             .catch(error => {
-                console.log("Error: ", error);
                 dispatch(requestStatusActions.receivedRequestError());
                 return error;
             });
@@ -147,7 +145,6 @@ export function addToDrink(beer, activeUser) {
                 return response.json();
             })
             .then(parsedResponse => {
-                console.log("parsed response : '", parsedResponse);
                 dispatch(updateActiveUser(parsedResponse));
             })
             .catch(error => {

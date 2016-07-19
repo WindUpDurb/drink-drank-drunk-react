@@ -55,7 +55,6 @@ BeerStylePage.propTypes = {
 };
 
 function mapStateToProps(state, ownProps) {
-    console.log("State heheehe: ", state.beerDirectories)
     let styleInState, styleDescription;
     if (state.beerDirectories.currentBeerStyle) {
         styleInState = state.beerDirectories.currentBeerStyle.styleContents;

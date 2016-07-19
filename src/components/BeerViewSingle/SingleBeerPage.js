@@ -130,7 +130,6 @@ SingleBeerPage.propTypes = {
 };
 
 function mapStateToProps(state, ownProps) {
-    console.log("State: ", state);
     return {
         beerData: state.beerDirectories.currentBeer,
         beerId: ownProps.params.beerId,

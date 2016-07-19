@@ -64,7 +64,6 @@ export function confirmActiveUser() {
                  return response.json();
              })
              .then(parsedResponse => {
-                 console.log("Parsed : ", parsedResponse);
                  dispatch(activeUserConfirmed(parsedResponse));
              })
              .catch(error => {
@@ -133,14 +132,12 @@ export function submitRegistrationForm(newUserData) {
             cache: "default",
             body: JSON.stringify(newUserData)
         };
-        console.log("Request sending: ", options);
         dispatch(requestStatusActions.requestSent());
         return fetch("/api/users", options)
             .then(response => {
                 return response.json();
             })
             .then(parsedResponse => {
-                console.log("Parsed Response: ", parsedResponse);
                 dispatch(requestStatusActions.receivedRequestSuccess());
                 return parsedResponse;
             })

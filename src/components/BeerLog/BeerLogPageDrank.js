@@ -23,7 +23,6 @@ function generateDrankStatistics (drinkData) {
         }
         sumOfAllBeers += drinkData[i].beerRating;
     }
-    console.log("Sum of all beeres: ", sumOfAllBeers)
     drankStatistics.averageRatedBeer = Math.floor(sumOfAllBeers /= drinkData.length);
     return drankStatistics;
 }

@@ -5,6 +5,7 @@ import beerDirectoriesReducer from "./beerDirectoriesReducer";
 import userAndAuthReducer from "./userAndAuthReducer";
 import breweriesReducer from "./breweriesReducer";
 import beerSearchReducer from "./beerSearchReducer";
+import { loadingBarReducer } from "react-redux-loading-bar";
 import requestStatusReducer from "./requestStatusReducer";
 
 const rootReducer = combineReducers({
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
     beerDirectories: beerDirectoriesReducer,
     userAndAuth: userAndAuthReducer,
     breweryResults: breweriesReducer,
-    beerSearch: beerSearchReducer
+    beerSearch: beerSearchReducer,
+    loadingBar: loadingBarReducer
    // requestStatusReducer: requestStatusReducer
 });
 
