@@ -45,7 +45,6 @@ export function dispatchLogout() {
         fetch("/api/users/logout", options)
             .then(response => {
                 dispatch(dispatchLogoutAction());
-                return true;
             })
             .catch(error => {
                 console.log("Error: ", error);

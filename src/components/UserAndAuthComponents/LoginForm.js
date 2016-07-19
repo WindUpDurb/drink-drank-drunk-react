@@ -5,10 +5,9 @@ import GoogleLogin from 'react-google-login';
 
 
 const LoginForm = ({onChange, onSubmit, loginForm}) => {
-    console.log("environment variable: ", process.env)
     return (
-        <div className="row">
-            <div className="col-sm-6 ">
+        <div className="row formFormat">
+            <div className="col-sm-5 col-sm-offset-2">
                 <form>
                     <div className="form-group label-static">
                         <label className="control-label">Login with you email address</label>

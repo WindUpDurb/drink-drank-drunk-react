@@ -6,15 +6,15 @@ import toast from "toastr";
 
 const RegisterForm = ({onChange, onSave, newRegistration})  => {
         return (
-            <div>
+            <div className="formFormat">
                 <div className="text-center container">
                     <div className="row">
-                        <div className="col-sm-4 col-sm-offset-1">
+                        <div className="col-sm-4 col-sm-offset-2">
                             <h3 className="greyText">Register</h3>
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-sm-6 ">
+                        <div className="col-sm-6 col-sm-offset-2">
                             <form>
                                 <div className="form-group label-static">
                                     <label className="control-label">What is your first name?</label>

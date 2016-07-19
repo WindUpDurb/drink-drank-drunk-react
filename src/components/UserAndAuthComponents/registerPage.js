@@ -33,11 +33,8 @@ class RegisterPage extends React.Component {
                 toastr.info("Registration Successful. You can now login.");
             })
             .catch(error => {
-               console.log("Error: ", error);
                 toastr.error("It seems like there was an error");
             });
-        console.log("Here");
-        console.log("New registration: ", this.state.newRegistration);
     }
 
     updateRegistrationFormState(event) {

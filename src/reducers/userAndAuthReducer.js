@@ -23,7 +23,7 @@ export default function userAndAuthReducer(state = initialState.activeUser, acti
 
         case types.LOGOUT_USER:
             return (
-                Object.assign({}, state, {})
+                null
             );
 
         default:

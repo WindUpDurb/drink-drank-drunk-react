@@ -7,6 +7,7 @@ import {bindActionCreators} from "redux";
 import {browserHistory} from "react-router";
 import {connect} from "react-redux";
 import {NavbarPresentation} from "./NavbarPresentation";
+import toastr from "toastr";
 //import LoadingDots from "./LoadingDots";
 
 
@@ -41,13 +42,8 @@ class NavbarContainer extends React.Component {
     }
 
     sendLogout() {
-        this.props.UserActions.dispatchLogout()
-            .then(response => {
-                
-            })
-            .catch(error => {
-                console.log("Error: ", error);
-            });
+        this.props.UserActions.dispatchLogout();
+        toastr.info("You've been successfully logged out.");
     }
     
     render() {

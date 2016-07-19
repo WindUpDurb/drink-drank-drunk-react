@@ -1,6 +1,7 @@
 ## Angular to React Web Application Conversion
 ###Future updates, in no order:
 ####Fix Progress Bar
+####Update Account Settings/Profile
 ####Friend-to-Friend Drink-On-Me Functionality
 ####Brewery Search
 #### Gmail Login

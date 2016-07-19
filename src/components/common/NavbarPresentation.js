@@ -40,7 +40,7 @@ export const NavbarPresentation = ({sendLogout, activeUser, updateSearchFieldSta
                                 <ul className="dropdown-menu">
                                     <li><Link to="/account" activeClassName="active">Account</Link></li>
                                     <li className="divider"/>
-                                    <li onClick={sendLogout}><Link to="" activeClassName="active">Logout</Link></li>
+                                    <li onClick={sendLogout}><Link to="/" activeClassName="active">Logout</Link></li>
                                 </ul>
                             </li>
                         </ul>
