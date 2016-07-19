@@ -6,7 +6,7 @@ export const BeerLogPageChoose = ({leafThroughPages}) => {
 
 
     return (
-        <div className="row">
+        <div id="beerLogChoose" className="row">
             <div className="col-sm-2 col-sm-offset-2">
                 <div className="form-group">
                     <label>Which page would you like to see?</label>

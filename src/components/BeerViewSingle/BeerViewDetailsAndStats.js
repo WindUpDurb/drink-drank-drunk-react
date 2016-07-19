@@ -5,15 +5,7 @@ import React, {PropTypes} from "react";
 export const BeerDetailsAndStats = ({beerData}) => {
     let data = beerData.beerData || beerData;
     let breweryData = data.breweries[0];
-    let ibuMin;
-    let ibuMax;
-    let srmMin;
-    let srmMax;
-    let fgMin;
-    let fgMax;
-    let styleName;
-    let styleDescription;
-    let ogMin;
+    let ibuMin, ibuMax, srmMin, srmMax, fgMin, fgMax, styleName, styleDescription, ogMin;
     if (data.style) {
         ibuMin = data.style.ibuMin;
         ibuMax = data.style.ibuMax;

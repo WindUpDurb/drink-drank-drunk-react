@@ -3,7 +3,7 @@
 import React from "react";
 
 const DrinkDrankDrunkSection = () => {
-
+    
     return (
         <div className="header-container">
             <h1 className="drink-drank-drunk-header-text">Drink, Drank, Drunk</h1>
@@ -11,7 +11,7 @@ const DrinkDrankDrunkSection = () => {
                 <br/>We agree.</p>
             <div className="row">
                 <div className="col-sm-4">
-                    <div id="containerBeerAnimation">
+                    <div className="hidden-xs" id="containerBeerAnimation">
                         <div className="pour"></div>
                         <div id="beaker">
                             <div className="beer-foam">

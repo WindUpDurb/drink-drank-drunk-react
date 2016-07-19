@@ -6,13 +6,13 @@ const FooterSection = () => {
 
     return (
         <footer className="footer footerStyle">
-            <div className="w-section findmesection">
-                <div className="w-container">
+            <div className="findmesection">
+                <div className="container">
                     <div className="text-center">
                         <br/>
                             <h4>Find me and this project on Github at:</h4>
                             <br/>
-                                <a><img src="/statics/GitHub-Mark-32px.png"/></a>
+                                <a href="https://github.com/WindUpDurb/drink-drank-drunk-react" target="_blank"><img src="/statics/GitHub-Mark-32px.png"/></a>
                     </div>
                 </div>
             </div>

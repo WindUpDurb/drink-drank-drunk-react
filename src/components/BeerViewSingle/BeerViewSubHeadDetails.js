@@ -15,7 +15,7 @@ export const BeerViewSubHeadDetails = ({beerData}) => {
             <h3 className="text-center">Brewed By: {beerData.breweries[0].name || "Brewery name is unavailable."}</h3>
             <div className="row">
                 <div className="col-sm-6 col-sm-offset-3">
-                    <div id="beerImageWell" className="well center-block">
+                    <div id="beerImageWell" className="well text-center center-block">
                         <img src={beerImage}/>
                     </div>
                 </div>

@@ -44,7 +44,7 @@ class BeerLogPage extends React.Component {
 
         return (
             <div className="container">
-                <DearBeerLog />
+                <DearBeerLog firstName={this.props.activeUser.firstName}/>
                 <BeerLogPageChoose leafThroughPages={this.leafThroughPages}/>
                 {this.currentBeerPage}
             </div>

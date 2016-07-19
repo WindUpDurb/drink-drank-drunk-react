@@ -37,6 +37,11 @@ function returnBeerRating(beerId, activeUser) {
     }
 }
 
+function generateBeerViewHeading(beerName) {
+    let headingList = [`Here's a single serving of ${beerName}.`, `Let's see. Here's a ${beerName}.`, `Drink up. Here's a ${beerName}.`, `You looked parched. How about a ${beerName}.`, `Catch this ${beerName}.`, `Quick. Shotgun this ${beerName}. Now.`, `No, this? It's just a ${beerName}.`];
+    return headingList[Math.floor(Math.random() * headingList.length)];
+}
+
 class SingleBeerPage extends React.Component {
 
     constructor(props){
@@ -80,11 +85,10 @@ class SingleBeerPage extends React.Component {
     }
 
     render(){
-        let consumed;
-        let inToDrink;
-        let personalRating;
+        let consumed, inToDrink, personalRating;
         let beerData = this.state.beerData || this.props.beerData;
         let activeUser = this.props.activeUser || null;
+        let beerViewHeading = generateBeerViewHeading(beerData.name);
         if (activeUser) {
             consumed = checkIfConsumed(beerData.id, activeUser);
             inToDrink = checkIfInToDrink(beerData.id, activeUser);
@@ -93,7 +97,11 @@ class SingleBeerPage extends React.Component {
                 return (
             <div>
                 <SubHeader/>
-                <h1>Beer View</h1>
+                <div id="beerViewHeading" className="row">
+                    <div className="col-sm-6 col-sm-offset-1">
+                        <h3 className="text-center directoryHeadingText greyText">{beerViewHeading}</h3>
+                    </div>
+                </div>
                 <BeerViewHead consumed={consumed}
                               personalRating={personalRating}
                               updateBeerRating={this.updateBeerRating}

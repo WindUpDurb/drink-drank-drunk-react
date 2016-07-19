@@ -3,24 +3,37 @@ require("dotenv").load();
 
 import express from 'express';
 import path from 'path';
-import open from 'open';
 import compression from "compression";
+import bodyParser from "body-parser";
+import cookieParser from "cookie-parser";
+import mongoose from "mongoose";
+import morgan from "morgan";
 
 /* eslint-disable no-console */
 
-const port = 3000;
 const app = express();
+const PORT = process.env.PORT || 3000;
+const MONGOURL = process.env.MONGODB_URI || "mongodb://localhost/brewery-app-react";
 
+mongoose.connect(MONGOURL, function (error) {
+    console.log(error || `Connected to MongoDB at ${MONGOURL}`);
+});
+
+app.use(bodyParser.urlencoded({extended : true}));
+app.use(morgan("dev"));
+app.use(bodyParser.json());
+app.use(cookieParser());
 app.use(compression());
 app.use(express.static("dist"));
 
 
 app.use("/api", require("./routes/api"));
 
-app.get('*', function(req, res) {
-    res.sendFile(path.join( __dirname, '../dist/index.html'));
+app.use("*", function(request, response) {
+    response.sendFile(path.join(__dirname, "../dist/index.html"));
 });
 
-app.listen(port, function(err) {
-    console.log(err || `Listening on port ${port}`);
+
+app.listen(PORT, function(err) {
+    console.log(err || `Listening on port ${PORT}`);
 });

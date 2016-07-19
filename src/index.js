@@ -8,7 +8,8 @@ import React from "react";
 import { render } from "react-dom";
 import configureStore from "./store/configureStore.dev";
 import {Provider} from "react-redux";
-import { Router, browserHistory } from "react-router";
+import { Router, applyRouterMiddleware, browserHistory } from "react-router";
+import useScroll from "react-router-scroll";
 import routes from "./routes";
 import {loadBeerDirectory} from "./actions/BeerActions";
 import "../node_modules/jquery/dist/jquery.min";
@@ -27,7 +28,10 @@ store.dispatch({type: "CHECK_ACTIVE_USER"});
 
 render(
     <Provider store={store}>
-        <Router history={browserHistory} routes={routes} />
+        <Router
+            history={browserHistory}
+            routes={routes}
+            render={applyRouterMiddleware(useScroll())}/>
     </Provider>,
     document.getElementById("app")
 );

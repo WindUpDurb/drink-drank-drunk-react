@@ -2,7 +2,6 @@
 
 import fs from "fs";
 import cheerio from "cheerio";
-import colors from "colors";
 
 /*eslint-disable no-console*/
 

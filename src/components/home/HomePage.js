@@ -1,14 +1,13 @@
 "use strict";
 
 import React from "react";
-import { Link } from "react-router";
 import DrinkDrankDrunkSection from "./DrinkDrankDrunkSection";
 import DescriptionSection from "./DescriptionSection";
 import $ from "jquery";
 
 function animateBeer() {
     $(document).ready(function() {
-        $('.pour') //Pour Me Another Drink, Bartender!
+        $('.pour')
             .delay(2000)
             .animate({
                 height: '360px'
@@ -16,13 +15,13 @@ function animateBeer() {
             .delay(1600)
             .slideUp(500);
 
-        $('#liquid') // I Said Fill 'Er Up!
+        $('#liquid')
             .delay(3400)
             .animate({
                 height: '170px'
             }, 2500);
 
-        $('.beer-foam') // Keep that Foam Rollin' Toward the Top! Yahooo!
+        $('.beer-foam')
             .delay(3400)
             .animate({
                 bottom: '200px'
@@ -31,8 +30,12 @@ function animateBeer() {
 }
 
 class HomePage extends React.Component {
-    render() {
+
+    componentDidMount(){
         animateBeer();
+    }
+
+    render() {
         return (
             <div>
                 <DrinkDrankDrunkSection/>

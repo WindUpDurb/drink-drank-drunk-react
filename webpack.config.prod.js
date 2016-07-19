@@ -23,7 +23,7 @@ export default {
     //it will be served from memory
     output: {
         //but path and name need to be inputted
-        //no files won't be written
+        //no files will be written
         path: __dirname + '/dist', // Note: Physical files are only output by the production build task `npm run build`.
         publicPath: '/',
         filename: 'bundle.js'
@@ -35,9 +35,13 @@ export default {
     plugins: [
         new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.DefinePlugin(GLOBALS),
-        new ExtractTextPlugin("styles.css"),
+        new ExtractTextPlugin("style.css"),
         new webpack.optimize.DedupePlugin(),
-        new webpack.optimize.UglifyJsPlugin()
+        new webpack.optimize.UglifyJsPlugin(),
+        new webpack.ProvidePlugin({
+            $: "jquery",
+            jQuery: "jquery"
+        })
     ],
     //this section tells webpack what file types it should handle
     module: {
@@ -49,7 +53,14 @@ export default {
             {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file'},
             {test: /\.(woff|woff2)$/, loader: 'url?prefix=font/&limit=5000'},
             {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/octet-stream'},
-            {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=image/svg+xml'}
+            {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=image/svg+xml'},
+            {
+                test: /\.(jpe?g|png|gif|svg)$/i,
+                loaders: [
+                    'file?hash=sha512&digest=hex&name=[hash].[ext]',
+                    'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
+                ]
+            }
         ]
     }
 };
