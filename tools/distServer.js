@@ -7,7 +7,6 @@ import compression from "compression";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import mongoose from "mongoose";
-import morgan from "morgan";
 
 /* eslint-disable no-console */
 
@@ -20,7 +19,6 @@ mongoose.connect(MONGOURL, function (error) {
 });
 
 app.use(bodyParser.urlencoded({extended : true}));
-app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(compression());
