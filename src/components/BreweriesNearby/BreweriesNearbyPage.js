@@ -8,6 +8,7 @@ import * as BreweryActions from "../../actions/BreweryActions";
 import SubHeader from "../common/SubHeader";
 import {FindNearbyButton} from "./FindNearbyButton";
 import {NearbyResultsHeader} from "./NearbyResults";
+import toastr from "toastr";
 
 function animateBeer() {
     $(document).ready(function() {
@@ -36,14 +37,38 @@ function animateBeer() {
 class BreweriesNearbyPage extends React.Component {
     constructor(props) {
         super(props);
+        
+        this.state = {
+            search: null,
+            searchLocation: ""
+        };
+        
         this.lookupNearbyBreweries = this.lookupNearbyBreweries.bind(this);
         this.confirmLocationPopup = this.confirmLocationPopup.bind(this);
+        this.updateSearchLocationState = this.updateSearchLocationState.bind(this);
+        this.submitSearch = this.submitSearch.bind(this);
+        this.toggleSearch = this.toggleSearch.bind(this);
     }
     
     lookupNearbyBreweries(){
+        toastr.error("Searches by Geolocation are temporarily nonfunctional. Please do a custom search.");
         if(this.props.coordinates) {
             this.props.BreweryActions.fetchNearbyBreweryData(this.props.coordinates);
         }
+    }
+
+    toggleSearch() {
+        this.setState({search: true});
+    }
+
+    updateSearchLocationState(event) {
+        let searchValue = event.target.value;
+        return this.setState({searchLocation: searchValue});
+    }
+
+    submitSearch(event) {
+        event.preventDefault();
+        this.props.BreweryActions.customBrewerySearch(this.state.searchLocation);
     }
 
     confirmLocationPopup(){
@@ -56,7 +81,12 @@ class BreweriesNearbyPage extends React.Component {
         this.confirmLocationPopup();
         let initialFindNearby;
         let breweryResults;
-        if(!this.props.breweries) initialFindNearby = <FindNearbyButton findNearby={this.lookupNearbyBreweries}/>;
+        if(!this.props.breweries) initialFindNearby = (<FindNearbyButton
+            toggleSearch={this.toggleSearch}
+            search={this.state.search}
+            updateSearchState={this.updateSearchLocationState}
+            submitSearch={this.submitSearch}
+            findNearby={this.lookupNearbyBreweries}/>);
         if(this.props.breweries) breweryResults = <NearbyResultsHeader breweries={this.props.breweries}/>;
         return (
             <div>

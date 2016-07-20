@@ -21,6 +21,18 @@ let YelpOperations = {
         Yelp.search(options, function (error, breweryData) {
             callback(error, breweryData);
         });
+    },
+
+    customBrewerySearch: function (location, callback) {
+        let options = {
+            term: "brewery",
+            location: location.address,
+            sort: 1,
+            category_filter: "breweries"
+        };
+        Yelp.search(options, function (error, breweryData) {
+            callback(error, breweryData);
+        });
     }
 };
 
