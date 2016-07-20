@@ -17,6 +17,7 @@
   "author": "David Urbina",
   "license": "MIT",
   "dependencies": {
+    "auth0-lock": "^9.2.2",
     "aws-sdk": "^2.3.18",
     "babel-polyfill": "6.8.0",
     "bcrypt": "^0.8.6",
@@ -26,6 +27,7 @@
     "cookie-parser": "^1.4.3",
     "dotenv": "^2.0.0",
     "jquery": "2.2.3",
+    "json-loader": "^0.5.4",
     "json-web-token": "^2.0.2",
     "moment": "^2.13.0",
     "mongoose": "^4.5.3",
@@ -44,6 +46,7 @@
     "redux-thunk": "2.0.1",
     "request": "^2.72.0",
     "toastr": "2.1.2",
+    "transform-loader": "^0.2.3",
     "uuid": "^2.0.2",
     "yelp": "^1.0.1"
   },

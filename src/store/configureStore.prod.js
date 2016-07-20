@@ -10,6 +10,6 @@ export default function configureStore(initialState) {
     return createStore(
         rootReducer,
         initialState,
-        applyMiddleware(thunk, loadingBarMiddleware(), AuthMiddleware.CheckActiveUser, AuthMiddleware.UserOnlyRoute)
+        applyMiddleware(thunk, loadingBarMiddleware(), AuthMiddleware.CheckActiveUser)
     );
 }

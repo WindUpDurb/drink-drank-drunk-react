@@ -3,6 +3,7 @@
 import React, {PropTypes} from "react";
 import * as UserActions from "../../actions/UserActions";
 import * as BeerActions from "../../actions/BeerActions";
+import * as Auth0Actions from "../../actions/Auth0Actions";
 import {bindActionCreators} from "redux";
 import {browserHistory} from "react-router";
 import {connect} from "react-redux";
@@ -22,6 +23,7 @@ class NavbarContainer extends React.Component {
         this.sendLogout = this.sendLogout.bind(this);
         this.updateSearchFieldState = this.updateSearchFieldState.bind(this);
         this.beerSearch = this.beerSearch.bind(this);
+        this.loginTest = this.loginTest.bind(this);
     }
 
     beerSearch(event) {
@@ -45,10 +47,16 @@ class NavbarContainer extends React.Component {
         this.props.UserActions.dispatchLogout();
         toastr.info("You've been successfully logged out.");
     }
-    
+
+    loginTest () {
+        console.log("Working");
+        this.props.Auth0Actions.login()
+    }
+
     render() {
         return (
             <NavbarPresentation
+                login={this.loginTest}
                 sendLogout={this.sendLogout}
                 activeUser={this.props.activeUser}
                 updateSearchFieldState={this.updateSearchFieldState}
@@ -60,6 +68,7 @@ class NavbarContainer extends React.Component {
 NavbarContainer.propTypes = {
     UserActions: PropTypes.object.isRequired,
     BeerActions: PropTypes.object.isRequired,
+    Auth0Actions: PropTypes.object.isRequired,
     activeUser: PropTypes.object
 };
 
@@ -73,7 +82,8 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch) {
     return {
         UserActions: bindActionCreators(UserActions, dispatch),
-        BeerActions: bindActionCreators(BeerActions, dispatch)
+        BeerActions: bindActionCreators(BeerActions, dispatch),
+        Auth0Actions: bindActionCreators(Auth0Actions, dispatch)
     };
 }
 

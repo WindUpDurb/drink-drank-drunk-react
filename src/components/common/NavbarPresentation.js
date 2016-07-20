@@ -4,7 +4,7 @@ import React, {PropTypes} from "react";
 import { Link, IndexLink } from "react-router";
 
 
-export const NavbarPresentation = ({sendLogout, activeUser, updateSearchFieldState,beerSearch }) => {
+export const NavbarPresentation = ({sendLogout, login, activeUser, updateSearchFieldState,beerSearch }) => {
     if (activeUser) {
         return (
             <div className="navbar navbar-default" id="navbar-container">
@@ -82,6 +82,7 @@ export const NavbarPresentation = ({sendLogout, activeUser, updateSearchFieldSta
                             <a href="bootstrap-elements.html" data-target="#" className="dropdown-toggle" data-toggle="dropdown">Dropdown
                                 <b className="caret"/></a>
                             <ul className="dropdown-menu">
+                                <li onClick={login}>Login Test</li>
                                 <li><Link to="/login" activeClassName="active">Login</Link></li>
                             </ul>
                         </li>
@@ -96,6 +97,7 @@ export const NavbarPresentation = ({sendLogout, activeUser, updateSearchFieldSta
 NavbarPresentation.propTypes = {
     sendLogout: PropTypes.func.isRequired,
     beerSearch: PropTypes.func.isRequired,
+    login: PropTypes.func.isRequired,
     updateSearchFieldState: PropTypes.func.isRequired,
     activeUser: PropTypes.object
 };
