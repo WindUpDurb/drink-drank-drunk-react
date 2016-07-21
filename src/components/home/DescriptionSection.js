@@ -1,10 +1,10 @@
 "use strict";
 
-import React from "react";
+import React, {PropTypes} from "react";
 import { Link } from "react-router";
 
 
-const DescriptionSection = () => {
+const DescriptionSection = ({login}) => {
 
     return (
         <div id="homeDescriptionText" className="container text-center">
@@ -16,10 +16,15 @@ const DescriptionSection = () => {
                         <h3 className="descriptive-text site-text">Record the beers you aim to consume</h3>
 
             <div id="homeRegisterButton">
-                <Link to="/register" className="btn btn-raised default">Register Here</Link>
+                <a onClick={login} className="btn btn-raised default">Login with Google</a>
             </div>
         </div>
     );
 };
+
+DescriptionSection.propTypes = {
+    login: PropTypes.func.isRequired
+};
+
 
 export default DescriptionSection;

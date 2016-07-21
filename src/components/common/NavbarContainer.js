@@ -9,7 +9,6 @@ import {browserHistory} from "react-router";
 import {connect} from "react-redux";
 import {NavbarPresentation} from "./NavbarPresentation";
 import toastr from "toastr";
-//import LoadingDots from "./LoadingDots";
 
 
 class NavbarContainer extends React.Component {

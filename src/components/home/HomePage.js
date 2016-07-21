@@ -1,8 +1,11 @@
 "use strict";
 
-import React from "react";
+import React, {PropTypes} from "react";
 import DrinkDrankDrunkSection from "./DrinkDrankDrunkSection";
 import DescriptionSection from "./DescriptionSection";
+import * as Auth0Actions from "../../actions/Auth0Actions";
+import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
 import $ from "jquery";
 
 function animateBeer() {
@@ -30,20 +33,43 @@ function animateBeer() {
 }
 
 class HomePage extends React.Component {
+    constructor(props) {
+        super(props);
+        this.login = this.login.bind(this);
+    }
 
     componentDidMount(){
         animateBeer();
+    }
+
+    login () {
+        this.props.Auth0Actions.login();
     }
 
     render() {
         return (
             <div>
                 <DrinkDrankDrunkSection/>
-                <DescriptionSection/>
+                <DescriptionSection login={this.login}/>
             </div>
         );
     }
 }
 
-export default HomePage;
+HomePage.propTypes = {
+    Auth0Actions: PropTypes.object.isRequired
+};
 
+function mapStateToProps(state, ownProps) {
+    return {
+
+    };
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        Auth0Actions: bindActionCreators(Auth0Actions, dispatch)
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
