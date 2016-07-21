@@ -458,6 +458,20 @@ h2 {
     padding: 10px 15px;
 }
 
+#beerSignRow {
+    margin-top: 20px;
+}
+
+#beerStylesTextRow {
+    margin-top: 20px;
+    margin-bottom:20px;
+}
+
+#beerStylesText {
+    font-size: 2.5em;
+
+}
+
 .beerLogsHaventText {
 
 }

@@ -81,11 +81,22 @@ router.post("/addToToDrink", function (request, response) {
 router.post("/saveBeerRating", function (request, response) {
     User.saveBeerRating(request.body, function (error, updatedUser) {
         if (error) return response.status(400).send(error);
-        BeerRatingsAndDiscussions.updateRating({beerId: request.body.beerId, rating:request.body.newBeerRating}, function (error, updatedMaster) {
-            console.log("Error: ", error);
-            console.log("Updated Master: ", updatedMaster);
+        let sampledBeers = request.body.sampledBeers;
+        let previousRating;
+        for (let i = 0; i < sampledBeers.length; i++) {
+            if (sampledBeers[i].beerId === request.body.beerId && sampledBeers[i].beerRating > 0) {
+                previousRating = sampledBeers[i].beerRating;
+            }
+        }
+        let argument = {
+            beerId: request.body.beerId,
+            rating:request.body.newBeerRating,
+            previousRating
+        };
+        console.log("Previous Rating: ", previousRating);
+        BeerRatingsAndDiscussions.updateRating(argument, function (error, updatedBeerData) {
             if (error) response.status(400).send(error);
-            response.send({updatedUser, updatedMaster});
+            response.send({updatedUser, updatedBeerData});
         });
     });
 });

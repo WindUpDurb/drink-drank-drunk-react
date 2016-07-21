@@ -41,9 +41,9 @@ export const BeerLogPageDrank = ({beersDrank}) => {
                 <div className="row">
                     <div className="greyText col-sm-5 col-sm-offset-3">
                         <p className="toDrinkStatText">You've drank a total of <span className="colorStat"><b>{drankStats.beersDrank}</b></span> different beers.</p>
-                        <p className="toDrinkStatText">The highest rated beer, based on your just evaluation, is a <span className="colorStat"><b>{drankStats.highestRatedBeer}</b></span>.</p>
-                        <p className="toDrinkStatText">The lowest rated beer earned a well-deserved <span className="colorStat"><b>{drankStats.lowestRatedBeer}</b></span>.</p>
-                        <p className="toDrinkStatText">Your average rating for beers is <span className="colorStat"><b>{drankStats.averageRatedBeer}</b></span>.</p>
+                        <p className="toDrinkStatText">Your highest rated beer is <span className="colorStat"><b>{drankStats.highestRatedBeer}</b></span>.</p>
+                        <p className="toDrinkStatText">Your lowest rated beer is a well-deserved <span className="colorStat"><b>{drankStats.lowestRatedBeer}</b></span>.</p>
+                        <p className="toDrinkStatText">Your average-rated beer is <span className="colorStat"><b>{drankStats.averageRatedBeer}</b></span>.</p>
                     </div>
                 </div>
                 <div className="subjectBreak container-fluid"></div>

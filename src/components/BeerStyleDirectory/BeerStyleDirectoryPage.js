@@ -12,10 +12,6 @@ class BeerStyleDirectoryPage extends React.Component {
         super(props);
     }
 
-    componentWillMount() {
-        //let storedData = localStorage[this.props.]
-    }
-
     render() {
         let row1 = [this.props.beerStyles[1], this.props.beerStyles[2], this.props.beerStyles[3]];
         let row2 = [this.props.beerStyles[4], this.props.beerStyles[5], this.props.beerStyles[6]];
@@ -24,9 +20,14 @@ class BeerStyleDirectoryPage extends React.Component {
             <div>
                 <SubHeader/>
                 <div className="container">
-                    <div className="row">
+                    <div id="beerSignRow" className="row">
                         <div className="col-sm-3 col-sm-offset-9">
                             <img src="/statics/bar-sign.png" className="img-responsive"/>
+                        </div>
+                    </div>
+                    <div id="beerStylesTextRow" className="row">
+                        <div className="text-center">
+                            <span id="beerStylesText">Beer Styles</span>
                         </div>
                     </div>
                     <BeerCategoryRow categories={row1}/>

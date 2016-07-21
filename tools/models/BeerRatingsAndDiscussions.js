@@ -2,57 +2,47 @@
 
 let mongoose = require("mongoose");
 
-let beerRatingsAndDiscussionsSchema = new mongoose.Schema({
-    //initial version will be "master"
-    version: {type: String},
-    //an object with keys for each beer
-    //and a value of an object containing total cumulative score, number of ratings, and average
-    ratings: {type: String},
-    discussions: {type: String}
+let beerRatingsSchema = new mongoose.Schema({
+    beerId: {type: String},
+    averageRating: {type: Number},
+    sumOfAllRatings: {type: Number},
+    totalRatings: {type: Number}
 });
 
-beerRatingsAndDiscussionsSchema.statics.updateRating = function (ratingToUpdate, callback) {
-    console.log("Rating to update: ", ratingToUpdate);
-    BeerRatingsAndDiscussions.findOne({version: "master"}, function(error, masterVersion) {
+beerRatingsSchema.statics.updateRating = function (ratingToUpdate, callback) {
+    BeerRatings.findOne({beerId: ratingToUpdate.beerId}, function(error, databaseBeer) {
         if (error) return callback(error);
-        console.log("Master version ", masterVersion);
-        if (!masterVersion) {
-            BeerRatingsAndDiscussions.create({version: "master"}, function(error, newMasterDatabase) {
-                //consider parsing into a string before saving
-                newMasterDatabase.ratings[ratingToUpdate.beerId] = {
-                    numberOfRatings: 1,
-                    sumTotal: ratingToUpdate.rating,
-                    average: ratingToUpdate.rating
-                };
-                newMasterDatabase.save(function(error, savedDatabase) {
-                   return callback(error, savedDatabase);
-                });
+        if (!databaseBeer) {
+            let newBeerRating = {
+                beerId: ratingToUpdate.beerId,
+                totalRatings: 1,
+                sumOfAllRatings: ratingToUpdate.rating,
+                averageRating: ratingToUpdate.rating
+            };
+            BeerRatings.create(newBeerRating, function(error, newDatabaseBeer) {
+                return callback(error, newDatabaseBeer);
             });
         } else {
-            if (masterVersion.ratings.hasOwnProperty(ratingToUpdate.beerId)) {
-                let copyToUpdate = Object.assign({}, masterVersion.ratings[ratingToUpdate.beerId]);
-                copyToUpdate.numberOfRatings++;
-                copyToUpdate.sumTotal += ratingToUpdate.rating;
-                copyToUpdate.average = Math.floor(copyToUpdate.sumTotal / copyToUpdate.numberOfRatings);
-                let updatedRatingDatabase = Object.assign({}, masterVersion.ratings, {[ratingToUpdate.beerId]: copyToUpdate});
-                let updatedMasterVersion = Object.assign({}, masterVersion, {[masterVersion.ratings]: updatedRatingDatabase});
-                updatedMasterVersion.save(function(error, savedMasterVersion) {
-                    return callback(error, savedMasterVersion);
-                });
-            } else {
-                masterVersion.ratings[ratingToUpdate.beerId] = {
-                    numberOfRatings: 1,
-                    sumTotal: ratingToUpdate.rating,
-                    average: ratingToUpdate.rating
-                };
-                masterVersion.save(function (error, savedMasterVersion) {
-                    return callback(error, savedMasterVersion);
-                });
+            if (databaseBeer) {
+                if(!ratingToUpdate.previousRating) {
+                    databaseBeer.totalRatings++;
+                    databaseBeer.sumOfAllRatings = databaseBeer.sumOfAllRatings += parseInt(ratingToUpdate.rating);
+                    databaseBeer.averageRating = Math.floor(databaseBeer.sumOfAllRatings / databaseBeer.totalRatings);
+                    databaseBeer.save(function(error, savedDatabaseBeer) {
+                        return callback(error, savedDatabaseBeer);
+                    });
+                } else {
+                    databaseBeer.sumOfAllRatings = databaseBeer.sumOfAllRatings - parseInt(ratingToUpdate.previousRating) + parseInt(ratingToUpdate.rating);
+                    databaseBeer.averageRating = Math.floor(databaseBeer.sumOfAllRatings / databaseBeer.totalRatings);
+                    databaseBeer.save(function(error, savedDatabaseBeer) {
+                        return callback(error, savedDatabaseBeer);
+                    });
+                }
             }
         }
     });
 };
 
-let BeerRatingsAndDiscussions = mongoose.model("BeerRatingsAndDiscussions", beerRatingsAndDiscussionsSchema);
+let BeerRatings = mongoose.model("BeerRatings", beerRatingsSchema);
 
-module.exports = BeerRatingsAndDiscussions;
+module.exports = BeerRatings;
