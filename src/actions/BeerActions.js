@@ -173,6 +173,7 @@ export function saveBeerRating(beerData, activeUser, newRating) {
                 return response.json();
             })
             .then(parsedResponse => {
+                console.log("parsed response: ", parsedResponse)
                 dispatch(updateUserBeerData(parsedResponse));
             })
             .catch(error => {

@@ -4,6 +4,7 @@ const express = require("express");
 const router = express.Router();
 const multer = require("multer");
 
+const BeerRatingsAndDiscussions = require('../models/BeerRatingsAndDiscussions');
 const User = require("../models/user");
 const S3 = require("../models/s3-storage");
 
@@ -80,7 +81,12 @@ router.post("/addToToDrink", function (request, response) {
 router.post("/saveBeerRating", function (request, response) {
     User.saveBeerRating(request.body, function (error, updatedUser) {
         if (error) return response.status(400).send(error);
-        response.send(updatedUser);
+        BeerRatingsAndDiscussions.updateRating({beerId: request.body.beerId, rating:request.body.newBeerRating}, function (error, updatedMaster) {
+            console.log("Error: ", error);
+            console.log("Updated Master: ", updatedMaster);
+            if (error) response.status(400).send(error);
+            response.send({updatedUser, updatedMaster});
+        });
     });
 });
 
