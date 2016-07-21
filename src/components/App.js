@@ -1,5 +1,4 @@
 "use strict";
-//This component handles the App template used on every page.
 import React, { PropTypes } from "react";
 import NavbarContainer from "./common/NavbarContainer";
 import FooterSection from "./common/FooterSection";
@@ -8,7 +7,6 @@ import $ from "jquery";
 import * as UserActions from "../actions/UserActions";
 import {bindActionCreators} from "redux";
 import * as material from "../../node_modules/bootstrap-material-design/dist/js/material.min";
-//because this is a connected component, need:
 import {connect} from "react-redux";
 
 class App extends React.Component {
@@ -34,7 +32,6 @@ class App extends React.Component {
 }
 
 
-//prop type validation; where children is a required proptype
 App.propTypes = {
     children: PropTypes.object.isRequired,
     loading: PropTypes.bool.isRequired,

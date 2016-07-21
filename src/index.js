@@ -10,7 +10,7 @@ import configureStore from "./store/configureStore.dev";
 import {Provider} from "react-redux";
 import { Router, applyRouterMiddleware, browserHistory } from "react-router";
 import useScroll from "react-router-scroll";
-import routes from "./routes";
+import {generateRoutes} from "./routes";
 import {loadBeerDirectory} from "./actions/BeerActions";
 import "../node_modules/jquery/dist/jquery.min";
 import "./styles/styles.css"; //Webpack can also import CSS files;
@@ -30,7 +30,7 @@ render(
     <Provider store={store}>
         <Router
             history={browserHistory}
-            routes={routes}
+            routes={generateRoutes(store)}
             render={applyRouterMiddleware(useScroll())}/>
     </Provider>,
     document.getElementById("app")

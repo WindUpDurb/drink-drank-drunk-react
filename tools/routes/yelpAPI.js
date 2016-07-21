@@ -16,7 +16,7 @@ router.post("/customBrewerySearch", function (request, response) {
    YelpAPI.customBrewerySearch(request.body, function (error, breweryData) {
        if (error) response.status(400).send(error);
        response.send(breweryData);
-   })
+   });
 });
 
 module.exports = router;

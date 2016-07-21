@@ -47,6 +47,7 @@ class BeerStylePage extends React.Component {
 }
 
 BeerStylePage.propTypes = {
+    beerStyles: PropTypes.object,
     currentStyle: PropTypes.array,
     styleDescription: PropTypes.object,
     BeerActions: PropTypes.object.isRequired,

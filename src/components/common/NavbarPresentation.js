@@ -5,7 +5,7 @@ import { Link, IndexLink } from "react-router";
 
 
 export const NavbarPresentation = ({sendLogout, login, activeUser, updateSearchFieldState,beerSearch }) => {
-    if (activeUser.email) {
+    if (activeUser && activeUser.email) {
         return (
             <div className="navbar navbar-default" id="navbar-container">
                 <div className="container-fluid">
