@@ -23,7 +23,7 @@ export const BeerViewHead = ({consumed, personalRating, updateBeerRating,beerDat
         beerRating = beerRating.map((number, index) => <BeerRatingIcon key={index}/>);
     } else {
         consumedIcon = <span className="pull-right"><img src="/statics/beerIconNoConsumed64.png" /></span>;
-        rateBeer = <span>First you have to try this beer</span>;
+        rateBeer = <span>Try this beer before you rate it.</span>;
     }
     if(beerData.status === "verified") {
         beerStatusInDB = <span className="pull-right"><img src="/statics/thumbUp64.png"/></span>;

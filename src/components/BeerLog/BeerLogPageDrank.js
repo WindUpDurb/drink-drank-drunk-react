@@ -28,33 +28,44 @@ function generateDrankStatistics (drinkData) {
 }
 
 export const BeerLogPageDrank = ({beersDrank}) => {
-    let drankStats;
     if (beersDrank.length) {
-        drankStats = generateDrankStatistics(beersDrank);
-    }
-    return (
-        <div>
-            <div id="drankStats" className="row">
-                <div className="col-sm-5 col-sm-offset-2">
-                    <p className="greyText toDrinkHeading">Look here at all you've drank.</p>
+        let drankStats = generateDrankStatistics(beersDrank);
+
+        return (
+            <div>
+                <div id="drankStats" className="row">
+                    <div className="col-sm-5 col-sm-offset-2">
+                        <p className="greyText toDrinkHeading">Look here at all you've drank.</p>
+                    </div>
                 </div>
-            </div>
-            <div className="row">
-                <div className="greyText col-sm-5 col-sm-offset-3">
+                <div className="row">
+                    <div className="greyText col-sm-5 col-sm-offset-3">
                         <p className="toDrinkStatText">You've drank a total of <span className="colorStat"><b>{drankStats.beersDrank}</b></span> different beers.</p>
                         <p className="toDrinkStatText">The highest rated beer, based on your just evaluation, is a <span className="colorStat"><b>{drankStats.highestRatedBeer}</b></span>.</p>
                         <p className="toDrinkStatText">The lowest rated beer earned a well-deserved <span className="colorStat"><b>{drankStats.lowestRatedBeer}</b></span>.</p>
                         <p className="toDrinkStatText">Your average rating for beers is <span className="colorStat"><b>{drankStats.averageRatedBeer}</b></span>.</p>
+                    </div>
+                </div>
+                <div className="subjectBreak container-fluid"></div>
+                <div className="container-fluid">
+                    <div className="container">
+                        {beersDrank.map((beer, index) => <ListedBeer key={index} beerDetails={beer}/>)}
+                    </div>
                 </div>
             </div>
-            <div className="subjectBreak container-fluid"></div>
-            <div className="container-fluid">
-                <div className="container">
-                    {beersDrank.map((beer, index) => <ListedBeer key={index} beerDetails={beer}/>)}
+        );
+    } else {
+        return (
+            <div>
+                <div className="row">
+                    <div className="col-sm-offset-2 col-sm-5">
+                        <span className="beerLogHaventText">I remember my first beer. Beers that you've drank will be here.</span>
+                    </div>
                 </div>
             </div>
-        </div>
-    );
+        );
+    }
+
 };
 
 BeerLogPageDrank.propTypes = {
