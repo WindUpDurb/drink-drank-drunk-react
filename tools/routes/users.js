@@ -48,13 +48,24 @@ router.delete("/deleteUser/:userId", function (request, response) {
     });
 });
 
-router.post("/login", function (request, response) {
+//Version 1 
+/*router.post("/login", function (request, response) {
     let loginData = request.body;
     User.authenticate(loginData, function (error, token, userData) {
         if (error) {
             response.status(400).send(error);
         } else {
             response.cookie("accessToken", token).send(userData);
+        }
+    });
+});*/
+
+router.post("/login", function (request, response) {
+    User.authenticate(request.body, function (error, userData) {
+        if (error) {
+            response.status(400).send(error);
+        } else {
+            response.send(userData);
         }
     });
 });

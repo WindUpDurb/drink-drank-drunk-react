@@ -23,7 +23,7 @@ class NavbarContainer extends React.Component {
         this.sendLogout = this.sendLogout.bind(this);
         this.updateSearchFieldState = this.updateSearchFieldState.bind(this);
         this.beerSearch = this.beerSearch.bind(this);
-        this.loginTest = this.loginTest.bind(this);
+        this.login = this.login.bind(this);
     }
 
     beerSearch(event) {
@@ -48,15 +48,14 @@ class NavbarContainer extends React.Component {
         toastr.info("You've been successfully logged out.");
     }
 
-    loginTest () {
-        console.log("Working");
-        this.props.Auth0Actions.login()
+    login () {
+        this.props.Auth0Actions.login();
     }
 
     render() {
         return (
             <NavbarPresentation
-                login={this.loginTest}
+                login={this.login}
                 sendLogout={this.sendLogout}
                 activeUser={this.props.activeUser}
                 updateSearchFieldState={this.updateSearchFieldState}

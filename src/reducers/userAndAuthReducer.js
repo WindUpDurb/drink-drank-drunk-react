@@ -10,7 +10,12 @@ export default function userAndAuthReducer(state = initialState.activeUser, acti
             return (
                 Object.assign({}, state, action.coordinates)  
             );
-            
+
+        case types.UPDATE_USER_BEER_DATA:
+            return (
+              Object.assign({}, state, {userBeerData: action.updatedBeerData})
+            );
+
         case types.UPDATE_ACTIVE_USER:
             return (
                 Object.assign({}, state, action.activeUser)

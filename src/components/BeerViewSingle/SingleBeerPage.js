@@ -11,28 +11,28 @@ import SubHeader from "../common/SubHeader";
 import * as BeerActions from "../../actions/BeerActions";
 
 //combine into one function that spits out all three:
-function checkIfConsumed (beerId, activeUser) {
-    for (let i = 0; i < activeUser.sampledBeers.length; i++) {
-        if (activeUser.sampledBeers[i].beerId === beerId) {
+function checkIfConsumed (beerId, userBeerData) {
+    for (let i = 0; i < userBeerData.sampledBeers.length; i++) {
+        if (userBeerData.sampledBeers[i].beerId === beerId) {
             return true;
         }
     }
     return false;
 }
 
-function checkIfInToDrink (beerId, activeUser) {
-    for (let i = 0; i < activeUser.toDrink.length; i++) {
-        if (activeUser.toDrink[i].beerId === beerId) {
+function checkIfInToDrink (beerId, userBeerData) {
+    for (let i = 0; i < userBeerData.toDrink.length; i++) {
+        if (userBeerData.toDrink[i].beerId === beerId) {
             return true;
         }
     }
     return false;
 }
 
-function returnBeerRating(beerId, activeUser) {
-    for (let i = 0; i < activeUser.sampledBeers.length; i++) {
-        if (activeUser.sampledBeers[i].beerId === beerId) {
-            return activeUser.sampledBeers[i].beerRating;
+function returnBeerRating(beerId, userBeerData) {
+    for (let i = 0; i < userBeerData.sampledBeers.length; i++) {
+        if (userBeerData.sampledBeers[i].beerId === beerId) {
+            return userBeerData.sampledBeers[i].beerRating;
         }
     }
 }
@@ -63,36 +63,36 @@ class SingleBeerPage extends React.Component {
 
     updateConsumed(consumed) {
         let beerData = this.state.beerData || this.props.beerData;
-        let activeUser = this.props.activeUser;
+        let userBeerData = this.props.userBeerData;
         if (consumed) {
-            this.props.BeerActions.changeIfConsumed(true, beerData, activeUser);
+            this.props.BeerActions.changeIfConsumed(true, beerData, userBeerData);
         } else {
-            this.props.BeerActions.changeIfConsumed(false, beerData, activeUser);
+            this.props.BeerActions.changeIfConsumed(false, beerData, userBeerData);
         }
     }
     
     updateBeerRating(event) {
         let beerData = this.state.beerData || this.props.beerData;
-        let activeUser = this.props.activeUser;
+        let userBeerData = this.props.userBeerData;
         let newRating = event.target.value;
-        this.props.BeerActions.saveBeerRating(beerData, activeUser, newRating);
+        this.props.BeerActions.saveBeerRating(beerData, userBeerData, newRating);
     }
 
     updateToDrink() {
         let beerData = this.state.beerData || this.props.beerData;
-        let activeUser = this.props.activeUser;
-        this.props.BeerActions.addToDrink(beerData, activeUser);
+        let userBeerData = this.props.userBeerData;
+        this.props.BeerActions.addToDrink(beerData, userBeerData);
     }
 
     render(){
         let consumed, inToDrink, personalRating;
         let beerData = this.state.beerData || this.props.beerData;
-        let activeUser = this.props.activeUser || null;
+        let userBeerData = this.props.userBeerData || null;
         let beerViewHeading = generateBeerViewHeading(beerData.name);
-        if (activeUser) {
-            consumed = checkIfConsumed(beerData.id, activeUser);
-            inToDrink = checkIfInToDrink(beerData.id, activeUser);
-            personalRating = returnBeerRating(beerData.id, activeUser);
+        if (userBeerData) {
+            consumed = checkIfConsumed(beerData.id, userBeerData);
+            inToDrink = checkIfInToDrink(beerData.id, userBeerData);
+            personalRating = returnBeerRating(beerData.id, userBeerData);
         }
                 return (
             <div>
@@ -106,13 +106,13 @@ class SingleBeerPage extends React.Component {
                               personalRating={personalRating}
                               updateBeerRating={this.updateBeerRating}
                               beerData={beerData} 
-                              activeUser={activeUser}/>
+                              activeUser={userBeerData}/>
                 <BeerViewSubHeadDetails beerData={beerData}/>
                 <BeerViewAddButtons consumed={consumed} 
                                     updateConsumed={this.updateConsumed}  
                                     updateToDrink={this.updateToDrink}
                                     inToDrink={inToDrink}
-                                    activeUser={activeUser}/>
+                                    activeUser={userBeerData}/>
                 <BeerDetailsAndStats beerData={beerData}/>
 
             </div>
@@ -126,14 +126,22 @@ SingleBeerPage.propTypes = {
     beerData: PropTypes.object,
     BeerActions: PropTypes.object.isRequired,
     beerId: PropTypes.string.isRequired,
-    activeUser: PropTypes.object
+    activeUser: PropTypes.object,
+    userBeerData: PropTypes.object
 };
 
 function mapStateToProps(state, ownProps) {
+    let activeUser, userBeerData;
+    if (state.userAndAuth) {
+        activeUser = state.userAndAuth;
+        userBeerData = state.userAndAuth.userBeerData;
+    }
+
     return {
         beerData: state.beerDirectories.currentBeer,
         beerId: ownProps.params.beerId,
-        activeUser: state.userAndAuth
+        activeUser: activeUser,
+        userBeerData: userBeerData
     };
 }
 

@@ -9,13 +9,10 @@ import * as types from "./actionTypes";
     };
 }*/
 
-function lockSuccess(profile, token) {
-    console.log("Profile: ", profile);
-    console.log("TOken: ", token);
+function lockSuccess(profile) {
     return {
-        type: types.AUTH0_LOCK_SUCCESS,
-        profile,
-        token
+        type: types.ACTIVE_USER_CONFIRMED,
+        activeUser: profile
     };
 }
 
@@ -36,7 +33,28 @@ export function login() {
             }
             localStorage.setItem('profile', JSON.stringify(profile));
             localStorage.setItem('id_token', token);
-            dispatch(lockSuccess(profile, token));
+            let headers = new Headers();
+            headers.append("Content-Type", "application/json");
+            let options = {
+                method: "POST",
+                credentials: "same-origin",
+                headers: headers,
+                mode: "cors",
+                cache: "default",
+                body: JSON.stringify({email: profile.email})
+            };
+            fetch("/api/users/login", options)
+                .then(response => {
+                    return response.json();
+                })
+                .then(parsedResponse => {
+                    console.log("paresed response: ", parsedResponse);
+                    profile.userBeerData = parsedResponse;
+                    dispatch(lockSuccess(profile));
+                })
+                .catch(error => {
+                    console.log("Error: ", error);
+                });
         });
     };
 }

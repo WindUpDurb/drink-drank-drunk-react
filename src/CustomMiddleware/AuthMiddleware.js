@@ -8,25 +8,34 @@ import toastr from "toastr";
 
 const CheckActiveUser = store => next => action => {
     if (action.type !== types.CHECK_ACTIVE_USER) return next(action);
-
-    let options = {
-        credentials: "include"
-    };
-    fetch("/api/users/activeUser", options)
-        .then(response => {
-            return response.json();
-        })
-        .then(parsedResponse => {
-            if(!parsedResponse.error) {
-                store.dispatch(UserActions.activeUserConfirmed(parsedResponse));
-            }
-            return next(action);
-
-
-        })
-        .catch(error => {
-            return next(action);
-        });
+    if (localStorage.profile && localStorage.id_token) {
+        let profile = JSON.parse(localStorage.profile);
+        let headers = new Headers();
+        headers.append("Content-Type", "application/json");
+        let options = {
+            method: "POST",
+            credentials: "same-origin",
+            headers: headers,
+            mode: "cors",
+            cache: "default",
+            body: JSON.stringify({email: profile.email})
+        };
+        fetch("/api/users/login", options)
+            .then(response => {
+                return response.json();
+            })
+            .then(parsedResponse => {
+                profile.userBeerData = parsedResponse;
+                store.dispatch(UserActions.activeUserConfirmed(profile));
+                return next(action);
+            })
+            .catch(error => {
+                console.log("Error: ", error);
+                return next(action);
+            });
+    } else {
+        return next(action);
+    }
 };
 
 const UserOnlyRoute = store => next => action => {

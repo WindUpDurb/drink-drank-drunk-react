@@ -11,10 +11,10 @@ export function fetchBeerStylesDirectoriesSuccess(beerStyles) {
     };
 }
 
-export function updateActiveUser(activeUserData) {
+export function updateUserBeerData(toUpdateWith) {
     return {
-        type: types.UPDATE_ACTIVE_USER,
-        activeUser: activeUserData
+        type: types.UPDATE_USER_BEER_DATA,
+        updatedBeerData: toUpdateWith
     };
 }
 
@@ -145,7 +145,7 @@ export function addToDrink(beer, activeUser) {
                 return response.json();
             })
             .then(parsedResponse => {
-                dispatch(updateActiveUser(parsedResponse));
+                dispatch(updateUserBeerData(parsedResponse));
             })
             .catch(error => {
                console.log("Error: ", error); 
@@ -173,7 +173,7 @@ export function saveBeerRating(beerData, activeUser, newRating) {
                 return response.json();
             })
             .then(parsedResponse => {
-                dispatch(updateActiveUser(parsedResponse));
+                dispatch(updateUserBeerData(parsedResponse));
             })
             .catch(error => {
                 console.log("Error: ", error);
@@ -232,7 +232,7 @@ export function changeIfConsumed(consumed, beer, activeUser) {
                 return response.json();
             })
             .then(parsedResponse => {
-                dispatch(updateActiveUser(parsedResponse));
+                dispatch(updateUserBeerData(parsedResponse));
             })
             .catch(error => {
                 console.log("The error: ", error);

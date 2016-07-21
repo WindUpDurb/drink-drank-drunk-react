@@ -2,6 +2,7 @@
 
 import React, {PropTypes} from "react";
 import * as UserActions from "../../actions/UserActions";
+import {browserHistory} from "react-router";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import {DearBeerLog} from "./DearBeerLog";
@@ -22,7 +23,9 @@ class BeerLogPage extends React.Component {
     }
 
     componentWillMount() {
-        this.props.UserActions.securitySearch();
+        if(!this.props.activeUser) {
+            browserHistory.push("/");
+        }
     }
 
     leafThroughPages(event) {
@@ -33,10 +36,10 @@ class BeerLogPage extends React.Component {
     render(){
         switch(this.state.beerLogPage) {
             case "Drank":
-                this.currentBeerPage = <BeerLogPageDrank beersDrank={this.props.activeUser.sampledBeers}/>;
+                this.currentBeerPage = <BeerLogPageDrank beersDrank={this.props.userBeerData.sampledBeers}/>;
                 break;
             case "To-Drink":
-                this.currentBeerPage = <BeerLogPageToDrink toDrinks={this.props.activeUser.toDrink}/>;
+                this.currentBeerPage = <BeerLogPageToDrink toDrinks={this.props.userBeerData.toDrink}/>;
                 break;
             default:
                 this.currentBeerPage = null;
@@ -44,7 +47,7 @@ class BeerLogPage extends React.Component {
 
         return (
             <div className="container">
-                <DearBeerLog firstName={this.props.activeUser.firstName}/>
+                <DearBeerLog firstName={this.props.activeUser.given_name}/>
                 <BeerLogPageChoose leafThroughPages={this.leafThroughPages}/>
                 {this.currentBeerPage}
             </div>
@@ -54,12 +57,14 @@ class BeerLogPage extends React.Component {
 
 BeerLogPage.propTypes = {
     UserActions: PropTypes.object.isRequired,
-    activeUser: PropTypes.object
+    activeUser: PropTypes.object,
+    userBeerData: PropTypes.object
 };
 
 function mapStateToProps(state, ownProps) {
     return {
-        activeUser: state.userAndAuth
+        activeUser: state.userAndAuth,
+        userBeerData: state.userAndAuth.userBeerData
     };
 }
 

@@ -5,7 +5,7 @@ import { Link, IndexLink } from "react-router";
 
 
 export const NavbarPresentation = ({sendLogout, login, activeUser, updateSearchFieldState,beerSearch }) => {
-    if (activeUser) {
+    if (activeUser.email) {
         return (
             <div className="navbar navbar-default" id="navbar-container">
                 <div className="container-fluid">
@@ -35,10 +35,13 @@ export const NavbarPresentation = ({sendLogout, login, activeUser, updateSearchF
                         </form>
                         <ul className="nav navbar-nav navbar-right">
                             <li className="dropdown">
-                                <a href="bootstrap-elements.html" data-target="#" className="dropdown-toggle" data-toggle="dropdown">Dropdown
+                                <a href="bootstrap-elements.html" data-target="#" className="dropdown-toggle" data-toggle="dropdown">
+                                    <img className="img-responsive img-rounded" src={activeUser.picture} id="gmailPicture"/>
                                     <b className="caret"/></a>
                                 <ul className="dropdown-menu">
-                                    <li><Link to="/account" activeClassName="active">Account</Link></li>
+                                    <li><span id="dropdownTextName">{activeUser.name}</span>
+                                        <br/> <span id="dropdownTextEmail">{activeUser.email}</span>
+                                    </li>
                                     <li className="divider"/>
                                     <li onClick={sendLogout}><Link to="/" activeClassName="active">Logout</Link></li>
                                 </ul>
@@ -77,13 +80,11 @@ export const NavbarPresentation = ({sendLogout, login, activeUser, updateSearchF
                         </div>
                     </form>
                     <ul className="nav navbar-nav navbar-right">
-                        <li><Link to="/register" activeClassName="active">Register</Link></li>
                         <li className="dropdown">
-                            <a href="bootstrap-elements.html" data-target="#" className="dropdown-toggle" data-toggle="dropdown">Dropdown
+                            <a href="bootstrap-elements.html" data-target="#" className="dropdown-toggle" data-toggle="dropdown">Profile
                                 <b className="caret"/></a>
                             <ul className="dropdown-menu">
-                                <li onClick={login}>Login Test</li>
-                                <li><Link to="/login" activeClassName="active">Login</Link></li>
+                                <li><a onClick={login}>Login with your Google Account</a></li>
                             </ul>
                         </li>
                     </ul>

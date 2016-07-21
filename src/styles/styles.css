@@ -452,6 +452,25 @@ h2 {
 
 }
 
+#dropdownTextName {
+    font-size: 1.2em;
+    color: black;
+    padding: 10px 15px;
+}
+
+#gmailPicture {
+    height: 33px;
+    width: 33px;
+    display: inline-block;
+    margin-right: 3px;
+}
+
+#dropdownTextEmail {
+    font-size: .9em;
+    color: black;
+    padding: 10px 15px;
+}
+
 .header-container {
     margin-top: 0px;
     height: 500px;

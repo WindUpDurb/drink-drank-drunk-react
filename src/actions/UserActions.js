@@ -44,6 +44,8 @@ export function dispatchLogout() {
         };
         fetch("/api/users/logout", options)
             .then(response => {
+                localStorage.removeItem("profile");
+                localStorage.removeItem("id_token");
                 dispatch(dispatchLogoutAction());
             })
             .catch(error => {
