@@ -3,8 +3,7 @@
 ####Fix Progress Bar
 ####Update Account Settings/Profile
 ####Friend-to-Friend Drink-On-Me Functionality
-####Brewery Search
-#### Gmail Login
+####Brewery Search Near Me
 #### Application-wide Rating/Comments
 #####Find the Angular application at https://github.com/WindUpDurb/brewery-app
 
