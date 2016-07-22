@@ -8,6 +8,7 @@ import {BeerDetailsAndStats} from "./BeerViewDetailsAndStats";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import SubHeader from "../common/SubHeader";
+import {AddComment} from "./AddComent";
 import * as BeerActions from "../../actions/BeerActions";
 
 //combine into one function that spits out all three:
@@ -47,11 +48,15 @@ class SingleBeerPage extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            beerData: ""
+            beerData: null,
+            newComment: ""
         };
         this.updateConsumed = this.updateConsumed.bind(this);
         this.updateToDrink = this.updateToDrink.bind(this);
         this.updateBeerRating = this.updateBeerRating.bind(this);
+        this.addNewComment = this.addNewComment.bind(this);
+        this.updateCommentState = this.updateCommentState.bind(this);
+        this.cancelComment = this.cancelComment.bind(this);
     }
 
     componentWillMount() {
@@ -84,6 +89,25 @@ class SingleBeerPage extends React.Component {
         this.props.BeerActions.addToDrink(beerData, userBeerData);
     }
 
+    cancelComment() {
+        return this.setState({newComment: ""});
+    }
+
+    addNewComment(event) {
+        event.preventDefault();
+        let newComment = this.state.newComment;
+        let beerId = this.props.beerId;
+        let user = this.props.activeUser.email;
+        this.props.BeerActions.addCommentToDiscussion(newComment, beerId, user);
+    }
+
+    updateCommentState(event) {
+        let comment = event.target.value;
+        console.log("Comment: ", comment);
+        return this.setState({newComment: comment});
+
+    }
+
     render(){
         let consumed, inToDrink, personalRating;
         let beerData = this.state.beerData || this.props.beerData;
@@ -114,7 +138,13 @@ class SingleBeerPage extends React.Component {
                                     inToDrink={inToDrink}
                                     activeUser={userBeerData}/>
                 <BeerDetailsAndStats beerData={beerData}/>
-
+                <AddComment
+                    newComment={this.state.newComment}
+                    cancelComment={this.cancelComment}
+                    updateComment={this.updateCommentState}
+                    addComment={this.addNewComment}
+                    beerName={this.state.beerData.name}
+                    activeUser={this.props.activeUser}/>
             </div>
         );
     }

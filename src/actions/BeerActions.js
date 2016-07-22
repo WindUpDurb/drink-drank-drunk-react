@@ -204,6 +204,37 @@ export function fetchBeerSearchResults(query) {
     };
 }
 
+export function addBeerComment(newComment, beerId, user) {
+    return function(dispatch) {
+        let toSend = {
+            authorEmail: user,
+            comment: newComment,
+            beerId
+        };
+        let headers = new Headers();
+        headers.append("Content-Type", "application/json");
+        let options = {
+            method: "PUT",
+            credentials: "same-origin",
+            headers: headers,
+            mode: "cors",
+            cache: "default",
+            body: JSON.stringify(toSend)
+        };
+
+        return fetch("/api/user/addBeerComment", options)
+            .then(response => {
+                return response.json();
+            })
+            .then(parsedResponse => {
+                console.log("Parsed REsponse: ", parsedResponse);
+            })
+            .catch(error => {
+                console.log("Error: ", error);
+            });
+    };
+}
+
 export function changeIfConsumed(consumed, beer, activeUser) {
     return function(dispatch){
         let headers = new Headers();

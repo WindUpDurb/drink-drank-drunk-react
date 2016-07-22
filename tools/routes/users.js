@@ -4,7 +4,8 @@ const express = require("express");
 const router = express.Router();
 const multer = require("multer");
 
-const BeerRatingsAndDiscussions = require('../models/BeerRatingsAndDiscussions');
+const BeerDiscussion = require("../models/BeerDiscussions");
+const BeerRatings = require('../models/BeerRatings');
 const User = require("../models/user");
 const S3 = require("../models/s3-storage");
 
@@ -49,18 +50,6 @@ router.delete("/deleteUser/:userId", function (request, response) {
     });
 });
 
-//Version 1 
-/*router.post("/login", function (request, response) {
-    let loginData = request.body;
-    User.authenticate(loginData, function (error, token, userData) {
-        if (error) {
-            response.status(400).send(error);
-        } else {
-            response.cookie("accessToken", token).send(userData);
-        }
-    });
-});*/
-
 router.post("/login", function (request, response) {
     User.authenticate(request.body, function (error, userData) {
         if (error) {
@@ -76,6 +65,15 @@ router.post("/addToToDrink", function (request, response) {
        if (error) return response.status(400).send(error);
        response.send(savedUser);
    });
+});
+
+router.post("/addBeerComment", function (request, response) {
+    BeerDiscussion.addCommentToDiscussion(request.body, function (error, updatedDiscussion) {
+        console.log("Error: ", error);
+        console.log("Updated Discussion: ", updatedDiscussion);
+       if (error) return response.status(400).send(error);
+        response.send(updatedDiscussion);
+    });
 });
 
 router.post("/saveBeerRating", function (request, response) {
@@ -94,7 +92,7 @@ router.post("/saveBeerRating", function (request, response) {
             previousRating
         };
         console.log("Previous Rating: ", previousRating);
-        BeerRatingsAndDiscussions.updateRating(argument, function (error, updatedBeerData) {
+        BeerRatings.updateRating(argument, function (error, updatedBeerData) {
             if (error) response.status(400).send(error);
             response.send({updatedUser, updatedBeerData});
         });

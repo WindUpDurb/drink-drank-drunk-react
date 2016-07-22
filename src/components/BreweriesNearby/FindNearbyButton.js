@@ -7,7 +7,7 @@ import {CustomSearch} from "./SearchButtonAndInput";
 export const FindNearbyButton = ({search, toggleSearch, updateSearchState, submitSearch, findNearby}) => {
     return (
         <div className="row" id="findNearbyRow">
-            <div className="col-sm-offset-5 col-sm-2">
+            <div className="col-sm-offset-5 col-sm-3">
                 <button onClick={findNearby}
                         className="btn btn-raised"
                         id="findNearbyButton">Find Nearby Breweries</button>

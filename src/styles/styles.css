@@ -444,12 +444,22 @@ h2 {
     box-shadow: 5px 5px 2px #888888;
 }
 
+.cancelComment {
+    margin-right: 25px;
+}
+
 #customSearchButton {
     background-color: #1a2242;
     background-image: url("http://www.transparenttextures.com/patterns/assault.png");
     color: white;
     box-shadow: 5px 5px 2px #888888;
 
+}
+
+.commentUserImage {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto;
 }
 
 #dropdownTextName {
