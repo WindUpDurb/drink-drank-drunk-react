@@ -98,7 +98,8 @@ class SingleBeerPage extends React.Component {
         let newComment = this.state.newComment;
         let beerId = this.props.beerId;
         let user = this.props.activeUser.email;
-        this.props.BeerActions.addCommentToDiscussion(newComment, beerId, user);
+        this.props.BeerActions.addBeerComment(newComment, beerId, user);
+        this.setState({newComment: ""});
     }
 
     updateCommentState(event) {

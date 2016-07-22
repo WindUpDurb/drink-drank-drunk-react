@@ -214,7 +214,7 @@ export function addBeerComment(newComment, beerId, user) {
         let headers = new Headers();
         headers.append("Content-Type", "application/json");
         let options = {
-            method: "PUT",
+            method: "POST",
             credentials: "same-origin",
             headers: headers,
             mode: "cors",
@@ -222,7 +222,7 @@ export function addBeerComment(newComment, beerId, user) {
             body: JSON.stringify(toSend)
         };
 
-        return fetch("/api/user/addBeerComment", options)
+        return fetch("/api/users/addBeerComment", options)
             .then(response => {
                 return response.json();
             })

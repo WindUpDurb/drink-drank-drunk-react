@@ -4,18 +4,18 @@ let mongoose = require("mongoose");
 
 let beerDiscussion = new mongoose.Schema({
     beerId: {type: String},
-    comments: [{type : mongoose.Schema.ObjectId, ref : 'beerComments'}]
+    comments: [{type : mongoose.Schema.ObjectId, ref : 'BeerComment'}]
 });
 
 let beerComment = new mongoose.Schema({
-    discussion_id: {type: mongoose.Schema.ObjectId, ref: "beerDiscussion"},
+    discussion_id: {type: mongoose.Schema.ObjectId, ref: "BeerDiscussion"},
     author_email: {type: String},
     comment: {type: String},
-    date_posted: new Date("<YYYY-mm-ddTHH:MM:ss>")
+    date_posted: {type: Date, default: Date.now}
 });
 
 beerDiscussion.statics.addCommentToDiscussion = function (dataToAdd, callback) {
-    BeerDiscussion.findOne({beerId: dataToAdd.beereId}, function (error, databaseDiscussion) {
+    BeerDiscussion.findOne({beerId: dataToAdd.beerId}, function (error, databaseDiscussion) {
         if (error) return callback(error);
         if (!databaseDiscussion) {
             BeerDiscussion.create({beerId: dataToAdd.beerId, comments: []}, function (error, newDiscussion) {
@@ -29,11 +29,13 @@ beerDiscussion.statics.addCommentToDiscussion = function (dataToAdd, callback) {
                     if (error) return callback(error);
                     newDiscussion.comments.push(savedComment._id);
                     newDiscussion.save(function (error, savedDiscussion) {
-                        //insted of querying the database again
-                        // to populate comment, since first comment in discussion
-                        savedDiscussion.comments = [];
-                        savedDiscussion.comments.push(savedComment);
-                       return callback(error, savedDiscussion);
+                        if (error) return callback(error);
+                        //look into better re-populating
+                        BeerDiscussion.findById(savedDiscussion._id)
+                            .populate("comments")
+                            .exec(function (error, populatedDiscussion) {
+                                return callback(error, populatedDiscussion);
+                            });
                     });
                 });
             });
