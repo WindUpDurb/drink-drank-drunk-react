@@ -3,10 +3,10 @@
 import React, {PropTypes} from "react";
 
 export const AddComment = ({newComment, cancelComment, updateComment, addComment, beerName, activeUser}) => {
-console.log("active User: ", activeUser)
     if (activeUser && activeUser.email) {
         return (
             <div>
+                <div className="subjectBreak container-fluid"></div>
                 <form onSubmit={addComment} className="form-group">
                     <div className="row">
                         <div className="col-sm-1 text-center col-sm-offset-3">
@@ -19,7 +19,7 @@ console.log("active User: ", activeUser)
                         </div>
                     </div>
 
-                    <div className="row">
+                    <div style={{marginTop: "9px"}} className="row">
                         <div className="col-sm-3 col-sm-offset-6">
                             <span className="cancelComment">
                                 <button type="button" onClick={cancelComment} className="btn btn-raised btn-default btn-sm">Cancel</button>

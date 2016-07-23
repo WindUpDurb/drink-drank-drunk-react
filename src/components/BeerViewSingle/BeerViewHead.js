@@ -12,7 +12,7 @@ const generateArrayForRating = (rating) => {
     return ratingArray;
 };
 
-export const BeerViewHead = ({consumed, personalRating, updateBeerRating,beerData, activeUser}) => {
+export const BeerViewHead = ({consumed, globalRating, personalRating, updateBeerRating,beerData, activeUser}) => {
     let consumedIcon;
     let beerStatusInDB;
     let rateBeer;
@@ -39,6 +39,7 @@ export const BeerViewHead = ({consumed, personalRating, updateBeerRating,beerDat
                 </div>
                 {beerStatusInDB}
                 {consumedIcon}
+                <span className="pull-right">{globalRating}</span>
                 <div className="row">
                     <div className="form-group">
                         <div className="col-sm-1">
@@ -54,8 +55,9 @@ export const BeerViewHead = ({consumed, personalRating, updateBeerRating,beerDat
     return (
         <div className="container">
             <div className="row"></div>
-            <span className="pull-right"><img src="/statics/updatePending64.png"/></span>
-            <span className="pull-right"><img src="/statics/thumbUp64.png"/></span>
+            {beerStatusInDB}
+            {consumedIcon}
+            <span className="pull-right">Global: {globalRating}</span>
             <div className="row">
             </div>
         </div>
@@ -68,7 +70,8 @@ BeerViewHead.propTypes = {
     updateBeerRating: PropTypes.func.isRequired,
     consumed: PropTypes.bool,
     beerData: PropTypes.object.isRequired,
-    activeUser: PropTypes.object
+    activeUser: PropTypes.object,
+    globalRating: PropTypes.number
 };
 
 

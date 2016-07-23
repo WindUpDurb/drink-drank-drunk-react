@@ -9,6 +9,7 @@ import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import SubHeader from "../common/SubHeader";
 import {AddComment} from "./AddComent";
+import {CommentsDisplay} from "./CommentsDisplay";
 import * as BeerActions from "../../actions/BeerActions";
 
 //combine into one function that spits out all three:
@@ -101,13 +102,14 @@ class SingleBeerPage extends React.Component {
         let newComment = this.state.newComment;
         let beerId = this.props.beerId;
         let user = this.props.activeUser.email;
-        this.props.BeerActions.addBeerComment(newComment, beerId, user);
+        let photo = this.props.activeUser.picture;
+        let userName = this.props.activeUser.given_name;
+        this.props.BeerActions.addBeerComment(newComment, beerId, user, photo, userName);
         this.setState({newComment: ""});
     }
 
     updateCommentState(event) {
         let comment = event.target.value;
-        console.log("Comment: ", comment);
         return this.setState({newComment: comment});
 
     }
@@ -123,7 +125,7 @@ class SingleBeerPage extends React.Component {
             personalRating = returnBeerRating(beerData.id, userBeerData);
         }
                 return (
-            <div>
+            <div id="beerViewPage">
                 <SubHeader/>
                 <div id="beerViewHeading" className="row">
                     <div className="col-sm-6 col-sm-offset-1">
@@ -131,6 +133,7 @@ class SingleBeerPage extends React.Component {
                     </div>
                 </div>
                 <BeerViewHead consumed={consumed}
+                              globalRating={this.props.globalRating}
                               personalRating={personalRating}
                               updateBeerRating={this.updateBeerRating}
                               beerData={beerData} 
@@ -149,6 +152,10 @@ class SingleBeerPage extends React.Component {
                     addComment={this.addNewComment}
                     beerName={this.state.beerData.name}
                     activeUser={this.props.activeUser}/>
+
+                <CommentsDisplay
+                    comments={this.props.beerDiscussion}/>
+
             </div>
         );
     }
@@ -161,21 +168,35 @@ SingleBeerPage.propTypes = {
     BeerActions: PropTypes.object.isRequired,
     beerId: PropTypes.string.isRequired,
     activeUser: PropTypes.object,
-    userBeerData: PropTypes.object
+    userBeerData: PropTypes.object,
+    beerDiscussion: PropTypes.array,
+    globalRating: PropTypes.number
 };
 
 function mapStateToProps(state, ownProps) {
-    let activeUser, userBeerData;
+    let activeUser, userBeerData, globalRating, beerDiscussion;
+    let beerId = ownProps.params.beerId;
+    let supplemental = state.beerRatingAndDiscussion;
     if (state.userAndAuth) {
         activeUser = state.userAndAuth;
         userBeerData = state.userAndAuth.userBeerData;
     }
 
+    if (supplemental && supplemental.beerDiscussion && supplemental.beerDiscussion.beerId === beerId) {
+        beerDiscussion = supplemental.beerDiscussion.comments;
+    }
+    if (supplemental && supplemental.globalBeerRating && supplemental.globalBeerRating.beerId === beerId) {
+        globalRating = supplemental.globalBeerRating.averageRating;
+    }
+
+
     return {
         beerData: state.beerDirectories.currentBeer,
-        beerId: ownProps.params.beerId,
+        beerId,
         activeUser: activeUser,
-        userBeerData: userBeerData
+        userBeerData: userBeerData,
+        beerDiscussion,
+        globalRating
     };
 }
 

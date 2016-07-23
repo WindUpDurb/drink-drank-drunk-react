@@ -7,6 +7,11 @@ export const beerDirectories = {
     currentBeer: {}
 };
 
+export const beerRatingAndDiscussion = {
+    globalBeerRating: null,
+    beerDiscussion: null
+};
+
 export const breweryResults = null;
 
 export const requestsInProgress = 0;

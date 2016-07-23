@@ -11,7 +11,9 @@ let beerComment = new mongoose.Schema({
     discussion_id: {type: mongoose.Schema.ObjectId, ref: "BeerDiscussion"},
     author_email: {type: String},
     comment: {type: String},
-    date_posted: {type: Date, default: Date.now}
+    date_posted: {type: Date, default: Date.now},
+    author_photo: {type: String},
+    author_name: {type: String}
 });
 
 beerDiscussion.statics.fetchBeerData = function (beerId, callback) {
@@ -31,7 +33,9 @@ beerDiscussion.statics.addCommentToDiscussion = function (dataToAdd, callback) {
                 let newComment = {
                     discussion_id: newDiscussion._id,
                     author_email: dataToAdd.authorEmail,
-                    comment: dataToAdd.comment
+                    comment: dataToAdd.comment,
+                    author_photo: dataToAdd.authorPhoto,
+                    author_name: dataToAdd.userName
                 };
                 BeerComment.create(newComment, function (error, savedComment) {
                     if (error) return callback(error);
@@ -51,7 +55,10 @@ beerDiscussion.statics.addCommentToDiscussion = function (dataToAdd, callback) {
             let newComment = {
                 discussion_id: databaseDiscussion._id,
                 author_email: dataToAdd.authorEmail,
-                comment: dataToAdd.comment
+                comment: dataToAdd.comment,
+                author_photo: dataToAdd.authorPhoto,
+                author_name: dataToAdd.userName
+
             };
             BeerComment.create(newComment, function (error, savedComment) {
                 if (error) return callback(error);

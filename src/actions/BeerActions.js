@@ -18,6 +18,20 @@ export function updateUserBeerData(toUpdateWith) {
     };
 }
 
+export function updateGlobalBeerRatingState(rating) {
+    return {
+        type: types.UPDATE_GLOBAL_BEER_RATING,
+        globalBeerRating: rating
+    };
+}
+
+export function updateBeerDiscussion(discussion) {
+    return {
+        type: types.UPDATE_BEER_DISCUSSION,
+        discussion
+    };
+}
+
 export function fetchStyleContentsSuccess(styleContents, styleDescription, pageNumber) {
     return {
         type: types.FETCH_STYLE_CONTENTS_SUCCESS,
@@ -211,7 +225,15 @@ export function grabSupplementalBeerData(beerId) {
                 return response.json();
             })
             .then(parsedResponse => {
-                console.log("Parsed Response: ", parsedResponse); 
+                parsedResponse.forEach(object => {
+                    if (object.databaseBeer) {
+
+                        dispatch(updateGlobalBeerRatingState(object.databaseBeer));
+                    }
+                    if (object.populatedDiscussion) {
+                        dispatch(updateBeerDiscussion(object.populatedDiscussion));
+                    }
+                });
             })
             .catch(error => {
                 console.log("Error: ", error);
@@ -219,9 +241,11 @@ export function grabSupplementalBeerData(beerId) {
     };
 }
 
-export function addBeerComment(newComment, beerId, user) {
+export function addBeerComment(newComment, beerId, user, authorPhoto, userName) {
     return function(dispatch) {
         let toSend = {
+            userName,
+            authorPhoto,
             authorEmail: user,
             comment: newComment,
             beerId
@@ -242,7 +266,7 @@ export function addBeerComment(newComment, beerId, user) {
                 return response.json();
             })
             .then(parsedResponse => {
-                console.log("Parsed REsponse: ", parsedResponse);
+                dispatch(updateBeerDiscussion(parsedResponse));
             })
             .catch(error => {
                 console.log("Error: ", error);

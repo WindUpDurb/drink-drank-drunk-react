@@ -5,16 +5,14 @@ import React from "react";
 const FooterSection = () => {
 
     return (
-        <footer className="footer footerStyle">
-            <div className="findmesection">
-                <div className="container">
+        <footer id="footerStyle">
+            <div className="findmesection container-fluid">
                     <div className="text-center">
                         <br/>
                             <h4>Find me and this project on Github at:</h4>
                             <br/>
-                                <a href="https://github.com/WindUpDurb/drink-drank-drunk-react" target="_blank"><img src="/statics/GitHub-Mark-32px.png"/></a>
+                        <a href="https://github.com/WindUpDurb/drink-drank-drunk-react" target="_blank"><img src="/statics/GitHub-Mark-32px.png"/></a>
                     </div>
-                </div>
             </div>
             <div className="container text-center">
                 <div className="row" id="footerLinksRow">
