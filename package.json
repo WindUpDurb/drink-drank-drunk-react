@@ -17,6 +17,7 @@
   "author": "David Urbina",
   "license": "MIT",
   "dependencies": {
+    "async": "^2.0.1",
     "auth0-lock": "^9.2.2",
     "aws-sdk": "^2.3.18",
     "babel-polyfill": "6.8.0",
@@ -37,7 +38,6 @@
     "react-bootstrap": "^0.29.5",
     "react-dom": "15.0.2",
     "react-fontawesome": "^1.1.0",
-    "react-google-login": "^2.1.2",
     "react-redux": "4.4.5",
     "react-router": "2.4.0",
     "react-router-redux": "4.0.4",

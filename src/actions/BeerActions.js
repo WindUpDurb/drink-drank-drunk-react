@@ -204,6 +204,21 @@ export function fetchBeerSearchResults(query) {
     };
 }
 
+export function grabSupplementalBeerData(beerId) {
+    return function (dispatch) {
+        return fetch(`/api/users/supplementalBeerData/${beerId}`)
+            .then(response => {
+                return response.json();
+            })
+            .then(parsedResponse => {
+                console.log("Parsed Response: ", parsedResponse); 
+            })
+            .catch(error => {
+                console.log("Error: ", error);
+            });
+    };
+}
+
 export function addBeerComment(newComment, beerId, user) {
     return function(dispatch) {
         let toSend = {

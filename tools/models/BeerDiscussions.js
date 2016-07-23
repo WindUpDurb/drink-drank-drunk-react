@@ -14,6 +14,14 @@ let beerComment = new mongoose.Schema({
     date_posted: {type: Date, default: Date.now}
 });
 
+beerDiscussion.statics.fetchBeerData = function (beerId, callback) {
+    BeerDiscussion.findOne({beerId})
+        .populate("comments")
+        .exec(function (error, populatedDiscussion) {
+            return callback(error, {populatedDiscussion});
+        });
+};
+
 beerDiscussion.statics.addCommentToDiscussion = function (dataToAdd, callback) {
     BeerDiscussion.findOne({beerId: dataToAdd.beerId}, function (error, databaseDiscussion) {
         if (error) return callback(error);

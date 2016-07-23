@@ -3,6 +3,7 @@
 const express = require("express");
 const router = express.Router();
 const multer = require("multer");
+const async = require("async");
 
 const BeerDiscussion = require("../models/BeerDiscussions");
 const BeerRatings = require('../models/BeerRatings');
@@ -43,6 +44,25 @@ router.post("/addToSampled", function (request, response) {
     });
 });
 
+router.get("/supplementalBeerData/:beerId", function (request, response) {
+    let beerId = request.params.beerId;
+    async.parallel([
+        function(callback) {
+            BeerDiscussion.fetchBeerData(beerId, function (error, supplementalData) {
+                callback(error, supplementalData);
+            });
+        },
+        function(callback) {
+            BeerRatings.getRating(beerId, function (error, rating) {
+                callback(error, rating);
+            });
+        }
+    ], function (error, results) {
+        if (error) return response.status(400).send(error);
+        response.send(results);
+    });
+});
+
 router.delete("/deleteUser/:userId", function (request, response) {
     User.deleteUserAccount(request.params.userId, function (error) {
         if (error) response.status(400).send(error);
@@ -80,6 +100,7 @@ router.post("/saveBeerRating", function (request, response) {
     User.saveBeerRating(request.body, function (error, updatedUser) {
         if (error) return response.status(400).send(error);
         let sampledBeers = request.body.sampledBeers;
+        //clean this up
         let previousRating;
         for (let i = 0; i < sampledBeers.length; i++) {
             if (sampledBeers[i].beerId === request.body.beerId && sampledBeers[i].beerRating > 0) {
@@ -91,7 +112,6 @@ router.post("/saveBeerRating", function (request, response) {
             rating:request.body.newBeerRating,
             previousRating
         };
-        console.log("Previous Rating: ", previousRating);
         BeerRatings.updateRating(argument, function (error, updatedBeerData) {
             if (error) response.status(400).send(error);
             response.send({updatedUser, updatedBeerData});

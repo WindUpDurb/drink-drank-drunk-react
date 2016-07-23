@@ -49,7 +49,9 @@ class SingleBeerPage extends React.Component {
         super(props);
         this.state = {
             beerData: null,
-            newComment: ""
+            newComment: "",
+            globalBeerRating: 0,
+            beerDiscussion: []
         };
         this.updateConsumed = this.updateConsumed.bind(this);
         this.updateToDrink = this.updateToDrink.bind(this);
@@ -64,6 +66,7 @@ class SingleBeerPage extends React.Component {
         if (storedData) {
             this.setState({beerData: JSON.parse(storedData)});
         }
+        this.props.BeerActions.grabSupplementalBeerData(this.props.beerId);
     }
 
     updateConsumed(consumed) {

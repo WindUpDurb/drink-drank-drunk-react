@@ -9,6 +9,12 @@ let beerRatingsSchema = new mongoose.Schema({
     totalRatings: {type: Number}
 });
 
+beerRatingsSchema.statics.getRating = function (beerId, callback) {
+  BeerRatings.findOne({beerId}, function (error, databaseBeer) {
+      return callback(error, {databaseBeer});
+  });
+};
+
 beerRatingsSchema.statics.updateRating = function (ratingToUpdate, callback) {
     BeerRatings.findOne({beerId: ratingToUpdate.beerId}, function(error, databaseBeer) {
         if (error) return callback(error);
