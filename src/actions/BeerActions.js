@@ -187,8 +187,8 @@ export function saveBeerRating(beerData, activeUser, newRating) {
                 return response.json();
             })
             .then(parsedResponse => {
-                console.log("parsed response: ", parsedResponse);
                 dispatch(updateUserBeerData(parsedResponse.updatedUser));
+                dispatch(updateGlobalBeerRatingState(parsedResponse.updatedBeerData));
             })
             .catch(error => {
                 console.log("Error: ", error);

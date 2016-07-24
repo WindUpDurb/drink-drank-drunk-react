@@ -801,8 +801,11 @@ body {
 }
 
 #footerStyle {
-    /*margin-top: 250px;*/
+    margin-top: 50px;
+}
 
+.styleLink {
+    cursor: pointer;
 }
 
 #commentDisplayDiv {

@@ -15,7 +15,7 @@ export const BeerComment = ({comment}) => {
                 <div className="col-sm-2">
                     <img className="postedCommentUserImage img-responsive" src={comment.author_photo} />
                 </div>
-                <div className="col-sm-9">
+                <div style={{textAlign: "justify"}} className="col-sm-9">
                     <span className="commentAuthorName">{comment.author_name}</span>
                     <span className="commentDate">{datePosted}</span>
                     <br/>

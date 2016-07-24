@@ -4,8 +4,14 @@ import React, {PropTypes} from "react";
 import { Link } from "react-router";
 
 
-const DescriptionSection = ({login}) => {
+const DescriptionSection = ({activeUser, login}) => {
+    let loginOrBrowseButton;
+    if (activeUser) {
+        loginOrBrowseButton = <Link className="btn btn-raised default" to="/beerStyles">Check out Beers</Link>;
+    } else {
+        loginOrBrowseButton = <a onClick={login} className="btn btn-raised default">Login with Google</a>;
 
+    }
     return (
         <div id="homeDescriptionText" className="container text-center">
             <img src="/statics/beerHome.png"/>
@@ -16,14 +22,15 @@ const DescriptionSection = ({login}) => {
                         <h3 className="descriptive-text site-text">Record the beers you aim to consume</h3>
 
             <div id="homeRegisterButton">
-                <a onClick={login} className="btn btn-raised default">Login with Google</a>
+                {loginOrBrowseButton}
             </div>
         </div>
     );
 };
 
 DescriptionSection.propTypes = {
-    login: PropTypes.func.isRequired
+    login: PropTypes.func.isRequired,
+    activeUser: PropTypes.bool
 };
 
 

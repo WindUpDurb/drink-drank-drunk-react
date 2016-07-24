@@ -17,10 +17,10 @@ const FooterSection = () => {
             <div className="container text-center">
                 <div className="row" id="footerLinksRow">
                     <div className="col-xs-2 col-xs-offset-4 col-sm-1 col-sm-offset-5">
-                        <a href="http://www.windupdurb.com/#!/">Blog</a>
+                        <a target="_blank" href="http://www.windupdurb.com/#!/">Blog</a>
                     </div>
                     <div className="col-xs-2 col-sm-1">
-                        <a> Home</a>
+                        <a href="/"> Home</a>
                     </div>
                 </div>
                 <div className="subjectBreak container-fluid"></div>

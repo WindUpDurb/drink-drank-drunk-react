@@ -155,6 +155,7 @@ class SingleBeerPage extends React.Component {
                     activeUser={this.props.activeUser}/>
 
                 <CommentsDisplay
+                    beerName={this.state.beerData.name}
                     comments={this.props.beerDiscussion}/>
 
             </div>

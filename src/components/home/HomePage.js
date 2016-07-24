@@ -50,19 +50,26 @@ class HomePage extends React.Component {
         return (
             <div>
                 <DrinkDrankDrunkSection/>
-                <DescriptionSection login={this.login}/>
+                <DescriptionSection 
+                    activeUser={this.props.activeUser}
+                    login={this.login}/>
             </div>
         );
     }
 }
 
 HomePage.propTypes = {
-    Auth0Actions: PropTypes.object.isRequired
+    Auth0Actions: PropTypes.object.isRequired,
+    activeUser: PropTypes.bool
 };
 
 function mapStateToProps(state, ownProps) {
+    let activeUser;
+    if (state.userAndAuth && state.userAndAuth.email) {
+        activeUser = true;
+    }
     return {
-
+        activeUser
     };
 }
 

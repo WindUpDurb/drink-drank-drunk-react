@@ -31,7 +31,12 @@ export const AddComment = ({newComment, cancelComment, updateComment, addComment
             </div>
         );
     } else {
-        return <div></div>;
+        return (
+            <div className="container text-center" id="addCommentDiv">
+                <div className="subjectBreak container-fluid"></div>
+                <h3>Login to join the discussion on {beerName}</h3>
+            </div>
+        );
     }
 };
 
