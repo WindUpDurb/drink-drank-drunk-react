@@ -145,6 +145,7 @@ class SingleBeerPage extends React.Component {
                                     inToDrink={inToDrink}
                                     activeUser={userBeerData}/>
                 <BeerDetailsAndStats beerData={beerData}/>
+
                 <AddComment
                     newComment={this.state.newComment}
                     cancelComment={this.cancelComment}

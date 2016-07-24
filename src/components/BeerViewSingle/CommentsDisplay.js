@@ -10,8 +10,10 @@ export const CommentsDisplay = ({comments}) => {
     }
     if (comments && comments.length) {
         return (
-            <div id="commentDisplayDiv" className="col-sm-8 col-sm-offset-2">
-                {beerComments}
+            <div id="commentDisplayDiv" className="container">
+                <div className="col-sm-8 col-sm-offset-2">
+                    {beerComments}
+                </div>
             </div>
         );
     } else {

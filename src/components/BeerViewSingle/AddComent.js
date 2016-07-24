@@ -5,7 +5,7 @@ import React, {PropTypes} from "react";
 export const AddComment = ({newComment, cancelComment, updateComment, addComment, beerName, activeUser}) => {
     if (activeUser && activeUser.email) {
         return (
-            <div>
+            <div id="addCommentDiv">
                 <div className="subjectBreak container-fluid"></div>
                 <form onSubmit={addComment} className="form-group">
                     <div className="row">
