@@ -11,6 +11,8 @@ import SubHeader from "../common/SubHeader";
 import {AddComment} from "./AddComent";
 import {CommentsDisplay} from "./CommentsDisplay";
 import * as BeerActions from "../../actions/BeerActions";
+import * as Auth0Actions from "../../actions/Auth0Actions";
+
 
 //combine into one function that spits out all three:
 function checkIfConsumed (beerId, userBeerData) {
@@ -60,6 +62,7 @@ class SingleBeerPage extends React.Component {
         this.addNewComment = this.addNewComment.bind(this);
         this.updateCommentState = this.updateCommentState.bind(this);
         this.cancelComment = this.cancelComment.bind(this);
+        this.login = this.login.bind(this);
     }
 
     componentWillMount() {
@@ -68,6 +71,10 @@ class SingleBeerPage extends React.Component {
             this.setState({beerData: JSON.parse(storedData)});
         }
         this.props.BeerActions.grabSupplementalBeerData(this.props.beerId);
+    }
+
+    login () {
+        this.props.Auth0Actions.login();
     }
 
     updateConsumed(consumed) {
@@ -132,18 +139,21 @@ class SingleBeerPage extends React.Component {
                         <h3 className="text-center directoryHeadingText greyText">{beerViewHeading}</h3>
                     </div>
                 </div>
-                <BeerViewHead consumed={consumed}
-                              globalRating={this.props.globalRating}
-                              personalRating={personalRating}
-                              updateBeerRating={this.updateBeerRating}
-                              beerData={beerData} 
-                              activeUser={userBeerData}/>
+                <BeerViewHead
+                    consumed={consumed}
+                    globalRating={this.props.globalRating}
+                    personalRating={personalRating}
+                    updateBeerRating={this.updateBeerRating}
+                    beerData={beerData}
+                    activeUser={userBeerData}/>
                 <BeerViewSubHeadDetails beerData={beerData}/>
-                <BeerViewAddButtons consumed={consumed} 
-                                    updateConsumed={this.updateConsumed}  
-                                    updateToDrink={this.updateToDrink}
-                                    inToDrink={inToDrink}
-                                    activeUser={userBeerData}/>
+                <BeerViewAddButtons
+                    login={this.login}
+                    consumed={consumed}
+                    updateConsumed={this.updateConsumed}
+                    updateToDrink={this.updateToDrink}
+                    inToDrink={inToDrink}
+                    activeUser={userBeerData}/>
                 <BeerDetailsAndStats beerData={beerData}/>
 
                 <AddComment
@@ -168,6 +178,7 @@ class SingleBeerPage extends React.Component {
 SingleBeerPage.propTypes = {
     beerData: PropTypes.object,
     BeerActions: PropTypes.object.isRequired,
+    Auth0Actions: PropTypes.object.isRequired,
     beerId: PropTypes.string.isRequired,
     activeUser: PropTypes.object,
     userBeerData: PropTypes.object,
@@ -204,7 +215,8 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        BeerActions: bindActionCreators(BeerActions, dispatch)
+        BeerActions: bindActionCreators(BeerActions, dispatch),
+        Auth0Actions: bindActionCreators(Auth0Actions, dispatch)
     };
 }
 

@@ -804,8 +804,26 @@ body {
     margin-top: 50px;
 }
 
+#rateBeerSelect {
+    width: 20%;
+}
+
 .styleLink {
     cursor: pointer;
+}
+
+#globalRating {
+    margin-left: 3px;
+    color: #1a2242;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+#personalRating {
+    margin-left: 3px;
+    color: #1a2242;
+    font-weight: bold;
+    font-size: 1.0em;
 }
 
 #commentDisplayDiv {

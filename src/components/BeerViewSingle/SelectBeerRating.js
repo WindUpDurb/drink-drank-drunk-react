@@ -5,7 +5,7 @@ import React, {PropTypes} from "react";
 export const SelectBeerRating = ({initialRating, updateBeerRating}) => {
     
     return (
-        <select value={initialRating} onChange={updateBeerRating} className="form-control">
+        <select id="rateBeerSelect" value={initialRating} onChange={updateBeerRating} className="form-control">
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>

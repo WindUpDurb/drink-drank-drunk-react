@@ -13,14 +13,23 @@ const generateArrayForRating = (rating) => {
 };
 
 export const BeerViewHead = ({consumed, globalRating, personalRating, updateBeerRating,beerData, activeUser}) => {
-    let consumedIcon;
-    let beerStatusInDB;
-    let rateBeer;
-    let beerRating = generateArrayForRating(personalRating);
+    let consumedIcon, beerStatusInDB, rateBeer, overallRating, beerRating;
+    // let beerRating = generateArrayForRating(personalRating);
+    if (personalRating) {
+        beerRating =  <span><span>Personal Rating: </span> <span id="personalRating">{personalRating}</span></span>;
+    }
+    if (globalRating) {
+        overallRating = globalRating;
+    } else if (!globalRating && activeUser) {
+        overallRating = "Be the first to rate.";
+    } else if (!globalRating && !activeUser) {
+        overallRating = "Login and be the first to rate.";
+    }
     if (consumed) {
         consumedIcon = <span className="pull-right"><img src="/statics/beerIconConsumed64.png"/></span>;
         rateBeer = <SelectBeerRating initialRating={personalRating} updateBeerRating={updateBeerRating}/>;
-        beerRating = beerRating.map((number, index) => <BeerRatingIcon key={index}/>);
+
+        // beerRating = beerRating.map((number, index) => <BeerRatingIcon key={index}/>);
     } else {
         consumedIcon = <span className="pull-right"><img src="/statics/beerIconNoConsumed64.png" /></span>;
         rateBeer = <span>Try this beer before you rate it.</span>;
@@ -35,14 +44,23 @@ export const BeerViewHead = ({consumed, globalRating, personalRating, updateBeer
         return (
             <div className="container">
                 <div className="row">
-                    {beerRating}
+                    <div className="col-sm-2 col-sm-offset-10">
+                        {beerStatusInDB}
+                        {consumedIcon}
+                    </div>
                 </div>
-                {beerStatusInDB}
-                {consumedIcon}
-                <span className="pull-right">{globalRating}</span>
+                <div className="row">
+                    <div className="col-sm-3">
+                        <span>Overall Rating:</span>
+                        <span id="globalRating">{overallRating}</span>
+                        <br/>
+                        {beerRating}
+                    </div>
+                </div>
+
                 <div className="row">
                     <div className="form-group">
-                        <div className="col-sm-1">
+                        <div className="col-sm-4">
                             <label className="control-label">Rate this beer:</label>
                             {rateBeer}
                         </div>
@@ -55,9 +73,16 @@ export const BeerViewHead = ({consumed, globalRating, personalRating, updateBeer
     return (
         <div className="container">
             <div className="row"></div>
-            {beerStatusInDB}
-            {consumedIcon}
-            <span className="pull-right">Global: {globalRating}</span>
+            <div className="col-sm-2 col-sm-offset-10">
+                {beerStatusInDB}
+                {consumedIcon}
+            </div>
+            <div className="row">
+                <div className="col-sm-4">
+                    <span>Overall Rating:</span>
+                    <span id="globalRating">{overallRating}</span>
+                </div>
+            </div>
             <div className="row">
             </div>
         </div>
