@@ -683,9 +683,10 @@ body {
     margin-top: 25px;
 }
 
-#homeDescriptionText {
-    margin-top: 85px;
+.homeDescriptionText {
+    margin-top: 50px;
     line-height: 1em;
+    padding-bottom: 50px;
 }
 
 .styleStats {
