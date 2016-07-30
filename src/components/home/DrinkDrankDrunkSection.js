@@ -5,36 +5,27 @@ import React from "react";
 const DrinkDrankDrunkSection = () => {
     
     return (
-        <div className="header-container">
-            <h1 className="drink-drank-drunk-header-text">Drink, Drank, Drunk</h1>
-            <p className="home-header-foreword">You think you need a beer.
-                <br/>We agree.</p>
+        <div className="text-center" id="parallaxContainerHome">
             <div className="row">
-                <div className="col-sm-4">
-                    <div className="hidden-xs" id="containerBeerAnimation">
-                        <div className="pour"></div>
-                        <div id="beaker">
-                            <div className="beer-foam">
-                                <div className="foam-1"></div>
-                                <div className="foam-2"></div>
-                                <div className="foam-3"></div>
-                                <div className="foam-4"></div>
-                                <div className="foam-5"></div>
-                                <div className="foam-6"></div>
-                                <div className="foam-7"></div>
-                            </div>
-
-                            <div id="liquid">
-
-                                <div className="bubble bubble1"></div>
-                                <div className="bubble bubble2"></div>
-                                <div className="bubble bubble3"></div>
-                                <div className="bubble bubble4"></div>
-                                <div className="bubble bubble5"></div>
-                            </div>
-                        </div>
-                    </div>
+                <div className="col-sm-2 homeNavText">
+                    Browse Beers
                 </div>
+                <div className="col-sm-2 homeNavText">
+                    Find a Brewery
+                </div>
+                <div className="col-sm-offset-6 col-sm-2 homeNavText">
+                    Login/Logout
+                </div>
+            </div>
+            <div id="dddTextDiv">
+                <span className="drinkdrankdrunkSecondary">Because beer</span>
+                <br/>
+                <span id="drinkdrankdrunkText">Drink, Drank, Drunk</span>
+                <br/>
+                <span className="drinkdrankdrunkSecondary">is beer.</span>
+            </div>
+            <div id="dddButtonDiv">
+                <button id="dddButton" className="btn btn-raised">How about this beer?</button>
             </div>
         </div>
     );

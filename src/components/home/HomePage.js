@@ -2,6 +2,7 @@
 
 import React, {PropTypes} from "react";
 import DrinkDrankDrunkSection from "./DrinkDrankDrunkSection";
+import FindBrewerySection from "./FindBrewerySection";
 import DescriptionSection from "./DescriptionSection";
 import * as Auth0Actions from "../../actions/Auth0Actions";
 import {connect} from "react-redux";
@@ -53,6 +54,7 @@ class HomePage extends React.Component {
                 <DescriptionSection 
                     activeUser={this.props.activeUser}
                     login={this.login}/>
+                <FindBrewerySection />
             </div>
         );
     }

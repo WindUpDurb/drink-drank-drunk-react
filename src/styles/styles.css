@@ -795,6 +795,58 @@ body {
     color: #daa520;
 }
 
+#dddTextDiv {
+    padding-top: 17%;
+}
+
+#dddButtonDiv {
+    padding-top: 5%
+}
+
+#dddButton {
+    background-color: #F5F5F5;
+    color: #1a2242;
+}
+
+
+#drinkdrankdrunkText {
+    font-size: 5.2em;
+    font-weight: bold;
+    color: #EEEEEE;
+}
+
+.drinkdrankdrunkSecondary {
+    font-size: 2.5em;
+    color: #F5F5F5;
+}
+
+.breweryFindSectionText {
+    font-size: 3.5em;
+    color: #F5F5F5;
+}
+
+#parallaxContainerFindBrewery {
+    background-image: url("/statics/beerCheers.jpg");
+    height: 700px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#parallaxContainerHome {
+    background-image: url("/statics/thisBeer.jpg");
+    height: 725px;
+    background-attachment: fixed;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+}
+
+.homeNavText {
+    font-size: 1.50em;
+    color: #EEEEEE;
+}
+
 .paragarphFormat {
     text-indent: 50px;
     text-align: justify;
