@@ -23,7 +23,8 @@ class HomePage extends React.Component {
     render() {
         return (
             <div>
-                <DrinkDrankDrunkSection/>
+                <DrinkDrankDrunkSection
+                    activeUser={this.props.activeUserData}/>
                 <DescriptionSection/>
                 <FindBrewerySection />
                 <LoginWithGoogleSection />
@@ -34,16 +35,20 @@ class HomePage extends React.Component {
 
 HomePage.propTypes = {
     Auth0Actions: PropTypes.object.isRequired,
-    activeUser: PropTypes.bool
+    activeUser: PropTypes.bool,
+    activeUserData: PropTypes.object
 };
 
 function mapStateToProps(state, ownProps) {
     let activeUser;
+    let activeUserData;
     if (state.userAndAuth && state.userAndAuth.email) {
         activeUser = true;
+        activeUserData = state.userAndAuth;
     }
     return {
-        activeUser
+        activeUser,
+        activeUserData
     };
 }
 

@@ -836,15 +836,28 @@ body {
 }
 #parallaxContainerHome {
     background-image: url("/statics/thisBeer.jpg");
-    height: 725px;
+    height: 750px;
     background-attachment: fixed;
     background-position: center bottom;
     background-repeat: no-repeat;
-    background-size: 100% auto;
+    background-size: cover;
 }
 
 .homeNavText {
     font-size: 1.50em;
+}
+
+.homeNavButton {
+    color: #EEEEEE;
+}
+
+#searchBarHome {
+    position: absolute;
+    margin: auto;
+    text-align: center;
+    display: block;
+    bottom: 10%;
+    width: 100%;
     color: #EEEEEE;
 }
 

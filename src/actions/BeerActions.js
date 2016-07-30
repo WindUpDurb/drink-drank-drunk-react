@@ -111,6 +111,9 @@ export function loadBeerDirectory () {
           })
           .then(parsedResponse => {
               dispatch(requestStatusActions.receivedRequestSuccess());
+              //construct to objects:
+              //1) storing category name and whatever data I need to search with
+              //2) Storing each style by some key so I can quickly access style data
               let beerDirectories = {};
               for (let i = 0; i < parsedResponse.data.length; i++) {
                   if (parsedResponse.data[i].categoryId <= 9) {

@@ -1,7 +1,7 @@
 "use strict";
 
 import React from "react";
-import { Route, IndexRoute } from "react-router";
+import { Route, IndexRoute, IndexRedirect } from "react-router";
 import App from "./components/App";
 import HomePage from "./components/home/HomePage";
 import BeerSearchPage from "./components/BeerSearch/BeerSearchPage";
@@ -29,7 +29,8 @@ export const generateRoutes = (store) => {
 
     return (
         <Route path="/" component={App}>
-            <IndexRoute component={HomePage} />
+            <IndexRedirect to="/home"/>
+            <Route path="/home" component={HomePage} />
             <Route path="/beerStyles" component={BeerStyleDirectory}/>
             <Route path="/breweriesNearby" component={BreweriesNearbyPage}/>
             <Route path="/beerSearch" component={BeerSearchPage}/>

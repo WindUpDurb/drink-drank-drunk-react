@@ -1,22 +1,15 @@
 "use strict";
 
-import React from "react";
+import React, {PropTypes} from "react";
+import NavbarContainer from "../common/NavbarContainer";
 
-const DrinkDrankDrunkSection = () => {
-    
+
+const DrinkDrankDrunkSection = ({activeUser}) => {
     return (
         <div className="text-center" id="parallaxContainerHome">
-            <div className="row">
-                <div className="col-sm-2 homeNavText">
-                    Browse Beers
-                </div>
-                <div className="col-sm-2 homeNavText">
-                    Find a Brewery
-                </div>
-                <div className="col-sm-offset-6 col-sm-2 homeNavText">
-                    Login/Logout
-                </div>
-            </div>
+            <NavbarContainer
+                activeUser={activeUser}
+                homePage/>
             <div id="dddTextDiv">
                 <span className="drinkdrankdrunkSecondary">Because beer</span>
                 <br/>
@@ -29,6 +22,10 @@ const DrinkDrankDrunkSection = () => {
             </div>
         </div>
     );
+};
+
+DrinkDrankDrunkSection.propTypes = {
+    activeUser: PropTypes.object
 };
 
 export default DrinkDrankDrunkSection;

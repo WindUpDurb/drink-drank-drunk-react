@@ -8,6 +8,7 @@ import {bindActionCreators} from "redux";
 import {browserHistory} from "react-router";
 import {connect} from "react-redux";
 import {NavbarPresentation} from "./NavbarPresentation";
+import {HomeNavbar} from "../home/HomeNavbar";
 import toastr from "toastr";
 
 
@@ -52,14 +53,28 @@ class NavbarContainer extends React.Component {
     }
 
     render() {
-        return (
-            <NavbarPresentation
-                login={this.login}
-                sendLogout={this.sendLogout}
-                activeUser={this.props.activeUser}
-                updateSearchFieldState={this.updateSearchFieldState}
-                beerSearch={this.beerSearch}/>
-    );
+        let navbarPresentation;
+        if (this.props.homePage) {
+            navbarPresentation = (
+                <HomeNavbar
+                    login={this.login}
+                    sendLogout={this.sendLogout}
+                    activeUser={this.props.activeUser}
+                    updateSearchFieldState={this.updateSearchFieldState}
+                    beerSearch={this.beerSearch}/>
+            );
+        } else {
+            navbarPresentation = (
+                <NavbarPresentation
+                    login={this.login}
+                    sendLogout={this.sendLogout}
+                    activeUser={this.props.activeUser}
+                    updateSearchFieldState={this.updateSearchFieldState}
+                    beerSearch={this.beerSearch}/>
+            );
+        }
+        return navbarPresentation;
+
     }
 }
 
@@ -67,13 +82,15 @@ NavbarContainer.propTypes = {
     UserActions: PropTypes.object.isRequired,
     BeerActions: PropTypes.object.isRequired,
     Auth0Actions: PropTypes.object.isRequired,
-    activeUser: PropTypes.object
+    activeUser: PropTypes.object,
+    homePage: PropTypes.bool
 };
 
 
 function mapStateToProps(state, ownProps) {
     return {
-        activeUser: state.userAndAuth
+        activeUser: state.userAndAuth,
+        homePage: ownProps.homePage
     };
 }
 
