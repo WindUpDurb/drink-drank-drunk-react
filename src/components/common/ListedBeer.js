@@ -10,9 +10,9 @@ export const ListedBeer = ({beerData}) => {
     return (
         <div className="col-sm-4 col-sm-offset-1 well text-center beerCard">
             <img src={beerData.labels.medium}/>
-            <span>{beerData.name}</span>
+            <span className="beerCardBeerName">{beerData.name}</span>
             <br/>
-            <span>{breweryName || "Brewery data is unavailable."}</span>
+            <span className="beerCardBreweryName">{breweryName || "Brewery data is unavailable."}</span>
         </div>
     );
 };

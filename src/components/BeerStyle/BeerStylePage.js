@@ -46,12 +46,13 @@ class BeerStylePage extends React.Component {
                    <div className="container">
                        <div className="row">
                            <div id="directoryMenuDiv" className="well col-sm-10 col-sm-offset-1">
-                               <BeerStyleDetails beerStyle={this.props.styleDescription}/>
+                               <BeerStyleDetails 
+                                   pageNumber={this.props.pageNumber}
+                                   beerStyle={this.props.styleDescription}/>
                                {beerResults}
                            </div>
                        </div>
                    </div>
-
                 </div>
 
             </div>
@@ -65,10 +66,12 @@ BeerStylePage.propTypes = {
     styleDescription: PropTypes.object,
     BeerActions: PropTypes.object.isRequired,
     currentStyleParam: PropTypes.string.isRequired,
-    localStorageKey: PropTypes.string.isRequired
+    localStorageKey: PropTypes.string.isRequired,
+    pageNumber: PropTypes.string.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
+    console.log("own props: ", ownProps)
     let styleInState, styleDescription;
     if (state.beerDirectories.currentBeerStyle) {
         styleInState = state.beerDirectories.currentBeerStyle.styleContents;
@@ -78,7 +81,8 @@ function mapStateToProps(state, ownProps) {
         currentStyle: styleInState,
         styleDescription: styleDescription,
         currentStyleParam: ownProps.routeParams.style,
-        localStorageKey: `${ownProps.params.style}${ownProps.params.page}`
+        localStorageKey: `${ownProps.params.style}${ownProps.params.page}`,
+        pageNumber: ownProps.params.page
     };
 }
 
