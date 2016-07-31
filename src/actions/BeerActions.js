@@ -77,20 +77,21 @@ export function fetchBeerData(beerId) {
         };
 }
 
-export function fetchStyleContents(beerStyle, pageNumber) {
+export function fetchStyleContents(styleId, pageNumber) {
     return function(dispatch) {
         dispatch(requestStatusActions.requestSent());
-        return fetch(`/api/breweryAPI/beerCategoryContents/${beerStyle.shortName || beerStyle}/${pageNumber}`)
+        return fetch(`/api/breweryAPI/beerCategoryContents/${styleId}/${pageNumber}`)
             .then(response => {
                 return response.json();
             })
             .then(parsedResponse => {
+                console.log("Returned response: ", parsedResponse)
                 dispatch(requestStatusActions.receivedRequestSuccess());
                 if (parsedResponse.status === "success") {
                     dispatch(fetchStyleContentsSuccess(parsedResponse.data, beerStyle,parsedResponse.currentPage));
-                    localStorage.setItem(`${beerStyle}${pageNumber}`, JSON.stringify(parsedResponse.data));
-                    return {success: "Got it."};                }
-                
+                    localStorage.setItem(`${styleId}${pageNumber}`, JSON.stringify(parsedResponse.data));
+                }
+
             })
             .catch(error => {
                 dispatch(requestStatusActions.receivedRequestError());
@@ -115,16 +116,16 @@ export function loadBeerDirectory () {
               //1) storing category name and whatever data I need to search with
               //2) Storing each style by some key so I can quickly access style data
               let beerDirectories = {};
-              console.log("Parsed respondse: ", parsedResponse)
+              console.log("Parsed respondse: ", parsedResponse);
               for (let i = 0; i < parsedResponse.data.length; i++) {
                   if (parsedResponse.data[i].categoryId < 9) {
                       if (!beerDirectories.hasOwnProperty(parsedResponse.data[i].categoryId)) {
                           beerDirectories[parsedResponse.data[i].categoryId] = {};
-                          beerDirectories[parsedResponse.data[i].categoryId].styleNames = [parsedResponse.data[i].name];
+                          beerDirectories[parsedResponse.data[i].categoryId].styleNames = [{name: parsedResponse.data[i].name, styleId: parsedResponse.data[i].id}];
                           beerDirectories[parsedResponse.data[i].categoryId].categoryName = parsedResponse.data[i].category.name;
 
                       } else {
-                         beerDirectories[parsedResponse.data[i].categoryId].styleNames.push(parsedResponse.data[i].name);
+                         beerDirectories[parsedResponse.data[i].categoryId].styleNames.push({name: parsedResponse.data[i].name, styleId: parsedResponse.data[i].id});
                       }
                   }
               }

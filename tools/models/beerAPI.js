@@ -36,8 +36,8 @@ let BeerAPI = {
         });
     },
 
-    getCategoryContents: function (categoryName, pageNumber, callback) {
-        requestNPM(`http://api.brewerydb.com/v2/search?q=${categoryName}&type=beer&p=${pageNumber}&key=${BREWERY_DB}&withBreweries=Y`, function (error, response, body) {
+    getCategoryContents: function (categoryId, pageNumber, callback) {
+        requestNPM(`http://api.brewerydb.com/v2/beers?styleId=${categoryId}&hasLabels=Y&p=${pageNumber}&withBreweries=Y&key=852f05c67350a731492d69cf272223e2`, function (error, response, body) {
             callback(error, body);
         });
     }

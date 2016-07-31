@@ -7,6 +7,8 @@ import SubHeader from "../common/SubHeader";
 import {BeerStyleCategories} from "./BeerStyleCategories";
 import {DirectoryHeaderAndNav} from "./DirectoryHeaderAndNav";
 import {BeerCategoryStylesMenu} from "./BeerCategoryStylesMenu";
+import {bindActionCreators} from "redux";
+import * as BeerActions from "../../actions/BeerActions";
 
 class BeerStyleDirectoryPage extends React.Component {
 
@@ -16,11 +18,16 @@ class BeerStyleDirectoryPage extends React.Component {
             currentCategory: null
         };
         this.toggleCategories = this.toggleCategories.bind(this);
+        this.grabStyleContentsAndSet = this.grabStyleContentsAndSet.bind(this);
     }
 
     toggleCategories(styles) {
-        console.log(styles);
         this.setState({currentCategory: styles});
+    }
+    
+    grabStyleContentsAndSet(style) {
+        console.log('herere', style)
+        this.props.BeerActions.fetchStyleContents(style, 1);
     }
 
     render() {
@@ -35,6 +42,7 @@ class BeerStyleDirectoryPage extends React.Component {
             menu = (
                 <BeerCategoryStylesMenu
                     toggleCategories={this.toggleCategories}
+                    grabStyle={this.grabStyleContentsAndSet}
                     styles={this.state.currentCategory}/>
             );
         }
@@ -60,7 +68,8 @@ class BeerStyleDirectoryPage extends React.Component {
 BeerStyleDirectoryPage.propTypes = {
     beerDirectories: PropTypes.object,
     activeUserData: PropTypes.object,
-    activeUser: PropTypes.bool
+    activeUser: PropTypes.bool,
+    BeerActions: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
@@ -77,4 +86,10 @@ function mapStateToProps(state, ownProps) {
     };
 }
 
-export default connect(mapStateToProps)(BeerStyleDirectoryPage);
+function mapDispatchToProps(dispatch) {
+    return {
+        BeerActions: bindActionCreators(BeerActions, dispatch)
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(BeerStyleDirectoryPage);

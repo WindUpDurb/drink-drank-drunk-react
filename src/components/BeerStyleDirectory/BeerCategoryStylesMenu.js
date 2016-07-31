@@ -4,9 +4,9 @@ import React, {PropTypes} from "react";
 import {BeerStyle} from "./BeerStyle";
 import * as FunctionTools from "../../actions/FunctionTools";
 
-export const BeerCategoryStylesMenu = ({toggleCategories, styles}) => {
+export const BeerCategoryStylesMenu = ({grabStyle, toggleCategories, styles}) => {
     let returnToCategories = () => toggleCategories(null);
-    let styleMenu = styles.styleNames.map((style, index) => <BeerStyle key={index} style={style}/>);
+    let styleMenu = styles.styleNames.map((style, index) => <BeerStyle grabStyle={grabStyle} key={index} styleId={style.styleId} style={style.name}/>);
     return (
         <div className="text-center">
             <div className="row">
@@ -22,5 +22,6 @@ export const BeerCategoryStylesMenu = ({toggleCategories, styles}) => {
 
 BeerCategoryStylesMenu.propTypes = {
     styles: PropTypes.object.isRequired,
-    toggleCategories: PropTypes.func.isRequired
+    toggleCategories: PropTypes.func.isRequired,
+    grabStyle: PropTypes.func.isRequired
 };

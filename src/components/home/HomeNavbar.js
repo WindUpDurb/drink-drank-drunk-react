@@ -36,6 +36,9 @@ export const HomeNavbar = ({login, sendLogout, activeUser, updateSearchFieldStat
     } else {
         return (
             <div className="row">
+                <div className="col-sm-1 homeNavText">
+                    <Link className="homeNavButton" to="/">Home</Link>
+                </div>
                 <div className="col-sm-2 homeNavText">
                     <Link className="homeNavButton" to="/beerStyles">Browse Beers</Link>
                 </div>
@@ -57,7 +60,7 @@ export const HomeNavbar = ({login, sendLogout, activeUser, updateSearchFieldStat
                         </div>
                     </form>
                 </div>
-                <div className="col-sm-offset-2 col-sm-2 homeNavText">
+                <div className="col-sm-offset-1 col-sm-2 homeNavText">
                     <a className="homeNavButton" onClick={login}>Login</a>
                 </div>
             </div>
