@@ -797,7 +797,15 @@ body {
 }
 
 #dddTextDiv {
-    padding-top: 17%;
+    padding-top: 20%;
+}
+
+#styleDetailsHeader {
+    padding-top: 23%;
+    font-size: 3.2em;
+    color: ghostwhite;
+    font-weight: bold;
+
 }
 
 #dhnTextDiv {
@@ -835,6 +843,7 @@ body {
     font-size: 3.5em;
     color: #F5F5F5;
 }
+
 
 #beerDirectoryBody {
     background-image: url("/statics/woodTheme.jpg");
@@ -886,6 +895,11 @@ body {
 
 .homeNavText {
     font-size: 1.50em;
+}
+
+.beerCard {
+    margin-top: 5px;
+    margin-bottom: 3px;
 }
 
 .beerCategoryDiv {

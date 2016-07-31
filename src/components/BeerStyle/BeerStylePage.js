@@ -4,7 +4,7 @@ import React, {PropTypes} from "react";
 import {connect} from "react-redux";
 import BeerStyleDetails from "./BeerStyleDetails";
 import {BeerStyleHeaderAndDirectory} from "./BeerStyleHeaderAndDirectory";
-import ListedBeer from "../common/ListedBeer";
+import {ListedBeer} from "../common/ListedBeer";
 import {bindActionCreators} from "redux";
 import * as BeerActions from "../../actions/BeerActions";
 import {browserHistory} from "react-router";
@@ -33,14 +33,21 @@ class BeerStylePage extends React.Component {
     }
 
     render() {
+        console.log("check: ", this.props.styleDescription)
+        let beerResults;
+        if (this.state.styleContents) {
+            beerResults = this.state.styleContents.map((beer, index) => <ListedBeer key={index} beerData={beer}/>);
+        }
         return (
             <div>
-                <BeerStyleHeaderAndDirectory />
+                <BeerStyleHeaderAndDirectory
+                    styleData={this.props.styleDescription}/>
                 <div id="beerDirectoryBody">
                    <div className="container">
                        <div className="row">
-                           <div className="well col-sm-8">
-                               ljdfsa
+                           <div id="directoryMenuDiv" className="well col-sm-10 col-sm-offset-1">
+                               <BeerStyleDetails beerStyle={this.props.styleDescription}/>
+                               {beerResults}
                            </div>
                        </div>
                    </div>
@@ -65,7 +72,7 @@ function mapStateToProps(state, ownProps) {
     let styleInState, styleDescription;
     if (state.beerDirectories.currentBeerStyle) {
         styleInState = state.beerDirectories.currentBeerStyle.styleContents;
-        styleDescription = state.beerDirectories.currentBeerStyle.styleDescription;
+        styleDescription = state.beerDirectories.currentBeerStyle.styleContents[0].style;
     }
     return {
         currentStyle: styleInState,
