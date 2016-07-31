@@ -838,7 +838,7 @@ body {
 
 #beerDirectoryBody {
     background-image: url("/statics/woodTheme.jpg");
-
+    padding-bottom: 100px;
 }
 
 #parallaxContainerFindBrewery {
@@ -867,8 +867,34 @@ body {
     background-size: cover;
 }
 
+#directoryMenuDiv {
+    margin-top: -100px;
+}
+
+#backArrow {
+    cursor: pointer;
+}
+
 .homeNavText {
     font-size: 1.50em;
+}
+
+.beerCategoryDiv {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.beerCategory {
+    font-size: 2.0em;
+    cursor: pointer;
+}
+
+.beerCategory:hover {
+    color: #607D8B;
+}
+
+#directoryMenuHeadingText {
+    font-size: 2.75em;
 }
 
 .homeNavButton {

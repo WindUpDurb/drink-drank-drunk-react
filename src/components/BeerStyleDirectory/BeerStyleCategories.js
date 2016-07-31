@@ -4,21 +4,20 @@ import React, {PropTypes} from "react";
 import {BeerCategory} from "./BeerCategory";
 import * as FunctionTools from "../../actions/FunctionTools";
 
-export const BeerStyleCategories = ({beerCategories}) => {
-    console.log("Beer categories: ", beerCategories)
-    console.log("here: ", FunctionTools.arrayOfValues(beerCategories));
+export const BeerStyleCategories = ({toggleCategories, beerCategories}) => {
     const beerCategoriesElements = (
         FunctionTools.arrayOfValues(beerCategories)
-            .map((category, index) => <BeerCategory beerCategory={category} key={index}/>)
+            .map((category, index) => <BeerCategory toggleCategories={toggleCategories} beerCategory={category} key={index}/>)
     );
     return (
         <div>
-            Let's begin to narrow down our choices.
+            <span id="directoryMenuHeadingText">Let's begin to narrow down our choices.</span>
             {beerCategoriesElements}
         </div>
     );
 };
 
 BeerStyleCategories.propTypes = {
-    beerCategories: PropTypes.object.isRequired
+    beerCategories: PropTypes.object.isRequired,
+    toggleCategories: PropTypes.func.isRequired
 };

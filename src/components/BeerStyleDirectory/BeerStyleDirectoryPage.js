@@ -6,15 +6,38 @@ import {browserHistory} from "react-router";
 import SubHeader from "../common/SubHeader";
 import {BeerStyleCategories} from "./BeerStyleCategories";
 import {DirectoryHeaderAndNav} from "./DirectoryHeaderAndNav";
+import {BeerCategoryStylesMenu} from "./BeerCategoryStylesMenu";
 
 class BeerStyleDirectoryPage extends React.Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            currentCategory: null
+        };
+        this.toggleCategories = this.toggleCategories.bind(this);
+    }
+
+    toggleCategories(styles) {
+        console.log(styles);
+        this.setState({currentCategory: styles});
     }
 
     render() {
-        console.log("styles: ", this.props.beerDirectories)
+        let menu;
+        if (!this.state.currentCategory) {
+            menu = (
+                <BeerStyleCategories
+                    toggleCategories={this.toggleCategories}
+                    beerCategories={this.props.beerDirectories}/>
+            );
+        } else {
+            menu = (
+                <BeerCategoryStylesMenu
+                    toggleCategories={this.toggleCategories}
+                    styles={this.state.currentCategory}/>
+            );
+        }
         return (
             <div>
                 <DirectoryHeaderAndNav
@@ -22,8 +45,8 @@ class BeerStyleDirectoryPage extends React.Component {
                 <div id="beerDirectoryBody">
                     <div className="container">
                         <div className="row">
-                            <div className="well text-center col-sm-offset-2 col-sm-8">
-                                <BeerStyleCategories beerCategories={this.props.beerDirectories}/>
+                            <div id="directoryMenuDiv" className="well text-center col-sm-offset-2 col-sm-8">
+                                {menu}
                             </div>
                         </div>
                     </div>

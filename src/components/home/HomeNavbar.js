@@ -39,7 +39,7 @@ export const HomeNavbar = ({login, sendLogout, activeUser, updateSearchFieldStat
                 <div className="col-sm-2 homeNavText">
                     <Link className="homeNavButton" to="/beerStyles">Browse Beers</Link>
                 </div>
-                <div className="col-sm-2 col-sm-offset-1 homeNavText">
+                <div className="col-sm-2 homeNavText">
                     <Link className="homeNavButton" to="/breweriesNearby">Find a Brewery</Link>
                 </div>
                 <div className="col-sm-2">
@@ -57,7 +57,7 @@ export const HomeNavbar = ({login, sendLogout, activeUser, updateSearchFieldStat
                         </div>
                     </form>
                 </div>
-                <div className="col-sm-offset-5 col-sm-2 homeNavText">
+                <div className="col-sm-offset-2 col-sm-2 homeNavText">
                     <a className="homeNavButton" onClick={login}>Login</a>
                 </div>
             </div>

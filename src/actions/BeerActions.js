@@ -117,7 +117,7 @@ export function loadBeerDirectory () {
               let beerDirectories = {};
               console.log("Parsed respondse: ", parsedResponse)
               for (let i = 0; i < parsedResponse.data.length; i++) {
-                  if (parsedResponse.data[i].categoryId <= 9) {
+                  if (parsedResponse.data[i].categoryId < 9) {
                       if (!beerDirectories.hasOwnProperty(parsedResponse.data[i].categoryId)) {
                           beerDirectories[parsedResponse.data[i].categoryId] = {};
                           beerDirectories[parsedResponse.data[i].categoryId].styleNames = [parsedResponse.data[i].name];
