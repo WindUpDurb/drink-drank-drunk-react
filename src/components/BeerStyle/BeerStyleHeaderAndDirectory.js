@@ -5,7 +5,6 @@ import NavbarContainer from "../common/NavbarContainer";
 
 
 export const BeerStyleHeaderAndDirectory = ({styleData, activeUser}) => {
-    console.log("The dsdkjfs: ", styleData)
     let styleName;
     if (styleData) {
         styleName = styleData.name;

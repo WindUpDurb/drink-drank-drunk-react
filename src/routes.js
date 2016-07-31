@@ -8,7 +8,7 @@ import BeerSearchPage from "./components/BeerSearch/BeerSearchPage";
 import BeerStyleDirectory from "./components/BeerStyleDirectory/BeerStyleDirectoryPage";
 import BeerStylePage from "./components/BeerStyle/BeerStylePage";
 import BeerViewPage from "./components/BeerViewSingle/SingleBeerPage";
-import BeerLogPage from "./components/BeerLog/BeerLogPage";
+import ProfilePage from "./components/Profile/ProfilePage";
 import BreweriesNearbyPage from "./components/BreweriesNearby/BreweriesNearbyPage";
 import toastr from "toastr";
 
@@ -35,7 +35,7 @@ export const generateRoutes = (store) => {
             <Route path="/breweriesNearby" component={BreweriesNearbyPage}/>
             <Route path="/beerSearch" component={BeerSearchPage}/>
             <Route path="/beerStyles/:style/:page" component={BeerStylePage}/>
-            <Route path="/beerLog" component={BeerLogPage} onEnter={checkIfActiveUser}/>
+            <Route path="/profile" component={ProfilePage} onEnter={checkIfActiveUser}/>
             <Route path="/beer/:beerId" component={BeerViewPage}/>
         </Route>
     );

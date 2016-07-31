@@ -1,22 +1,24 @@
 "use strict";
 
 import React, {PropTypes} from "react";
+import toastr from "toastr";
 import {Link} from "react-router";
 
 export const HomeNavbar = ({login, sendLogout, activeUser, updateSearchFieldState, beerSearch}) => {
+    const notifyLogin = () => toastr.error("Please Login to Access.");
     if (activeUser && activeUser.email) {
         return (
             <div className="row">
+                <div className="col-sm-1 homeNavText">
+                    <Link className="homeNavButton" to="/">Home</Link>
+                </div>
                 <div className="col-sm-2 homeNavText">
                     <Link className="homeNavButton" to="/beerStyles">Browse Beers</Link>
                 </div>
                 <div className="col-sm-2 homeNavText">
                     <Link className="homeNavButton" to="/breweriesNearby">Find a Brewery</Link>
                 </div>
-                <div className="col-sm-2 homeNavText">
-                    <Link className="homeNavButton" to="/breweriesNearby">Beer Log</Link>
-                </div>
-                <div className="col-sm-2 homeNavText">
+                <div className="col-sm-2 col-sm-offset-1 homeNavText">
                     <form onSubmit={beerSearch}>
                         <div className="form-group">
                             <input
@@ -28,8 +30,11 @@ export const HomeNavbar = ({login, sendLogout, activeUser, updateSearchFieldStat
                         </div>
                     </form>
                 </div>
-                <div className="col-sm-offset-2 col-sm-2 homeNavText">
-                    <a onClick={sendLogout} className="homeNavButton">Logout</a>
+                <div className="col-sm-2 homeNavText">
+                    <Link className="homeNavButton" to="/profile">Profile</Link>
+                </div>
+                <div className="col-sm-offset-2 homeNavText">
+                    <span onClick={sendLogout} className="homeNavButton">Logout</span>
                 </div>
             </div>
         );
@@ -45,10 +50,7 @@ export const HomeNavbar = ({login, sendLogout, activeUser, updateSearchFieldStat
                 <div className="col-sm-2 homeNavText">
                     <Link className="homeNavButton" to="/breweriesNearby">Find a Brewery</Link>
                 </div>
-                <div className="col-sm-2">
-
-                </div>
-                <div className="col-sm-2 homeNavText">
+                <div className="col-sm-2 col-sm-offset-1 homeNavText">
                     <form onSubmit={beerSearch}>
                         <div className="form-group">
                             <input
@@ -60,7 +62,10 @@ export const HomeNavbar = ({login, sendLogout, activeUser, updateSearchFieldStat
                         </div>
                     </form>
                 </div>
-                <div className="col-sm-offset-1 col-sm-2 homeNavText">
+                <div className="col-sm-2 homeNavText">
+                    <a className="homeNavButton" onClick={notifyLogin}>Profile</a>
+                </div>
+                <div className="col-sm-2 homeNavText">
                     <a className="homeNavButton" onClick={login}>Login</a>
                 </div>
             </div>

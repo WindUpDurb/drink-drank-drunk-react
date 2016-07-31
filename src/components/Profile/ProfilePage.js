@@ -5,9 +5,10 @@ import * as UserActions from "../../actions/UserActions";
 import {browserHistory} from "react-router";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
-import {DearBeerLog} from "./DearBeerLog";
+import {ProfileHeaderAndNav} from "./ProfileHeaderAndNav";
 import {BeerLogPageDrank} from "./BeerLogPageDrank";
 import {BeerLogPageToDrink} from "./BeerLogPageToDrink";
+import {BeerLogAll} from "./BeerLogAll";
 import {BeerLogPageChoose} from "./BeerLogPageChoose";
 
 class BeerLogPage extends React.Component {
@@ -46,10 +47,18 @@ class BeerLogPage extends React.Component {
         }
 
         return (
-            <div className="container">
-                <DearBeerLog firstName={this.props.activeUser.given_name}/>
-                <BeerLogPageChoose leafThroughPages={this.leafThroughPages}/>
-                {this.currentBeerPage}
+            <div>
+                <ProfileHeaderAndNav activeUser={this.props.activeUser}/>
+                <div id="beerDirectoryBody">
+                    <div className="container">
+                        <div className="row">
+                            <div id="profileMenuDiv" className="well col-sm-10 col-sm-offset-1">
+                               <BeerLogAll
+                                    beerAndUserData={this.props.userBeerData}/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         );
     }
