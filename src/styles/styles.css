@@ -743,7 +743,6 @@ body {
 }
 
 #beerViewHeading {
-    margin-top: 25px;
     margin-bottom: 25px;
 }
 
@@ -915,6 +914,16 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+#parallaxContainerSingleBeerView {
+    background-image: url("/statics/singleBeer.jpg");
+    height: 750px;
+    background-attachment: fixed;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 #parallaxContainerHome {
     background-image: url("/statics/thisBeer.jpg");
     height: 750px;
@@ -935,6 +944,10 @@ body {
 
 #directoryMenuDiv {
     margin-top: -100px;
+}
+
+#directoryMenuSingleDiv {
+    margin-top: -200px;
 }
 
 #backArrow {

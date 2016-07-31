@@ -7,7 +7,7 @@ import {BeerViewAddButtons} from "./BeerViewAddButtons";
 import {BeerDetailsAndStats} from "./BeerViewDetailsAndStats";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
-import SubHeader from "../common/SubHeader";
+import {BeerViewSingleHeaderAndDirectory} from "./BeerViewSingleHeaderAndDirectory";
 import {AddComment} from "./AddComent";
 import {CommentsDisplay} from "./CommentsDisplay";
 import * as BeerActions from "../../actions/BeerActions";
@@ -130,41 +130,50 @@ class SingleBeerPage extends React.Component {
         }
                 return (
             <div id="beerViewPage">
-                <SubHeader/>
-                <div id="beerViewHeading" className="row">
-                    <div className="col-sm-6 col-sm-offset-1">
-                        <h3 className="text-center directoryHeadingText greyText">{beerViewHeading}</h3>
+                <BeerViewSingleHeaderAndDirectory/>
+                <div id="beerDirectoryBody">
+                    <div className="container">
+                        <div id="beerViewHeading" className="row">
+                            <div id="directoryMenuSingleDiv" className="well col-sm-12">
+
+                                <div className="row">
+                                    <div className="col-sm-6 col-sm-offset-1">
+                                        <h3 className="text-center directoryHeadingText greyText">{beerViewHeading}</h3>
+                                    </div>
+                                </div>
+
+                                <BeerViewHead
+                                    consumed={consumed}
+                                    globalRating={this.props.globalRating}
+                                    personalRating={personalRating}
+                                    updateBeerRating={this.updateBeerRating}
+                                    beerData={beerData}
+                                    activeUser={userBeerData}/>
+                                <BeerViewSubHeadDetails beerData={beerData}/>
+                                <BeerViewAddButtons
+                                    login={this.login}
+                                    consumed={consumed}
+                                    updateConsumed={this.updateConsumed}
+                                    updateToDrink={this.updateToDrink}
+                                    inToDrink={inToDrink}
+                                    activeUser={userBeerData}/>
+                                <BeerDetailsAndStats beerData={beerData}/>
+
+                                <AddComment
+                                    newComment={this.state.newComment}
+                                    cancelComment={this.cancelComment}
+                                    updateComment={this.updateCommentState}
+                                    addComment={this.addNewComment}
+                                    beerName={this.props.beerData.name}
+                                    activeUser={this.props.activeUser}/>
+
+                                <CommentsDisplay
+                                    beerName={this.props.beerData.name}
+                                    comments={this.props.beerDiscussion}/>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <BeerViewHead
-                    consumed={consumed}
-                    globalRating={this.props.globalRating}
-                    personalRating={personalRating}
-                    updateBeerRating={this.updateBeerRating}
-                    beerData={beerData}
-                    activeUser={userBeerData}/>
-                <BeerViewSubHeadDetails beerData={beerData}/>
-                <BeerViewAddButtons
-                    login={this.login}
-                    consumed={consumed}
-                    updateConsumed={this.updateConsumed}
-                    updateToDrink={this.updateToDrink}
-                    inToDrink={inToDrink}
-                    activeUser={userBeerData}/>
-                <BeerDetailsAndStats beerData={beerData}/>
-
-                <AddComment
-                    newComment={this.state.newComment}
-                    cancelComment={this.cancelComment}
-                    updateComment={this.updateCommentState}
-                    addComment={this.addNewComment}
-                    beerName={this.props.beerData.name}
-                    activeUser={this.props.activeUser}/>
-
-                <CommentsDisplay
-                    beerName={this.props.beerData.name}
-                    comments={this.props.beerDiscussion}/>
-
             </div>
         );
     }
