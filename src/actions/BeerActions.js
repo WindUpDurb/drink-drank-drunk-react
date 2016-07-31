@@ -115,12 +115,16 @@ export function loadBeerDirectory () {
               //1) storing category name and whatever data I need to search with
               //2) Storing each style by some key so I can quickly access style data
               let beerDirectories = {};
+              console.log("Parsed respondse: ", parsedResponse)
               for (let i = 0; i < parsedResponse.data.length; i++) {
                   if (parsedResponse.data[i].categoryId <= 9) {
                       if (!beerDirectories.hasOwnProperty(parsedResponse.data[i].categoryId)) {
-                          beerDirectories[parsedResponse.data[i].categoryId] = [parsedResponse.data[i]];
+                          beerDirectories[parsedResponse.data[i].categoryId] = {};
+                          beerDirectories[parsedResponse.data[i].categoryId].styleNames = [parsedResponse.data[i].name];
+                          beerDirectories[parsedResponse.data[i].categoryId].categoryName = parsedResponse.data[i].category.name;
+
                       } else {
-                         beerDirectories[parsedResponse.data[i].categoryId].push(parsedResponse.data[i]);
+                         beerDirectories[parsedResponse.data[i].categoryId].styleNames.push(parsedResponse.data[i].name);
                       }
                   }
               }

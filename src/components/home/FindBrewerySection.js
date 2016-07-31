@@ -1,6 +1,7 @@
 "use strict";
 
 import React from "react";
+import {Link} from "react-router";
 
 const FindBrewerySection = () => {
 
@@ -12,7 +13,7 @@ const FindBrewerySection = () => {
                 <span className="breweryFindSectionText">just getting drunk.</span>
             </div>
             <div id="dddButtonDiv">
-                <button id="dddButton" className="btn btn-raised">Let's Find You A Brewery</button>
+                <Link to="/breweriesNearby" id="dddButton" className="btn btn-raised">Let's Find You A Brewery</Link>
             </div>
         </div>
     );

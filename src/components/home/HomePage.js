@@ -26,8 +26,8 @@ class HomePage extends React.Component {
                 <DrinkDrankDrunkSection
                     activeUser={this.props.activeUserData}/>
                 <DescriptionSection/>
-                <FindBrewerySection />
-                <LoginWithGoogleSection />
+                <FindBrewerySection/>
+                <LoginWithGoogleSection/>
             </div>
         );
     }

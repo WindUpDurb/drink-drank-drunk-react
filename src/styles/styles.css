@@ -800,6 +800,16 @@ body {
     padding-top: 17%;
 }
 
+#dhnTextDiv {
+    padding-top: 35%;
+}
+
+#dhnTextDiv {
+    font-size: 2.8em;
+    color: ghostwhite;
+    font-weight: bold;
+}
+
 #dddButtonDiv {
     padding-top: 5%
 }
@@ -826,6 +836,11 @@ body {
     color: #F5F5F5;
 }
 
+#beerDirectoryBody {
+    background-image: url("/statics/woodTheme.jpg");
+
+}
+
 #parallaxContainerFindBrewery {
     background-image: url("/statics/beerCheers.jpg");
     height: 700px;
@@ -836,6 +851,15 @@ body {
 }
 #parallaxContainerHome {
     background-image: url("/statics/thisBeer.jpg");
+    height: 750px;
+    background-attachment: fixed;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#parallaxContainerStyleDirectory {
+    background-image: url("/statics/beersMany.jpg");
     height: 750px;
     background-attachment: fixed;
     background-position: center bottom;
