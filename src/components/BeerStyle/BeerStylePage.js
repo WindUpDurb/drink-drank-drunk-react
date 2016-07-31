@@ -3,6 +3,7 @@
 import React, {PropTypes} from "react";
 import {connect} from "react-redux";
 import BeerStyleDetails from "./BeerStyleDetails";
+import {BeerStyleHeaderAndDirectory} from "./BeerStyleHeaderAndDirectory";
 import ListedBeer from "../common/ListedBeer";
 import {bindActionCreators} from "redux";
 import * as BeerActions from "../../actions/BeerActions";
@@ -34,12 +35,17 @@ class BeerStylePage extends React.Component {
     render() {
         return (
             <div>
-                <BeerStyleDetails beerStyle={this.props.styleDescription}/>
-                {
-                    this.state.styleContents.map((beer, index) =>
-                        <ListedBeer key={index} beerDetails={beer}/>
-                    )
-                }
+                <BeerStyleHeaderAndDirectory />
+                <div id="beerDirectoryBody">
+                   <div className="container">
+                       <div className="row">
+                           <div className="well col-sm-8">
+                               ljdfsa
+                           </div>
+                       </div>
+                   </div>
+
+                </div>
 
             </div>
         );

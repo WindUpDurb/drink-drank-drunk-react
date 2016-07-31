@@ -841,6 +841,15 @@ body {
     padding-bottom: 100px;
 }
 
+#parallaxContainerStyleContentsDirectory {
+    background-image: url("/statics/beerPour.jpg");
+    height: 700px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 #parallaxContainerFindBrewery {
     background-image: url("/statics/beerCheers.jpg");
     height: 700px;

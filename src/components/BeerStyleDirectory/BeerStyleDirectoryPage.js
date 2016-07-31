@@ -26,7 +26,6 @@ class BeerStyleDirectoryPage extends React.Component {
     }
     
     grabStyleContentsAndSet(style) {
-        console.log('herere', style)
         this.props.BeerActions.fetchStyleContents(style, 1);
     }
 

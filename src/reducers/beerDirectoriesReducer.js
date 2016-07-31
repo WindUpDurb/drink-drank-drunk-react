@@ -17,7 +17,6 @@ export default function beerDirectoriesReducer(state = initialState.beerDirector
                 Object.assign({}, state,
                     {currentBeerStyle: {
                         pageNumber: action.pageNumber,
-                        styleDescription: action.styleDescription,
                         styleContents: action.styleContents
                     }})
             );

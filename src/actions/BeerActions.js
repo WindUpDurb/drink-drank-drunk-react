@@ -2,6 +2,7 @@
 
 import * as types from "./actionTypes";
 import * as requestStatusActions from "./requestStatusActions";
+import {browserHistory} from "react-router";
 import toastr from "toastr";
 
 export function fetchBeerStylesDirectoriesSuccess(beerStyles) {
@@ -32,10 +33,9 @@ export function updateBeerDiscussion(discussion) {
     };
 }
 
-export function fetchStyleContentsSuccess(styleContents, styleDescription, pageNumber) {
+export function fetchStyleContentsSuccess(styleContents, pageNumber) {
     return {
         type: types.FETCH_STYLE_CONTENTS_SUCCESS,
-        styleDescription: styleDescription,
         styleContents: styleContents,
         pageNumber: pageNumber
     };
@@ -85,11 +85,12 @@ export function fetchStyleContents(styleId, pageNumber) {
                 return response.json();
             })
             .then(parsedResponse => {
-                console.log("Returned response: ", parsedResponse)
+                console.log("Parsed response: ", parsedResponse)
                 dispatch(requestStatusActions.receivedRequestSuccess());
                 if (parsedResponse.status === "success") {
-                    dispatch(fetchStyleContentsSuccess(parsedResponse.data, beerStyle,parsedResponse.currentPage));
+                    dispatch(fetchStyleContentsSuccess(parsedResponse.data));
                     localStorage.setItem(`${styleId}${pageNumber}`, JSON.stringify(parsedResponse.data));
+                    browserHistory.push(`/beerStyles/${styleId}/${pageNumber}`);
                 }
 
             })
