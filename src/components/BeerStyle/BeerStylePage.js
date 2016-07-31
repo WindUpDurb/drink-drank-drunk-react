@@ -19,6 +19,7 @@ class BeerStylePage extends React.Component {
         this.state = {
             styleContents: ""
         };
+        this.setBeerAndTransition = this.setBeerAndTransition.bind(this);
     }
 
     componentWillMount() {
@@ -29,14 +30,21 @@ class BeerStylePage extends React.Component {
         } else {
             browserHistory.push("/");
         }
+    }
 
+    setBeerAndTransition(beerData) {
+        this.props.BeerActions.setCurrentBeerAndTransistion(beerData);
     }
 
     render() {
-        console.log("check: ", this.props.styleDescription)
         let beerResults;
         if (this.state.styleContents) {
-            beerResults = this.state.styleContents.map((beer, index) => <ListedBeer key={index} beerData={beer}/>);
+            beerResults = (
+                this.state.styleContents.map((beer, index) => <ListedBeer 
+                    setBeer={this.setBeerAndTransition}
+                    key={index} 
+                    beerData={beer}/>)
+            );
         }
         return (
             <div>

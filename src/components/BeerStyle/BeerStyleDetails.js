@@ -7,7 +7,7 @@ const BeerStyleDescription = ({pageNumber, beerStyle}) => {
     if (beerStyle) {
         return (
             <div>
-                <div className="row">
+                <div style={{paddingTop: "15px"}} className="row">
                     <span className="blueFontColor styleDescriptionHeadText">Style Description</span>
                 </div>
                 <div className="blueSectionDivider"></div>
@@ -16,7 +16,7 @@ const BeerStyleDescription = ({pageNumber, beerStyle}) => {
                         <span className="styleDescriptionBodyText">{beerStyle.description}</span>
                     </div>
                 </div>
-                <div className="row fivepxmarginTB">
+                <div className="row styleSectionDiv">
                     <div className="col-sm-5">
                         <img className="img-responsive img-thumbnail" src="/statics/breweryImage.jpg"/>
                     </div>
@@ -56,7 +56,7 @@ const BeerStyleDescription = ({pageNumber, beerStyle}) => {
                     </div>
                 </div>
 
-                <div className="row">
+                <div className="row styleSectionDiv">
                     <div className="col-sm-5">
                         <span className="blueFontColor styleDescriptionHeadText">For your beer studies</span>
                         <div className="blueSectionDivider"></div>
@@ -68,7 +68,7 @@ const BeerStyleDescription = ({pageNumber, beerStyle}) => {
                     </div>
                 </div>
 
-                <div id="stylePageNumberDiv" className="row">
+                <div className="row styleSectionDiv">
                     <div className="col-sm-10">
                         <span className="blueFontColor styleDescriptionHeadText">Page {pageNumber} of {beerStyle.name} beers</span>
                         <div className="blueSectionDivider"></div>

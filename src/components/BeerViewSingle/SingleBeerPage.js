@@ -66,10 +66,7 @@ class SingleBeerPage extends React.Component {
     }
 
     componentWillMount() {
-        let storedData = localStorage[this.props.beerId];
-        if (storedData) {
-            this.setState({beerData: JSON.parse(storedData)});
-        }
+        //for discussion and ratings
         this.props.BeerActions.grabSupplementalBeerData(this.props.beerId);
     }
 
@@ -161,11 +158,11 @@ class SingleBeerPage extends React.Component {
                     cancelComment={this.cancelComment}
                     updateComment={this.updateCommentState}
                     addComment={this.addNewComment}
-                    beerName={this.state.beerData.name}
+                    beerName={this.props.beerData.name}
                     activeUser={this.props.activeUser}/>
 
                 <CommentsDisplay
-                    beerName={this.state.beerData.name}
+                    beerName={this.props.beerData.name}
                     comments={this.props.beerDiscussion}/>
 
             </div>
@@ -189,6 +186,7 @@ SingleBeerPage.propTypes = {
 function mapStateToProps(state, ownProps) {
     let activeUser, userBeerData, globalRating, beerDiscussion;
     let beerId = ownProps.params.beerId;
+    let beerData = state.beerDirectories.currentBeer;
     let supplemental = state.beerRatingAndDiscussion;
     if (state.userAndAuth) {
         activeUser = state.userAndAuth;
@@ -204,7 +202,7 @@ function mapStateToProps(state, ownProps) {
 
 
     return {
-        beerData: state.beerDirectories.currentBeer,
+        beerData,
         beerId,
         activeUser: activeUser,
         userBeerData: userBeerData,

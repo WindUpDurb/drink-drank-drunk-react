@@ -2,6 +2,7 @@
 
 import * as types from "./actionTypes";
 import * as requestStatusActions from "./requestStatusActions";
+import * as FunctionTools from "./FunctionTools";
 import {browserHistory} from "react-router";
 import toastr from "toastr";
 
@@ -53,6 +54,24 @@ export function fetchBeerDataSuccess(beerData) {
     return {
         type: types.FETCH_BEER_DATA_SUCCESS,
         beerData: beerData
+    };
+}
+
+export function dispatchCurrentBeer(beerData) {
+    return {
+        type: types.SET_CURRENT_BEER,
+        currentBeer: beerData
+    };
+}
+
+export function setCurrentBeerAndTransistion(beerData) {
+    return function (dispatch) {
+        dispatch(dispatchCurrentBeer(beerData));
+        browserHistory.push(`/beer/${beerData.id}`);
+        /*FunctionTools.delayFunction(function(){
+            browserHistory.push(`/beer/${beerData.id}`);
+        }, 1000);*/
+
     };
 }
 

@@ -854,11 +854,22 @@ body {
 
 .beerCardBeerName {
     font-size: 1.25em;
+    font-weight: bold;
+    cursor: pointer;
 }
 
-#stylePageNumberDiv {
+.beerCardBeerName:hover {
+    color: #009688;
+    text-decoration: underline;
+}
+
+.beerCardImage {
+    cursor: pointer;
+}
+
+.styleSectionDiv {
     padding-top: 25px;
-    padding-bottom: 15px;
+    padding-bottom: 18px;
 }
 
 .beerCardBreweryName {

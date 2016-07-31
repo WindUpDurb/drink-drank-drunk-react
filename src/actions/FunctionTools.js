@@ -15,3 +15,7 @@ export function arrayOfValues(object) {
     }
     return toReturn;
 }
+
+export function delayFunction(func, delay) {
+    window.setTimeout(func, delay);
+}

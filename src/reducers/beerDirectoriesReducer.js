@@ -12,6 +12,11 @@ export default function beerDirectoriesReducer(state = initialState.beerDirector
                 Object.assign({}, state, {beerDirectories: action.beerStyles})
             );
 
+        case types.SET_CURRENT_BEER:
+            return (
+                Object.assign({}, state, {currentBeer: action.currentBeer})
+            );
+
         case types.FETCH_STYLE_CONTENTS_SUCCESS:
             return (
                 Object.assign({}, state,
