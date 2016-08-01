@@ -907,6 +907,15 @@ body {
     background-size: cover;
 }
 
+#parallaxContainerBeerSearch {
+    background-image: url("/statics/beerCatch.jpg");
+    height: 700px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 #parallaxContainerProfile {
     background-image: url("/statics/beerBoat.jpg");
     height: 700px;

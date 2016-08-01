@@ -49,6 +49,7 @@ class BeerStylePage extends React.Component {
         return (
             <div>
                 <BeerStyleHeaderAndDirectory
+                    activeUser={this.props.activeUser}
                     styleData={this.props.styleDescription}/>
                 <div id="beerDirectoryBody">
                    <div className="container">
@@ -79,18 +80,21 @@ BeerStylePage.propTypes = {
 };
 
 function mapStateToProps(state, ownProps) {
-    console.log("own props: ", ownProps)
-    let styleInState, styleDescription;
+    let styleInState, styleDescription, activeUser;
     if (state.beerDirectories.currentBeerStyle) {
         styleInState = state.beerDirectories.currentBeerStyle.styleContents;
         styleDescription = state.beerDirectories.currentBeerStyle.styleContents[0].style;
+    }
+    if (state.userAndAuth && state.userAndAuth.email) {
+        activeUser = Object.assign({}, state.userAndAuth);
     }
     return {
         currentStyle: styleInState,
         styleDescription: styleDescription,
         currentStyleParam: ownProps.routeParams.style,
         localStorageKey: `${ownProps.params.style}${ownProps.params.page}`,
-        pageNumber: ownProps.params.page
+        pageNumber: ownProps.params.page,
+        activeUser
     };
 }
 

@@ -196,10 +196,10 @@ function mapStateToProps(state, ownProps) {
     let activeUser, userBeerData, globalRating, beerDiscussion;
     let beerId = ownProps.params.beerId;
     let beerData = state.beerDirectories.currentBeer;
-    let supplemental = state.beerRatingAndDiscussion;
+    let supplemental = Object.assign({}, state.beerRatingAndDiscussion);
     if (state.userAndAuth) {
-        activeUser = state.userAndAuth;
-        userBeerData = state.userAndAuth.userBeerData;
+        activeUser = Object.assign({}, state.userAndAuth);
+        userBeerData = Object.assign({}, state.userAndAuth.userBeerData);
     }
 
     if (supplemental && supplemental.beerDiscussion && supplemental.beerDiscussion.beerId === beerId) {

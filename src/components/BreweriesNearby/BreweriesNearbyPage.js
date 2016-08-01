@@ -81,7 +81,6 @@ class BreweriesNearbyPage extends React.Component {
 BreweriesNearbyPage.propTypes = {
     BreweryActions: PropTypes.object.isRequired,
     UserActions: PropTypes.object.isRequired,
-    coordinates: PropTypes.object,
     breweries: PropTypes.array,
     activeUser: PropTypes.object
 };
@@ -94,20 +93,19 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state, ownProps) {
-    let coordinates, activeUser;
-    if(state.userAndAuth && state.userAndAuth.longitude) {
-        coordinates = {
-            longitude: state.userAndAuth.longitude,
-            latitude: state.userAndAuth.latitude
-        };
-    } else {
-        coordinates = null;
-    }
+     let activeUser;
+    // if(state.userAndAuth && state.userAndAuth.longitude) {
+    //     coordinates = {
+    //         longitude: state.userAndAuth.longitude,
+    //         latitude: state.userAndAuth.latitude
+    //     };
+    // } else {
+    //     coordinates = null;
+    // }
     if (state.userAndAuth && state.userAndAuth.email) {
-        activeUser = state.userAndAuth;
+        activeUser = Object.assign({}, state.userAndAuth);
     }
     return {
-        coordinates: coordinates,
         breweries: state.breweryResults,
         activeUser
     };

@@ -232,6 +232,7 @@ export function fetchBeerSearchResults(query) {
                 return response.json();
             })
             .then(parsedResponse => {
+                console.log("check: ", parsedResponse)
                 if(parsedResponse.totalResults > 0) {
                     dispatch(fetchBeerSearchSuccess(parsedResponse.data, query));
                     return({success: "Got them beers"});

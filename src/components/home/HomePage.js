@@ -44,7 +44,7 @@ function mapStateToProps(state, ownProps) {
     let activeUserData;
     if (state.userAndAuth && state.userAndAuth.email) {
         activeUser = true;
-        activeUserData = state.userAndAuth;
+        activeUserData = Object.assign({}, state.userAndAuth);
     }
     return {
         activeUser,

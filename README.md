@@ -4,7 +4,8 @@
 ####Fix Progress Bar
 ####Update Account Settings/Profile
 ####Friend-to-Friend Drink-On-Me Functionality
-####Brewery Search Near Me
-#### Add to: Application-wide Rating/Comments
+####Fix Brewery Search Near Me
+####Featured Beer/Brewery
+####Events
 #####Find the project deployed at http://www.drinkdrankdrunk.tech
 #####Find the Angular application at https://github.com/WindUpDurb/brewery-app

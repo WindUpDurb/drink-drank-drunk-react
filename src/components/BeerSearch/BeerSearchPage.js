@@ -3,13 +3,21 @@
 import React, {PropTypes} from "react";
 import {connect} from "react-redux";
 import {browserHistory} from "react-router";
-import SubHeader from "../common/SubHeader";
-import ListedBeer from "../common/ListedBeer";
 import {BeerSearchHeader} from "./BeerSearchHeader";
+import {BeerSearchResults} from "./BeerSearchResultsMenu";
+import * as BeerActions from "../../actions/BeerActions";
+import {bindActionCreators} from "redux";
+
 
 class BeerSearchPage extends React.Component {
     constructor(props) {
         super(props);
+        
+        this.setBeerAndTransition = this.setBeerAndTransition.bind(this);
+    }
+
+    setBeerAndTransition(beerData) {
+        this.props.BeerActions.setCurrentBeerAndTransistion(beerData);
     }
 
     componentWillMount() {
@@ -19,12 +27,14 @@ class BeerSearchPage extends React.Component {
     }
     
     render() {
-        let searchResults = this.props.searchResults.map((beer, index) => <ListedBeer key={index} beerDetails={beer}/>)
         return (
             <div>
-                <SubHeader/>
-                <BeerSearchHeader query={this.props.query}/>
-                {searchResults}
+                <BeerSearchHeader
+                    activeUser={this.props.activeUser}
+                    query={this.props.query}/>
+                <BeerSearchResults 
+                    setBeer={this.setBeerAndTransition}
+                    searchResults={this.props.searchResults}/>
             </div>
         );
     }
@@ -32,21 +42,32 @@ class BeerSearchPage extends React.Component {
 
 BeerSearchPage.propTypes = {
     query: PropTypes.string,
-    searchResults: PropTypes.array
+    searchResults: PropTypes.array,
+    activeUser: PropTypes.object
 };
 
 
 function mapStateToProps(state, ownProps) {
-    let query, searchResults;
+    let query, searchResults, activeUser;
     if (state.beerSearch) {
         query = state.beerSearch.query;
-        searchResults = state.beerSearch.searchResults;
+        searchResults = Object.assign({}, state.beerSearch.searchResults);
+    }
+    if (state.userAndAuth && state.userAndAuth.email) {
+        activeUser = Object.assign({}, state.userAndAuth);
     }
     return {
         query: query,
-        searchResults: searchResults
+        searchResults: searchResults,
+        activeUser
+    };
+}
+
+function mapDispatchToProps (dispatch) {
+    return {
+        BeerActions: bindActionCreators(BeerActions, dispatch)
     };
 }
 
 
-export default connect(mapStateToProps)(BeerSearchPage);
+export default connect(mapStateToProps, mapDispatchToProps)(BeerSearchPage);
