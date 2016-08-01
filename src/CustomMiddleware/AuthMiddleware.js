@@ -38,24 +38,26 @@ const CheckActiveUser = store => next => action => {
     }
 };
 
-const UserOnlyRoute = store => next => action => {
-    if (action.type !== types.DO_YOU_BELONG_HERE) return next(action);
-    function checkCookies(cookies) {
-        for (let i = 0; i < cookies.length; i++) {
-            if (cookies[i].includes("accessToken")) {
-                return true;
-            }
-        }
-        return null;
-    }
-    let clearance = checkCookies(document.cookie.split(";")) || store.getState().userAndAuth;
-    if (!clearance) {
-       browserHistory.push("/");
-        toastr.error("You need to be logged in.");
-    }
-};
+// const CheckState = store => next => action => {
+//     console.log("Store: ", store.getState());
+//     console.log("next: ", next);
+//     console.log("action: ", action);
+//     let beerDirectories = store.getState().beerDirectories;
+//     switch (action.type) {
+//         case types.CHECK_CURRENT_BEER_STATE:
+//             if (beerDirectories.currentBeer) {
+//                 return next(action);
+//             } else {
+//                 return browserHistory.push("/");
+//             }
+//
+//         default:
+//             return next(action);
+//     }
+//
+// };
 
-export default {UserOnlyRoute, CheckActiveUser};
+export default {CheckActiveUser};
 
 
 

@@ -2,9 +2,9 @@
 //in this file, will centralize declarations about what is in state
 
 export const beerDirectories = {
-    beerDirectories: {},
-    currentBeerStyle: {},
-    currentBeer: {}
+    beerDirectories: null,
+    currentBeerStyle: null,
+    currentBeer: null
 };
 
 export const beerRatingAndDiscussion = {
@@ -19,7 +19,3 @@ export const requestsInProgress = 0;
 export const activeUser = null;
 
 export const beerSearch = null;
-
-export const forms = {
-  newRegistration: {}  
-};

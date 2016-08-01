@@ -58,6 +58,7 @@ let userSchema = new mongoose.Schema({
     }],
     sampledBeers: [{
         beerName: { type: String },
+        drank: { type: Boolean },
         beerId: { type: String },
         beerImage: { type: String },
         breweryName: { type: String },
@@ -172,9 +173,9 @@ userSchema.statics.updateConsumedBeer = function (toUpdateWith, callback) {
         let currentBeerId;
         let currentBeerConsumed;
         if (toUpdateWith.beerData.consumed) {
+            toUpdateWith.beerData.drank = true;
             databaseUser.sampledBeers.push(toUpdateWith.beerData);
         } else {
-
             for (let i = 0; i < databaseUser.sampledBeers.length; i++) {
                 if (databaseUser.sampledBeers[i].beerId === toUpdateWith.beerData.beerId) {
                     databaseUser.sampledBeers.splice(i, 1);

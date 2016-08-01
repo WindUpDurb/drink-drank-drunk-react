@@ -14,9 +14,9 @@ export const ListedBeer = ({drank, setBeer, beerData}) => {
         beerImage = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png";
     }
     if (drank) {
-        drankIcon = <img data-toggle="tooltip" data-placement="bottom" title="Beer Drank" data-original-title="Tooltip on bottom" src="/statics/beerIconConsumed32.png"/>;
+        drankIcon = <img data-toggle="tooltip" data-placement="bottom" title="Beer Drank"  src="/statics/beerIconConsumed32.png"/>;
     } else {
-        drankIcon = <img data-toggle="tooltip" data-placement="bottom" title="Yet to Drink" data-original-title="Tooltip on bottom" src="/statics/beerIconNoConsumed32.png"/>;
+        drankIcon = <img data-toggle="tooltip" data-placement="bottom" title="Yet to Drink" src="/statics/beerIconNoConsumed32.png"/>;
     }
     return (
         <div className="col-sm-4 col-sm-offset-1 well text-center beerCard">

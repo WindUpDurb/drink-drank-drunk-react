@@ -10,6 +10,7 @@ import BeerStylePage from "./components/BeerStyle/BeerStylePage";
 import BeerViewPage from "./components/BeerViewSingle/SingleBeerPage";
 import ProfilePage from "./components/Profile/ProfilePage";
 import BreweriesNearbyPage from "./components/BreweriesNearby/BreweriesNearbyPage";
+import * as types from "./actions/actionTypes";
 import toastr from "toastr";
 
 export const generateRoutes = (store) => {
@@ -18,7 +19,6 @@ export const generateRoutes = (store) => {
         if (store) {
             activeUser = store.getState().userAndAuth;
         }
-
         if (!activeUser) {
             replace({pathname: "/"});
             if(!localStorage.profile) {
@@ -26,6 +26,8 @@ export const generateRoutes = (store) => {
             }
         }
     };
+
+    //const checkCurrentBeer = () => store.dispatch({type: types.CHECK_CURRENT_BEER_STATE});
 
     return (
         <Route path="/" component={App}>

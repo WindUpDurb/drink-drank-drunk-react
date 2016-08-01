@@ -7,6 +7,7 @@ import {BeerViewAddButtons} from "./BeerViewAddButtons";
 import {BeerDetailsAndStats} from "./BeerViewDetailsAndStats";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
+import {browserHistory} from "react-router";
 import {BeerViewSingleHeaderAndDirectory} from "./BeerViewSingleHeaderAndDirectory";
 import {AddComment} from "./AddComent";
 import {CommentsDisplay} from "./CommentsDisplay";
@@ -67,7 +68,11 @@ class SingleBeerPage extends React.Component {
 
     componentWillMount() {
         //for discussion and ratings
-        this.props.BeerActions.grabSupplementalBeerData(this.props.beerId);
+        if (this.props.beerData) {
+            this.props.BeerActions.grabSupplementalBeerData(this.props.beerId);
+        } else {
+            browserHistory.push("/");
+        }
     }
 
     login () {
@@ -119,11 +124,14 @@ class SingleBeerPage extends React.Component {
     }
 
     render(){
-        let consumed, inToDrink, personalRating;
-        let beerData = this.state.beerData || this.props.beerData;
-        let userBeerData = this.props.userBeerData || null;
-        let beerViewHeading = generateBeerViewHeading(beerData.name);
-        if (userBeerData) {
+        let consumed, inToDrink, personalRating, beerData, beerName, userBeerData;
+        if (this.props.beerData) {
+            beerData = this.props.beerData;
+            beerName = beerData.name;
+            userBeerData = this.props.userBeerData;
+        }
+        if (this.props.userBeerData) {
+            userBeerData = this.props.userBeerData;
             consumed = checkIfConsumed(beerData.id, userBeerData);
             inToDrink = checkIfInToDrink(beerData.id, userBeerData);
             personalRating = returnBeerRating(beerData.id, userBeerData);
@@ -136,11 +144,6 @@ class SingleBeerPage extends React.Component {
                         <div id="beerViewHeading" className="row">
                             <div id="directoryMenuSingleDiv" className="well col-sm-12">
 
-                                <div className="row">
-                                    <div className="col-sm-6 col-sm-offset-1">
-                                        <h3 className="text-center directoryHeadingText greyText">{beerViewHeading}</h3>
-                                    </div>
-                                </div>
 
                                 <BeerViewHead
                                     consumed={consumed}
@@ -164,11 +167,11 @@ class SingleBeerPage extends React.Component {
                                     cancelComment={this.cancelComment}
                                     updateComment={this.updateCommentState}
                                     addComment={this.addNewComment}
-                                    beerName={this.props.beerData.name}
+                                    beerName={beerName}
                                     activeUser={this.props.activeUser}/>
 
                                 <CommentsDisplay
-                                    beerName={this.props.beerData.name}
+                                    beerName={beerName}
                                     comments={this.props.beerDiscussion}/>
                             </div>
                         </div>
@@ -193,9 +196,11 @@ SingleBeerPage.propTypes = {
 };
 
 function mapStateToProps(state, ownProps) {
-    let activeUser, userBeerData, globalRating, beerDiscussion;
+    let activeUser, userBeerData, globalRating, beerDiscussion, beerData;
+    if (state.beerDirectories.currentBeer) {
+        beerData = state.beerDirectories.currentBeer;
+    }
     let beerId = ownProps.params.beerId;
-    let beerData = state.beerDirectories.currentBeer;
     let supplemental = Object.assign({}, state.beerRatingAndDiscussion);
     if (state.userAndAuth) {
         activeUser = Object.assign({}, state.userAndAuth);
@@ -208,8 +213,7 @@ function mapStateToProps(state, ownProps) {
     if (supplemental && supplemental.globalBeerRating && supplemental.globalBeerRating.beerId === beerId) {
         globalRating = supplemental.globalBeerRating.averageRating;
     }
-
-
+    
     return {
         beerData,
         beerId,

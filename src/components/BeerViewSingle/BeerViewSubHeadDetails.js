@@ -3,16 +3,16 @@
 import React, {PropTypes} from "react";
 
 export const BeerViewSubHeadDetails = ({beerData}) => {
-    let beerImage;
-    if (beerData.labels) {
-        beerImage = beerData.labels.large || beerData.labels.medium;
-    } else {
-        beerImage = "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg";
-    }
+    let beerImage, beerName, breweryName;
+    if (beerData) beerName = beerData.name;
+    if (beerData && beerData.breweries) breweryName = beerData.breweries[0].name;
+    if (beerData && beerData.labels) beerImage = beerData.labels.large || beerData.labels.medium;
+    if (beerData && !beerData.labels) beerImage = "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg";
+
     return (
         <div className="container">
-            <h1 className="text-center">{beerData.name}</h1>
-            <h3 className="text-center">Brewed By: {beerData.breweries[0].name || "Brewery name is unavailable."}</h3>
+            <h1 className="text-center">{beerName}</h1>
+            <h3 className="text-center">Brewed By: {breweryName || "Brewery name is unavailable."}</h3>
             <div className="row">
                 <div className="col-sm-1">
                     
@@ -28,7 +28,7 @@ export const BeerViewSubHeadDetails = ({beerData}) => {
 };
 
 BeerViewSubHeadDetails.propTypes = {
-   beerData: PropTypes.object.isRequired
+   beerData: PropTypes.object
 };
 
 

@@ -3,10 +3,20 @@
 import React, {PropTypes} from "react";
 
 export const BeerDetailsAndStats = ({beerData}) => {
-    let data = beerData.beerData || beerData;
-    let breweryData = data.breweries[0];
-    let ibuMin, ibuMax, srmMin, srmMax, fgMin, fgMax, styleName, styleDescription, ogMin;
-    if (data.style) {
+    let ibuMin, ibuMax, srmMin, srmMax, fgMin, fgMax, styleName,
+        styleDescription, ogMin, data, breweryData, beerName, abv,
+        description, breweryName, established, breweryDescription,
+        breweryWebsite;
+    if (beerData) data = beerData.beerData || beerData;
+    if (beerData) abv = beerData.abv;
+    if (data) beerName = data.name;
+    if (data) description = data.description;
+    if (beerData && beerData.breweries) breweryData = data.breweries[0];
+    if (breweryData) breweryName = breweryData.name;
+    if (breweryData) established = breweryData.established;
+    if (breweryData) breweryDescription = breweryData.description;
+    if (breweryData && breweryData.website) breweryWebsite = breweryData.website;
+    if (data && data.style) {
         ibuMin = data.style.ibuMin;
         ibuMax = data.style.ibuMax;
         srmMin = data.style.srmMin;
@@ -17,29 +27,28 @@ export const BeerDetailsAndStats = ({beerData}) => {
         styleName = data.style.name;
         styleDescription = beerData.style.description;
     }
-
     return (
         <div className="container text-center">
             <div className="subjectBreak container-fluid"></div>
             <div>
                 <div className="text-center">
-                    <h3>{data.name}</h3>
+                    <h3>{beerName || "N/A"}</h3>
                 </div>
                 <div>
-                    <p className="paragarphFormat">{data.description || "No Description is Available"}</p>
+                    <p className="paragarphFormat">{description || "No Description is Available"}</p>
                 </div>
             </div>
             <div className="subjectBreak container-fluid"></div>
             <div>
                 <div className="row">
                     <div className="text-center">
-                        <h3>{breweryData.name}</h3>
-                        <h4>Established: {breweryData.established}</h4>
+                        <h3>{breweryName || "N/A"}</h3>
+                        <h4>Established: {established || "N/A"}</h4>
                     </div>
                 </div>
                 <div>
-                    <p className="breweryExternalSiteText paragarphFormat">{breweryData.description}</p>
-                    <p className="breweryExternalSiteText"><a href={breweryData.website} target="_blank">{breweryData.name}</a></p>
+                    <p className="breweryExternalSiteText paragarphFormat">{breweryDescription}</p>
+                    <p className="breweryExternalSiteText"><a href={breweryWebsite || "N/A"} target="_blank">{breweryName}</a></p>
                 </div>
             </div>
 
@@ -52,7 +61,7 @@ export const BeerDetailsAndStats = ({beerData}) => {
                         <tbody>
                         <tr>
                             <td>ABV: </td>
-                            <td>{beerData.abv || "N/A"}%</td>
+                            <td>{abv || "N/A"}%</td>
                             <td/>
                             <td>ABV stands for Alcohol by Volume, and it refers to the percentage of alcohol in a given volume.</td>
                         </tr>

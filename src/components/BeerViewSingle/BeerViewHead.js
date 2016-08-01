@@ -2,44 +2,25 @@
 
 import React, {PropTypes} from "react";
 import {SelectBeerRating} from "./SelectBeerRating";
-import {BeerRatingIcon} from "./BeerRatingIcon.js";
-
-const generateArrayForRating = (rating) => {
-    let ratingArray = [];
-    for (let i = 1; i <= rating; i++) {
-        ratingArray.push(i);
-    }
-    return ratingArray;
-};
 
 export const BeerViewHead = ({consumed, globalRating, personalRating, updateBeerRating,beerData, activeUser}) => {
     let consumedIcon, beerStatusInDB, rateBeer, overallRating, beerRating;
-    // let beerRating = generateArrayForRating(personalRating);
-    if (personalRating) {
-        beerRating =  <span><span>Personal Rating: </span> <span id="personalRating">{personalRating}</span></span>;
-    }
-    if (globalRating) {
-        overallRating = globalRating;
-    } else if (!globalRating && activeUser) {
-        overallRating = "Be the first to rate.";
-    } else if (!globalRating && !activeUser) {
-        overallRating = "Login and be the first to rate.";
-    }
-    if (consumed) {
-        consumedIcon = <span className="pull-right"><img src="/statics/beerIconConsumed64.png"/></span>;
+    if (personalRating) beerRating =  <span><span>Personal Rating: </span> <span id="personalRating">{personalRating}</span></span>;
+    if (globalRating) overallRating = globalRating;
+    if (!globalRating && activeUser) overallRating = "Be the first to rate.";
+    if (!globalRating && !activeUser) overallRating = "Login and be the first to rate.";
+    if (activeUser && consumed) {
+        consumedIcon = <img data-toggle="tooltip" data-placement="bottom" title="You've Drank this Beer" src="/statics/beerIconConsumed64.png"/>;
         rateBeer = <SelectBeerRating initialRating={personalRating} updateBeerRating={updateBeerRating}/>;
-
-        // beerRating = beerRating.map((number, index) => <BeerRatingIcon key={index}/>);
-    } else {
-        consumedIcon = <span className="pull-right"><img src="/statics/beerIconNoConsumed64.png" /></span>;
+    } else if (activeUser && !consumed) {
+        consumedIcon = <img data-toggle="tooltip" data-placement="bottom" title="You've Yet to Drink this Beer" src="/statics/beerIconNoConsumed64.png" />;
         rateBeer = <span>Try this beer before you rate it.</span>;
     }
-    if(beerData.status === "verified") {
-        beerStatusInDB = <span className="pull-right"><img src="/statics/thumbUp64.png"/></span>;
+    if(beerData && beerData.status === "verified") {
+        beerStatusInDB = <img data-toggle="tooltip" data-placement="bottom" title="Beer Verified in Database" src="/statics/thumbUp64.png"/>;
     } else {
-        beerStatusInDB = <span className="pull-right"><img src="/statics/updatePending64.png"/></span>;
+        beerStatusInDB = <img data-toggle="tooltip" data-placement="bottom" title="Beer Not Verified in Database" src="/statics/updatePending64.png"/>;
     }
-
     if (activeUser) {
         return (
             <div className="container">
@@ -94,7 +75,7 @@ BeerViewHead.propTypes = {
     personalRating: PropTypes.number,
     updateBeerRating: PropTypes.func.isRequired,
     consumed: PropTypes.bool,
-    beerData: PropTypes.object.isRequired,
+    beerData: PropTypes.object,
     activeUser: PropTypes.object,
     globalRating: PropTypes.number
 };

@@ -16,18 +16,11 @@ function grabDirectoryDetails (currentDirectory, directories) {
 class BeerStylePage extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            styleContents: ""
-        };
         this.setBeerAndTransition = this.setBeerAndTransition.bind(this);
     }
 
     componentWillMount() {
-        let storedData = localStorage[this.props.localStorageKey];
-        let dataInState = this.props.currentStyle;
-        if (storedData || dataInState) {
-            this.setState({styleContents: dataInState || JSON.parse(storedData)});
-        } else {
+        if (!this.props.currentStyle) {
             browserHistory.push("/");
         }
     }
@@ -38,9 +31,9 @@ class BeerStylePage extends React.Component {
 
     render() {
         let beerResults;
-        if (this.state.styleContents) {
+        if (this.props.currentStyle) {
             beerResults = (
-                this.state.styleContents.map((beer, index) => <ListedBeer 
+                this.props.currentStyle.map((beer, index) => <ListedBeer
                     setBeer={this.setBeerAndTransition}
                     key={index} 
                     beerData={beer}/>)
@@ -70,6 +63,7 @@ class BeerStylePage extends React.Component {
 }
 
 BeerStylePage.propTypes = {
+    activeUser: PropTypes.object,
     beerStyles: PropTypes.object,
     currentStyle: PropTypes.array,
     styleDescription: PropTypes.object,
@@ -81,9 +75,11 @@ BeerStylePage.propTypes = {
 
 function mapStateToProps(state, ownProps) {
     let styleInState, styleDescription, activeUser;
-    if (state.beerDirectories.currentBeerStyle) {
+    if (state.beerDirectories.currentBeerStyle && state.beerDirectories.currentBeerStyle.styleContents) {
         styleInState = state.beerDirectories.currentBeerStyle.styleContents;
         styleDescription = state.beerDirectories.currentBeerStyle.styleContents[0].style;
+    } else {
+        browserHistory.push("/");
     }
     if (state.userAndAuth && state.userAndAuth.email) {
         activeUser = Object.assign({}, state.userAndAuth);
