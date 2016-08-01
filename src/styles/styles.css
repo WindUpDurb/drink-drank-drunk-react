@@ -972,6 +972,11 @@ body {
     margin-top: -200px;
 }
 
+#searchResult {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
 #profileCardDiv {
     padding-top: 11%;
 }

@@ -2,9 +2,10 @@
 
 import React, {PropTypes} from "react";
 import {CustomSearch} from "./SearchButtonAndInput";
+import toastr from "toastr";
 
-
-export const FindNearbyButton = ({search, toggleSearch, updateSearchState, submitSearch, findNearby}) => {
+export const FindNearbyButton = ({search, toggleSearch, updateSearchState, submitSearch}) => {
+    let findNearby = () => toastr.info("Searches by Geolocation are temporarily nonfunctional. Please do a custom search.");
     return (
         <div className="row">
 
@@ -21,7 +22,6 @@ export const FindNearbyButton = ({search, toggleSearch, updateSearchState, submi
 };
 
 FindNearbyButton.propTypes = {
-    findNearby: PropTypes.func.isRequired,
     toggleSearch: PropTypes.func.isRequired,
     updateSearchState: PropTypes.func.isRequired,
     submitSearch: PropTypes.func.isRequired,

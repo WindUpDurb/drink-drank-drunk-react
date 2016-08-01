@@ -3,10 +3,8 @@
 import React, {PropTypes} from "react";
 import NavbarContainer from "../common/NavbarContainer";
 import {FindNearbyButton} from "./FindNearbyButton";
-import toast from "toastr";
 
-export const BreweriesNearbyHeaderAndNav = ({toggleSearch, search, updateSearchLocationState, submitSearch, lookupNearbyBreweries, activeUser}) => {
-    const notify = (event) => toast.info(event.target.name);
+export const BreweriesNearbyHeaderAndNav = ({toggleSearch, search, updateSearchState, submitSearch, activeUser}) => {
     return (
         <div id="parallaxContainerBreweriesNearby">
             <NavbarContainer
@@ -19,9 +17,8 @@ export const BreweriesNearbyHeaderAndNav = ({toggleSearch, search, updateSearchL
                         <FindNearbyButton
                             toggleSearch={toggleSearch}
                             search={search}
-                            updateSearchState={updateSearchLocationState}
-                            submitSearch={submitSearch}
-                            findNearby={lookupNearbyBreweries}/>
+                            updateSearchState={updateSearchState}
+                            submitSearch={submitSearch}/>
                     </div>
                 </div>
             </div>
@@ -31,9 +28,8 @@ export const BreweriesNearbyHeaderAndNav = ({toggleSearch, search, updateSearchL
 
 BreweriesNearbyHeaderAndNav.propTypes = {
     activeUser: PropTypes.object,
-    toggleSearch: PropTypes.func.isRequired,
-    search: PropTypes.func.isRequired,
-    updateSearchLocationState: PropTypes.func.isRequired,
-    submitSearch: PropTypes.func.isRequired,
-    findNearby: PropTypes.func.isRequired
+    toggleSearch: PropTypes.func,
+    search: PropTypes.bool,
+    updateSearchState: PropTypes.func,
+    submitSearch: PropTypes.func
 };

@@ -6,10 +6,7 @@ import {browserHistory} from "react-router";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import {ProfileHeaderAndNav} from "./ProfileHeaderAndNav";
-import {BeerLogPageDrank} from "./BeerLogPageDrank";
-import {BeerLogPageToDrink} from "./BeerLogPageToDrink";
 import {BeerLogAll} from "./BeerLogAll";
-import {BeerLogPageChoose} from "./BeerLogPageChoose";
 
 class BeerLogPage extends React.Component {
 
@@ -31,8 +28,6 @@ class BeerLogPage extends React.Component {
 
     leafThroughPages(event) {
         this.setState({beerLogPage: event.target.name});
-        console.log("name: ", event.target.name);
-        console.log("state: ", this.state.beerLogPage);
     }
 
 

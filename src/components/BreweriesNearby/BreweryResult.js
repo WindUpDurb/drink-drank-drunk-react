@@ -8,13 +8,11 @@ export const BreweryResult = ({brewery}) => {
         breweryPhone = `(${brewery.phone.substr(0, 3)}) ${brewery.phone.substr(3, 3)}-${brewery.phone.substr(6, 4)}`;
     }
     return (
-        <div className="col-sm-8">
-            <div className="breweryBottomTopBorders container-fluid"></div>
-            <div className="row">
-                <div className="col-sm-3">
+            <div id="searchResult" className="row">
+                <div className="col-sm-2 col-sm-offset-1">
                     <img src={brewery.image_url} className="img-rounded img-responsive"/>
                 </div>
-                <div className="col-sm-6">
+                <div className="col-sm-5">
                     <h4><a href={brewery.url} target="_blank">{brewery.name}</a></h4>
                     <img src={brewery.rating_img_url}/><span className="reviewCount">{brewery.review_count} reviews</span>
                 </div>
@@ -25,8 +23,6 @@ export const BreweryResult = ({brewery}) => {
                         <h5>{breweryPhone}</h5>
                     </div>
                 </div>
-            </div>
-            <div className="breweryBottomTopBorders container-fluid"></div>
         </div>
     );
 };

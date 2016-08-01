@@ -5,7 +5,6 @@ import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import * as UserActions from "../../actions/UserActions";
 import * as BreweryActions from "../../actions/BreweryActions";
-import {FindNearbyButton} from "./FindNearbyButton";
 import {NearbyResultsHeader} from "./NearbyResults";
 import {BreweriesNearbyHeaderAndNav} from "./BreweriesNearbyHeaderAndNav";
 import toastr from "toastr";
@@ -29,9 +28,9 @@ class BreweriesNearbyPage extends React.Component {
     
     lookupNearbyBreweries(){
         toastr.error("Searches by Geolocation are temporarily nonfunctional. Please do a custom search.");
-        if(this.props.coordinates) {
-            this.props.BreweryActions.fetchNearbyBreweryData(this.props.coordinates);
-        }
+        // if(this.props.coordinates) {
+        //     this.props.BreweryActions.fetchNearbyBreweryData(this.props.coordinates);
+        // }
     }
 
     toggleSearch() {
@@ -66,9 +65,14 @@ class BreweriesNearbyPage extends React.Component {
                     search={this.state.search}
                     updateSearchState={this.updateSearchLocationState}
                     submitSearch={this.submitSearch}
-                    findNearby={this.lookupNearbyBreweries}
                     activeUser={this.props.activeUser}/>
-                {breweryResults}
+                <div id="beerDirectoryBody">
+                    <div className="container">
+                        <div className="row">
+                            {breweryResults}
+                        </div>
+                    </div>
+                </div>
             </div>
         );
     }
