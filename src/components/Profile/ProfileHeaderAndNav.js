@@ -5,7 +5,6 @@ import NavbarContainer from "../common/NavbarContainer";
 import toast from "toastr";
 
 export const ProfileHeaderAndNav = ({leafThrough, activeUser}) => {
-    let changePage = (page) => leafThrough(page);
     const notify = (event) => toast.info(event.target.name);
     return (
         <div id="parallaxContainerProfile">

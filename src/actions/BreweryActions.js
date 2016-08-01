@@ -1,6 +1,7 @@
 "use strict";
 
 import * as types from "./actionTypes";
+import * as requestStatusActions from "./requestStatusActions";
 import toastr from "toastr";
 
 export function dispatchNearbyBreweryResults(breweries) {
@@ -12,6 +13,7 @@ export function dispatchNearbyBreweryResults(breweries) {
 
 export function customBrewerySearch(location) {
     return function(dispatch) {
+        dispatch(requestStatusActions.requestSent());
         let headers = new Headers();
         headers.append("Content-Type", "application/json");
         let options = {
@@ -27,6 +29,7 @@ export function customBrewerySearch(location) {
                 return response.json();
             })
             .then(parsedResponse => {
+                dispatch(requestStatusActions.receivedRequestSuccess());
                 if(parsedResponse.total > 0) {
                     dispatch(dispatchNearbyBreweryResults(parsedResponse.businesses));
                 } else {
@@ -42,6 +45,7 @@ export function customBrewerySearch(location) {
 
 export function fetchNearbyBreweryData(coordinates) {
     return function(dispatch) {
+        dispatch(requestStatusActions.requestSent());
         let headers = new Headers();
         headers.append("Content-Type", "application/json");
         let options = {
@@ -57,6 +61,7 @@ export function fetchNearbyBreweryData(coordinates) {
                 return response.json();
             })
             .then(parsedResponse => {
+                dispatch(requestStatusActions.receivedRequestSuccess());
                 if(parsedResponse.total > 0) {
                     dispatch(dispatchNearbyBreweryResults(parsedResponse.businesses));
                 } else {

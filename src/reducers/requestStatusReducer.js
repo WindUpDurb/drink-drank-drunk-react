@@ -8,15 +8,15 @@ export default function requestStatusReducer(state = initialState.requestsInProg
     switch(action.type) {
         case types.REQUEST_SENT:
             return (
-                Object.assign({}, state, {requestsInProgress: state.requestsInProgress + 1})
+                state + 1
             );
         case types.REQUEST_RECEIVED_SUCCESSFUL:
             return (
-                Object.assign({}, state, {requestsInProgress: state.requestsInProgress - 1})
+                state - 1
             );
         case types.REQUEST_RECEIVED_ERROR:
             return (
-                Object.assign({}, state, {requestsInProgress: state.requestsInProgress - 1})
+                state - 1
             );
         default:
             return state;

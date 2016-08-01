@@ -77,16 +77,16 @@ export function setCurrentBeerAndTransistion(beerData) {
 
 export function fetchBeerData(beerId) {
     return function(dispatch) {
-            dispatch(requestStatusActions.requestSent());
-            return fetch(`/api/breweryAPI/beerMeSingle/${beerId}`)
+        dispatch(requestStatusActions.requestSent());
+        return fetch(`/api/breweryAPI/beerMeSingle/${beerId}`)
                 .then(response => {
                     return response.json();
                 })
                 .then(parsedResponse => {
+                    console.log("parsed response: ", parsedResponse);
                     dispatch(requestStatusActions.receivedRequestSuccess());
-                    localStorage.setItem(beerId, JSON.stringify(parsedResponse.data));
                     dispatch(fetchBeerDataSuccess(parsedResponse.data));
-                    return parsedResponse;
+                    browserHistory.push(`/beer/${beerId}`);
 
                 })
                 .catch(error => {
@@ -104,7 +104,6 @@ export function fetchStyleContents(styleId, pageNumber) {
                 return response.json();
             })
             .then(parsedResponse => {
-                console.log("Parsed response: ", parsedResponse)
                 dispatch(requestStatusActions.receivedRequestSuccess());
                 if (parsedResponse.status === "success") {
                     dispatch(fetchStyleContentsSuccess(parsedResponse.data));
@@ -136,7 +135,6 @@ export function loadBeerDirectory () {
               //1) storing category name and whatever data I need to search with
               //2) Storing each style by some key so I can quickly access style data
               let beerDirectories = {};
-              console.log("Parsed respondse: ", parsedResponse);
               for (let i = 0; i < parsedResponse.data.length; i++) {
                   if (parsedResponse.data[i].categoryId < 9) {
                       if (!beerDirectories.hasOwnProperty(parsedResponse.data[i].categoryId)) {
@@ -161,6 +159,7 @@ export function loadBeerDirectory () {
 
 export function addToDrink(beer, activeUser) {
     return function(dispatch){
+        dispatch(requestStatusActions.requestSent());
         let headers = new Headers();
         headers.append("Content-Type", "application/json");
         let beerImage;
@@ -187,6 +186,7 @@ export function addToDrink(beer, activeUser) {
                 return response.json();
             })
             .then(parsedResponse => {
+                dispatch(requestStatusActions.receivedRequestSuccess());
                 dispatch(updateUserBeerData(parsedResponse));
             })
             .catch(error => {
@@ -197,6 +197,7 @@ export function addToDrink(beer, activeUser) {
 
 export function saveBeerRating(beerData, activeUser, newRating) {
     return function(dispatch){
+        dispatch(requestStatusActions.requestSent());
         let headers = new Headers();
         headers.append("Content-Type", "application/json");
         let dataToUpdateWith = Object.assign({}, activeUser);
@@ -215,6 +216,7 @@ export function saveBeerRating(beerData, activeUser, newRating) {
                 return response.json();
             })
             .then(parsedResponse => {
+                dispatch(requestStatusActions.receivedRequestSuccess());
                 dispatch(updateUserBeerData(parsedResponse.updatedUser));
                 dispatch(updateGlobalBeerRatingState(parsedResponse.updatedBeerData));
             })
@@ -226,13 +228,14 @@ export function saveBeerRating(beerData, activeUser, newRating) {
 
 export function fetchBeerSearchResults(query) {
     return function(dispatch) {
+        dispatch(requestStatusActions.requestSent());
         let queryString = query.replace(/\s/gi, "%20");
         return fetch(`/api/breweryAPI/beerSearch/${queryString}`)
             .then(response => {
                 return response.json();
             })
             .then(parsedResponse => {
-                console.log("check: ", parsedResponse)
+                dispatch(requestStatusActions.receivedRequestSuccess());
                 if(parsedResponse.totalResults > 0) {
                     dispatch(fetchBeerSearchSuccess(parsedResponse.data, query));
                     return({success: "Got them beers"});
@@ -249,14 +252,15 @@ export function fetchBeerSearchResults(query) {
 
 export function grabSupplementalBeerData(beerId) {
     return function (dispatch) {
+        dispatch(requestStatusActions.requestSent());
         return fetch(`/api/users/supplementalBeerData/${beerId}`)
             .then(response => {
                 return response.json();
             })
             .then(parsedResponse => {
+                dispatch(requestStatusActions.receivedRequestSuccess());
                 parsedResponse.forEach(object => {
                     if (object.databaseBeer) {
-
                         dispatch(updateGlobalBeerRatingState(object.databaseBeer));
                     }
                     if (object.populatedDiscussion) {
@@ -272,6 +276,7 @@ export function grabSupplementalBeerData(beerId) {
 
 export function addBeerComment(newComment, beerId, user, authorPhoto, userName) {
     return function(dispatch) {
+        dispatch(requestStatusActions.requestSent());
         let toSend = {
             userName,
             authorPhoto,
@@ -295,6 +300,7 @@ export function addBeerComment(newComment, beerId, user, authorPhoto, userName) 
                 return response.json();
             })
             .then(parsedResponse => {
+                dispatch(requestStatusActions.receivedRequestSuccess());
                 dispatch(updateBeerDiscussion(parsedResponse));
             })
             .catch(error => {
@@ -305,6 +311,7 @@ export function addBeerComment(newComment, beerId, user, authorPhoto, userName) 
 
 export function changeIfConsumed(consumed, beer, activeUser) {
     return function(dispatch){
+        dispatch(requestStatusActions.requestSent());
         let headers = new Headers();
         headers.append("Content-Type", "application/json");
         let beerImage;
@@ -332,6 +339,7 @@ export function changeIfConsumed(consumed, beer, activeUser) {
                 return response.json();
             })
             .then(parsedResponse => {
+                dispatch(requestStatusActions.receivedRequestSuccess());
                 dispatch(updateUserBeerData(parsedResponse));
             })
             .catch(error => {

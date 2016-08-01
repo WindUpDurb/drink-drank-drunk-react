@@ -15,8 +15,8 @@ const rootReducer = combineReducers({
     userAndAuth: userAndAuthReducer,
     breweryResults: breweriesReducer,
     beerSearch: beerSearchReducer,
-    beerRatingAndDiscussion: beerRatingAndDiscussionReducer
-    // requestStatusReducer: requestStatusReducer
+    beerRatingAndDiscussion: beerRatingAndDiscussionReducer,
+    requestsInProgress: requestStatusReducer
 });
 
 export default rootReducer;

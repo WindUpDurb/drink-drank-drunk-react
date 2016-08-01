@@ -12,18 +12,17 @@ import {bindActionCreators} from "redux";
 class BeerSearchPage extends React.Component {
     constructor(props) {
         super(props);
-        
         this.setBeerAndTransition = this.setBeerAndTransition.bind(this);
-    }
-
-    setBeerAndTransition(beerData) {
-        this.props.BeerActions.setCurrentBeerAndTransistion(beerData);
     }
 
     componentWillMount() {
         if (!this.props.searchResults) {
             browserHistory.push("/");
         }
+    }
+
+    setBeerAndTransition(beerData) {
+        this.props.BeerActions.setCurrentBeerAndTransistion(beerData);
     }
     
     render() {
@@ -43,7 +42,8 @@ class BeerSearchPage extends React.Component {
 BeerSearchPage.propTypes = {
     query: PropTypes.string,
     searchResults: PropTypes.array,
-    activeUser: PropTypes.object
+    activeUser: PropTypes.object,
+    BeerActions: PropTypes.object
 };
 
 

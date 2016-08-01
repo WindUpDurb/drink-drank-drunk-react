@@ -2,6 +2,7 @@
 
 import React, {PropTypes} from "react";
 import * as UserActions from "../../actions/UserActions";
+import * as BeerActions from "../../actions/BeerActions";
 import {browserHistory} from "react-router";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
@@ -18,6 +19,7 @@ class BeerLogPage extends React.Component {
         };
 
         this.leafThroughPages = this.leafThroughPages.bind(this);
+        this.fetchBeerDataAndSet = this.fetchBeerDataAndSet.bind(this);
     }
 
     componentWillMount() {
@@ -29,13 +31,18 @@ class BeerLogPage extends React.Component {
     leafThroughPages(event) {
         this.setState({beerLogPage: event.target.name});
     }
+    
+    fetchBeerDataAndSet(beer) {
+        let beerData = Object.assign({}, beer);
+        this.props.BeerActions.fetchBeerData(beerData.beerId);
+    }
 
 
     render(){
         let currentProfileMenu;
         switch(this.state.beerLogPage) {
             case "BeerLog":
-                currentProfileMenu = <BeerLogAll beerAndUserData={this.props.userBeerData}/>;
+                currentProfileMenu = <BeerLogAll setBeer={this.fetchBeerDataAndSet} beerAndUserData={this.props.userBeerData}/>;
                 break;
             default:
                 currentProfileMenu = null;
@@ -60,21 +67,26 @@ class BeerLogPage extends React.Component {
 
 BeerLogPage.propTypes = {
     UserActions: PropTypes.object.isRequired,
+    BeerActions: PropTypes.object.isRequired,
     activeUser: PropTypes.object,
     userBeerData: PropTypes.object
 };
 
 function mapStateToProps(state, ownProps) {
+    let activeUserCopy = Object.assign({}, state.userAndAuth);
+    let userBeerData = activeUserCopy.userBeerData;
+
     return {
-        activeUser: state.userAndAuth,
-        userBeerData: state.userAndAuth.userBeerData
+        activeUser: activeUserCopy,
+        userBeerData: userBeerData
     };
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        UserActions: bindActionCreators(UserActions, dispatch)  
-    };  
+        UserActions: bindActionCreators(UserActions, dispatch),
+        BeerActions: bindActionCreators(BeerActions, dispatch)
+    };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(BeerLogPage);
