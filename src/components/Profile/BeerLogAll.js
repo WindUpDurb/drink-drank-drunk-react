@@ -21,13 +21,19 @@ function extractAllBeers (beerAndUserData) {
 }
 
 export const BeerLogAll = ({beerAndUserData}) => {
-    console.log("chekkkkkkk: ", extractAllBeers(beerAndUserData))
     let allBeer = (
         extractAllBeers(beerAndUserData))
-        .map((beer, index) => <ListedBeer key={index} beerData={beer} />)
+        .map((beer, index) => {
+            console.log("Beer: '", beer);
+            if (beer.drank) {
+                return <ListedBeer drank key={index} beerData={beer} />;
+            } else {
+                return <ListedBeer key={index} beerData={beer} />;
+            }
+        })
     ;
     return (
-        <div>
+        <div id="profileMenuDiv" className="well col-sm-10 col-sm-offset-1">
             {allBeer}
         </div>
     );

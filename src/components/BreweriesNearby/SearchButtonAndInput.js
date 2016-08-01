@@ -13,10 +13,11 @@ export const CustomSearch = ({submitSearch, updateSearchState, search, toggleSea
         );
     } else {
         return (
-        <form onSubmit={submitSearch}>
+        <form style={{padding: "5px"}} onSubmit={submitSearch}>
             <div className="form-group label-static">
                 <label className="control-label">Custom Search by Location</label>
                 <input
+                    id="breweryCustomSearchInput"
                     onChange={updateSearchState}
                     type="text"
                     className="form-control"

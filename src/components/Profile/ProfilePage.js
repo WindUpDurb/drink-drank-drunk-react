@@ -30,32 +30,31 @@ class BeerLogPage extends React.Component {
     }
 
     leafThroughPages(event) {
-        this.setState({beerLogPage: event.target.value});
+        this.setState({beerLogPage: event.target.name});
+        console.log("name: ", event.target.name);
+        console.log("state: ", this.state.beerLogPage);
     }
 
 
     render(){
+        let currentProfileMenu;
         switch(this.state.beerLogPage) {
-            case "Drank":
-                this.currentBeerPage = <BeerLogPageDrank beersDrank={this.props.userBeerData.sampledBeers}/>;
-                break;
-            case "To-Drink":
-                this.currentBeerPage = <BeerLogPageToDrink toDrinks={this.props.userBeerData.toDrink}/>;
+            case "BeerLog":
+                currentProfileMenu = <BeerLogAll beerAndUserData={this.props.userBeerData}/>;
                 break;
             default:
-                this.currentBeerPage = null;
+                currentProfileMenu = null;
         }
 
         return (
             <div>
-                <ProfileHeaderAndNav activeUser={this.props.activeUser}/>
+                <ProfileHeaderAndNav
+                    leafThrough={this.leafThroughPages}
+                    activeUser={this.props.activeUser}/>
                 <div id="beerDirectoryBody">
                     <div className="container">
                         <div className="row">
-                            <div id="profileMenuDiv" className="well col-sm-10 col-sm-offset-1">
-                               <BeerLogAll
-                                    beerAndUserData={this.props.userBeerData}/>
-                            </div>
+                            {currentProfileMenu}
                         </div>
                     </div>
                 </div>

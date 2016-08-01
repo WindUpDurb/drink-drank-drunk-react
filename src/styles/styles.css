@@ -875,6 +875,7 @@ body {
     font-size: 1.15em;
 }
 
+
 #drinkdrankdrunkText {
     font-size: 5.2em;
     font-weight: bold;
@@ -895,6 +896,15 @@ body {
 #beerDirectoryBody {
     background-image: url("/statics/woodTheme.jpg");
     padding-bottom: 100px;
+}
+
+#parallaxContainerBreweriesNearby {
+    background-image: url("/statics/breweriesNearby.jpg");
+    height: 700px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 #parallaxContainerProfile {
@@ -964,6 +974,10 @@ body {
 
 #profileCardDiv {
     padding-top: 11%;
+}
+
+#searchForBreweryCard {
+    padding-top: 19%;
 }
 
 .userProfileImage {

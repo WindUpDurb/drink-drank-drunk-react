@@ -49,7 +49,7 @@ let userSchema = new mongoose.Schema({
     toDrink: [{
         beerName: { type: String },
         beerId: { type: String },
-        image: { type: String },
+        beerImage: { type: String },
         breweryName: { type: String },
         //maybe include later a notes section that the user
         //can fill with notes on where to get the beer, who introduced it to him, etc.

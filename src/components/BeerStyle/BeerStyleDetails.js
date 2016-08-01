@@ -57,14 +57,16 @@ const BeerStyleDescription = ({pageNumber, beerStyle}) => {
                 </div>
 
                 <div className="row styleSectionDiv">
-                    <div className="col-sm-5">
+                    <div className="col-sm-6">
                         <span className="blueFontColor styleDescriptionHeadText">For your beer studies</span>
                         <div className="blueSectionDivider"></div>
                         <div className="text-center">
                             <span style={{fontSize: "1.2em"}}>Acquaint yourself with this style some more.</span>
                             <BeerTaxonomyModal />
                         </div>
-
+                    </div>
+                    <div className="col-sm-5 col-sm-offset-1">
+                        <img className="img-responsive img-thumbnail" src="/statics/breweryImage2.jpg"/>
                     </div>
                 </div>
 

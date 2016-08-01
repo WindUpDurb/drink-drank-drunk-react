@@ -21,7 +21,7 @@ class App extends React.Component {
                 <script>
                     $(document).ready(function () {
                     $.material.init()
-                     });
+                });
                 </script>
             </div>
         );
