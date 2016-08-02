@@ -5,7 +5,7 @@ import toastr from "toastr";
 import {Link} from "react-router";
 
 export const HomeNavbar = ({login, sendLogout, activeUser, updateSearchFieldState, beerSearch}) => {
-    const notifyLogin = () => toastr.error("Please Login to Access.");
+    const notifyLogin = () => toastr.info("Please Login to Access.");
     if (activeUser && activeUser.email) {
         return (
             <div className="row">

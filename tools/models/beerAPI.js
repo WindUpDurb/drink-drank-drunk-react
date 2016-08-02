@@ -19,7 +19,7 @@ let BeerAPI = {
     },
 
     beerMe: function (callback) {
-        requestNPM(`http://api.brewerydb.com/v2/beer/random?key=${BREWERY_DB}&withBreweries=Y`, function (error, response, body) {
+        requestNPM(`http://api.brewerydb.com/v2/beer/random?key=${BREWERY_DB}&withBreweries=Y&hasLabels=Y`, function (error, response, body) {
             callback(error, body);
         });
     },

@@ -51,7 +51,7 @@ function mapStateToProps(state, ownProps) {
     let query, searchResults, activeUser;
     if (state.beerSearch) {
         query = state.beerSearch.query;
-        searchResults = Object.assign({}, state.beerSearch.searchResults);
+        searchResults = [...state.beerSearch.searchResults];
     }
     if (state.userAndAuth && state.userAndAuth.email) {
         activeUser = Object.assign({}, state.userAndAuth);

@@ -4,7 +4,10 @@ import React, {PropTypes} from "react";
 import {ListedBeer} from "../common/ListedBeer";
 
 export const BeerSearchResults = ({setBeer, searchResults}) => {
-    let searchResultsElements = searchResults.map((beer, index) => <ListedBeer setBeer={setBeer} key={index} beerData={beer}/>);
+    let searchResultsElements;
+    if (searchResults && searchResults.length) {
+        searchResultsElements = searchResults.map((beer, index) => <ListedBeer setBeer={setBeer} key={index} beerData={beer}/>);
+    }
     return (
         <div id="beerDirectoryBody">
             <div className="container">

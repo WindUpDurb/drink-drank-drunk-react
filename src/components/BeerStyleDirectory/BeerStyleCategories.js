@@ -18,6 +18,6 @@ export const BeerStyleCategories = ({toggleCategories, beerCategories}) => {
 };
 
 BeerStyleCategories.propTypes = {
-    beerCategories: PropTypes.object.isRequired,
+    beerCategories: PropTypes.object,
     toggleCategories: PropTypes.func.isRequired
 };

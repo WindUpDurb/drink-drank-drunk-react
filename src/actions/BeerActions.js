@@ -75,6 +75,26 @@ export function setCurrentBeerAndTransistion(beerData) {
     };
 }
 
+export function beerMeRandom() {
+    return function (dispatch) {
+        dispatch(requestStatusActions.requestSent());
+        return fetch("/api/breweryAPI/beerMe")
+            .then(response => {
+                return response.json();
+            })
+            .then(parsedResponse => {
+                if (parsedResponse.status === "success") {
+                    dispatch(requestStatusActions.receivedRequestSuccess());
+                    dispatch(fetchBeerDataSuccess(parsedResponse.data));
+                    browserHistory.push(`/beer/${parsedResponse.data.id}`);
+                }
+            })
+            .catch(error => {
+                console.log("Error: ", error);
+            });
+    };
+}
+
 export function fetchBeerData(beerId) {
     return function(dispatch) {
         dispatch(requestStatusActions.requestSent());
@@ -83,7 +103,6 @@ export function fetchBeerData(beerId) {
                     return response.json();
                 })
                 .then(parsedResponse => {
-                    console.log("parsed response: ", parsedResponse);
                     dispatch(requestStatusActions.receivedRequestSuccess());
                     dispatch(fetchBeerDataSuccess(parsedResponse.data));
                     browserHistory.push(`/beer/${beerId}`);
@@ -107,7 +126,7 @@ export function fetchStyleContents(styleId, pageNumber) {
                 dispatch(requestStatusActions.receivedRequestSuccess());
                 if (parsedResponse.status === "success") {
                     dispatch(fetchStyleContentsSuccess(parsedResponse.data));
-                    localStorage.setItem(`${styleId}${pageNumber}`, JSON.stringify(parsedResponse.data));
+                    //localStorage.setItem(`${styleId}${pageNumber}`, JSON.stringify(parsedResponse.data));
                     browserHistory.push(`/beerStyles/${styleId}/${pageNumber}`);
                 }
 
@@ -131,9 +150,6 @@ export function loadBeerDirectory () {
           })
           .then(parsedResponse => {
               dispatch(requestStatusActions.receivedRequestSuccess());
-              //construct to objects:
-              //1) storing category name and whatever data I need to search with
-              //2) Storing each style by some key so I can quickly access style data
               let beerDirectories = {};
               for (let i = 0; i < parsedResponse.data.length; i++) {
                   if (parsedResponse.data[i].categoryId < 9) {
@@ -236,9 +252,9 @@ export function fetchBeerSearchResults(query) {
             })
             .then(parsedResponse => {
                 dispatch(requestStatusActions.receivedRequestSuccess());
-                if(parsedResponse.totalResults > 0) {
+                if(parsedResponse.status === "success" && parsedResponse.totalResults > 0) {
                     dispatch(fetchBeerSearchSuccess(parsedResponse.data, query));
-                    return({success: "Got them beers"});
+                    browserHistory.push("/beerSearch");
                 } else {
                     toastr.error(`Your search for ${query} yielded no results. Try another beer, or double-check the spelling.`);
                 }

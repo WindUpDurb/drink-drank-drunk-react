@@ -3,6 +3,7 @@
 import React, {PropTypes} from "react";
 import { Link, IndexLink } from "react-router";
 
+///Check the navbar in the home component as well
 
 export const NavbarPresentation = ({sendLogout, login, activeUser, updateSearchFieldState,beerSearch }) => {
     if (activeUser && activeUser.email) {

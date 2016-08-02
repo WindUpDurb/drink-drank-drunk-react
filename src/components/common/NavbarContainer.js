@@ -12,6 +12,9 @@ import {HomeNavbar} from "../home/HomeNavbar";
 import toastr from "toastr";
 
 
+///Check the navbar in the home component as well
+
+
 class NavbarContainer extends React.Component {
     constructor(props){
         super(props);
@@ -30,12 +33,7 @@ class NavbarContainer extends React.Component {
         event.preventDefault();
         this.setState({searchQuery: ""});
         let query = this.state.searchQuery;
-        this.props.BeerActions.fetchBeerSearchResults(query)
-            .then(response => {
-                if (response.success) {
-                    browserHistory.push("/beerSearch");
-                }
-            });
+        this.props.BeerActions.fetchBeerSearchResults(query);
     }
 
     updateSearchFieldState(event) {

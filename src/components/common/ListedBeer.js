@@ -2,7 +2,7 @@
 
 import React, {PropTypes} from "react";
 
-export const ListedBeer = ({drank, setBeer, beerData}) => {
+export const ListedBeer = ({drank, inProfile, setBeer, beerData}) => {
     const setAndTransition = () => setBeer(beerData);
     let breweryName, drankIcon, beerImage;
     if (beerData.breweries && beerData.breweries[0]) {
@@ -13,9 +13,9 @@ export const ListedBeer = ({drank, setBeer, beerData}) => {
     } else {
         beerImage = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png";
     }
-    if (drank) {
+    if (inProfile && drank) {
         drankIcon = <img data-toggle="tooltip" data-placement="bottom" title="Beer Drank"  src="/statics/beerIconConsumed32.png"/>;
-    } else {
+    } else if (inProfile && !drank) {
         drankIcon = <img data-toggle="tooltip" data-placement="bottom" title="Yet to Drink" src="/statics/beerIconNoConsumed32.png"/>;
     }
     return (
@@ -37,6 +37,7 @@ export const ListedBeer = ({drank, setBeer, beerData}) => {
 ListedBeer.propTypes = {
     beerData: PropTypes.object.isRequired,
     setBeer: PropTypes.func,
-    drank: PropTypes.bool
+    drank: PropTypes.bool,
+    inProfile: PropTypes.bool
 };
 

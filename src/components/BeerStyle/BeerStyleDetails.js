@@ -32,23 +32,23 @@ const BeerStyleDescription = ({pageNumber, beerStyle}) => {
                                 </tr>
                                 <tr>
                                     <td>ABV:</td>
-                                    <td>{beerStyle.abvMin}</td>
-                                    <td>{beerStyle.abvMax}</td>
+                                    <td>{beerStyle.abvMin || "N/A"}</td>
+                                    <td>{beerStyle.abvMax || "N/A"}</td>
                                 </tr>
                                 <tr>
                                     <td>FG:</td>
-                                    <td>{beerStyle.fgMin}</td>
-                                    <td>{beerStyle.fgMax}</td>
+                                    <td>{beerStyle.fgMin || "N/A"}</td>
+                                    <td>{beerStyle.fgMax || "N/A"}</td>
                                 </tr>
                                 <tr>
                                     <td>IBU:</td>
-                                    <td>{beerStyle.ibuMin}</td>
-                                    <td>{beerStyle.ibuMax}</td>
+                                    <td>{beerStyle.ibuMin || "N/A"}</td>
+                                    <td>{beerStyle.ibuMax || "N/A"}</td>
                                 </tr>
                                 <tr>
                                     <td>SRM:</td>
-                                    <td>{beerStyle.srmMin}</td>
-                                    <td>{beerStyle.srmMax}</td>
+                                    <td>{beerStyle.srmMin || "N/A"}</td>
+                                    <td>{beerStyle.srmMax || "N/A"}</td>
                                 </tr>
                                 </tbody>
                             </table>

@@ -34,6 +34,7 @@ class BeerStylePage extends React.Component {
         if (this.props.currentStyle) {
             beerResults = (
                 this.props.currentStyle.map((beer, index) => <ListedBeer
+                    inProfile={false}
                     setBeer={this.setBeerAndTransition}
                     key={index} 
                     beerData={beer}/>)
@@ -78,8 +79,6 @@ function mapStateToProps(state, ownProps) {
     if (state.beerDirectories.currentBeerStyle && state.beerDirectories.currentBeerStyle.styleContents) {
         styleInState = state.beerDirectories.currentBeerStyle.styleContents;
         styleDescription = state.beerDirectories.currentBeerStyle.styleContents[0].style;
-    } else {
-        browserHistory.push("/");
     }
     if (state.userAndAuth && state.userAndAuth.email) {
         activeUser = Object.assign({}, state.userAndAuth);

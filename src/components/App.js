@@ -1,7 +1,7 @@
 "use strict";
 import React, { PropTypes } from "react";
-import NavbarContainer from "./common/NavbarContainer";
 import FooterSection from "./common/FooterSection";
+import ScrollToTop from "react-scroll-up";
 import $ from "jquery";
 import * as UserActions from "../actions/UserActions";
 import {bindActionCreators} from "redux";
@@ -20,6 +20,9 @@ class App extends React.Component {
         }
         return (
             <div>
+                <ScrollToTop showUnder={160}>
+                    <img src="/statics/scrollUp.png"/>
+                </ScrollToTop>
                 {loadingSpinner}
                 {this.props.children}
                 <FooterSection/>

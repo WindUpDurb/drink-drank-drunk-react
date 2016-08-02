@@ -15,7 +15,6 @@ router.get("/beerMe", function (request, response) {
 });
 
 router.get("/beerDirectories", function (request, response) {
-    console.log("Got here");
     BeerAPI.getDirectories(function (error, body) {
         if (error) response.send(400).send(error);
         response.send(body);
