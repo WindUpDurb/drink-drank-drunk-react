@@ -1,6 +1,7 @@
-## Angular to React Web Application Conversion
-###Drink, Drank, Drunk is a web a beer lover's web application.
-###Use it to learn a bit more about your favorite beers. Log beers you've drunk, and keep track of beers you'd like to drink.
+## Drink, Drank, Drunk
+###This project is a beer lover's web application. Use it to learn a
+bit more about your favorite beers. Log beers you've drunk, and keep track
+of beers you'd like to drink.
 ###Find breweries. Future revisions will include beer events.
 ##This Project is built on:
 ###React and Redux on the Front-End, an Express back-end, with a MongoDB database.
