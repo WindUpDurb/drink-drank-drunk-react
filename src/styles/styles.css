@@ -481,7 +481,7 @@ body {
 }
 
 #parallaxContainerBeerSearch {
-    background-image: url("/statics/beerCatchRevised.jpg");
+    background-image: url("/statics/beerCatchCompressed.jpg");
     height: 700px;
     background-attachment: fixed;
     background-position: center;
@@ -490,7 +490,7 @@ body {
 }
 
 #parallaxContainerProfile {
-    background-image: url("/statics/beerBoatRevised.jpg");
+    background-image: url("/statics/beerBoatCompressed.jpg");
     height: 700px;
     background-attachment: fixed;
     background-position: center;
@@ -498,7 +498,7 @@ body {
     background-size: cover;
 }
 #parallaxContainerStyleContentsDirectory {
-    background-image: url("/statics/beerPourRevised.jpg");
+    background-image: url("/statics/beerPourCompressed.jpg");
     height: 700px;
     background-attachment: fixed;
     background-position: center;
@@ -507,7 +507,7 @@ body {
 }
 
 #parallaxContainerFindBrewery {
-    background-image: url("/statics/beerCheersRevised.jpg");
+    background-image: url("/statics/beerCheersCompressed.jpg");
     height: 700px;
     background-attachment: fixed;
     background-position: center;
@@ -516,7 +516,7 @@ body {
 }
 
 #parallaxContainerSingleBeerView {
-    background-image: url("/statics/singleBeerRevised.jpg");
+    background-image: url("/statics/singleBeerCompressed.jpg");
     height: 750px;
     background-attachment: fixed;
     background-position: center;
@@ -525,7 +525,7 @@ body {
 }
 
 #parallaxContainerHome {
-    background-image: url("/statics/thisBeerRevised.jpg");
+    background-image: url("/statics/thisBeerCompressed.jpg");
     height: 750px;
     background-attachment: fixed;
     background-position: center bottom;
@@ -534,7 +534,7 @@ body {
 }
 
 #parallaxContainerStyleDirectory {
-    background-image: url("/statics/beersMany.jpg");
+    background-image: url("/statics/beersManyCompressed.jpg");
     height: 750px;
     background-attachment: fixed;
     background-position: center bottom;

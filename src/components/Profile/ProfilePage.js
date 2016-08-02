@@ -8,6 +8,7 @@ import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import {ProfileHeaderAndNav} from "./ProfileHeaderAndNav";
 import {BeerLogAll} from "./BeerLogAll";
+import toastr from "toastr";
 
 class BeerLogPage extends React.Component {
 
@@ -42,7 +43,11 @@ class BeerLogPage extends React.Component {
         let currentProfileMenu;
         switch(this.state.beerLogPage) {
             case "BeerLog":
-                currentProfileMenu = <BeerLogAll setBeer={this.fetchBeerDataAndSet} beerAndUserData={this.props.userBeerData}/>;
+                if (!this.props.userBeerData.sampledBeers.length && !this.props.userBeerData.toDrink.length) {
+                    toastr.info("You have neither drank beers nor beers in your To-Drink list to display. \n Find some beers and add them.");
+                } else {
+                    currentProfileMenu = <BeerLogAll setBeer={this.fetchBeerDataAndSet} beerAndUserData={this.props.userBeerData}/>;
+                }
                 break;
             default:
                 currentProfileMenu = null;
