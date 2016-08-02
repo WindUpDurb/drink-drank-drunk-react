@@ -3,8 +3,9 @@
 ##This Project is built on:
 ######React and Redux on the Front-End, an Express back-end, with a MongoDB database.
 ######This app is powered by BreweryDB, uses Google login, and Yelp for brewery data.
-##Future updates, in no order:
-######Improve Mobile View
+##Future updates:
+#####Improve Mobile View
+#####Pagination
 ######Update Profile Page
 ######Friend-to-Friend/Drink-On-Me Functionality
 ######HTTPS for Find Near Me Breweries
