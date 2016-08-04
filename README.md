@@ -5,6 +5,7 @@
 ######This app is powered by BreweryDB, uses Google login, and Yelp for brewery data.
 ##Future updates:
 #####Improve Mobile View
+#####React Native App
 #####Pagination
 ######Update Profile Page
 ######Friend-to-Friend/Drink-On-Me Functionality
