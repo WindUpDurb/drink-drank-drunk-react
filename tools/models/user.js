@@ -264,6 +264,15 @@ userSchema.statics.authorization = function () {
 };
 
 
+userSchema.statics.authorizeMobileAuth = function () {
+    return function (request, response, next) {
+        if (request.headers.dddandroidauth !== "ItsMeHereISwear") {
+            return response.status(401).send({error: "You cannot enter."});
+        }
+        next();
+    };
+};
+
 userSchema.statics.authenticateMobileUser = function (userToken, callback) {
     requestNPM(`https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=${userToken}`, function (error, response, body) {
         let parsedBody = JSON.parse(body);
@@ -272,7 +281,7 @@ userSchema.statics.authenticateMobileUser = function (userToken, callback) {
             return callback(error, databaseUser);
         });
     });
-}
+};
 
 let User = mongoose.model("User", userSchema);
 
