@@ -4,6 +4,8 @@ let mongoose = require("mongoose");
 let bcrypt = require("bcrypt");
 let jwt = require("json-web-token");
 let moment = require("moment");
+let requestNPM = require("request");
+
 
 let JWT_SECRET = process.env.JWT_SECRET;
 
@@ -262,6 +264,15 @@ userSchema.statics.authorization = function () {
 };
 
 
+userSchema.statics.authenticateMobileUser = function (userToken, callback) {
+    requestNPM(`https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=${userToken}`, function (error, response, body) {
+        let parsedBody = JSON.parse(body);
+        if (error || !parsedBody.email) return callback(error || {error: "idToken is invalid"});
+        User.authenticate(parsedBody, function(error, databaseUser) {
+            return callback(error, databaseUser);
+        });
+    });
+}
 
 let User = mongoose.model("User", userSchema);
 

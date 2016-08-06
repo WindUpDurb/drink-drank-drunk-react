@@ -144,5 +144,12 @@ router.delete("/logout", function (request, response) {
 });
 
 
+router.post("/authenticateMobileUser", function (request, response) {
+    User.authenticateMobileUser(request.body.idToken, function (error, userData) {
+        if (error) return response.status(400).send(error);
+        return response.send(userData);
+    })
+});
+
 
 module.exports = router;

@@ -19,7 +19,7 @@ export const ListedBeer = ({drank, inProfile, setBeer, beerData}) => {
         drankIcon = <img data-toggle="tooltip" data-placement="bottom" title="Yet to Drink" src="/statics/beerIconNoConsumed32.png"/>;
     }
     return (
-        <div className="col-sm-4 col-sm-offset-1 well text-center beerCard">
+        <div className="col-md-4 col-md-offset-1 well text-center beerCard">
             <img className="beerCardImage" onClick={setAndTransition} src={beerData.beerImage || beerImage}/>
             <br/>
             <span onClick={setAndTransition} className="beerCardBeerName">{beerData.name || beerData.beerName}</span>
