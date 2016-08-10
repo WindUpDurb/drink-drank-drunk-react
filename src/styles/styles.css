@@ -465,6 +465,14 @@ body {
     color: #F5F5F5;
 }
 
+.cardEffect {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.cardEffect:hover {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
 
 #beerDirectoryBody {
     background-image: url("/statics/woodTheme.jpg");
@@ -603,10 +611,23 @@ body {
     margin-bottom: 3px;
 }
 
+.directoryMenuDivider {
+    padding-top: 2%;
+    padding-bottom: 2%;
+
+}
+
+
+.greyBB {
+    border-bottom: 1px solid #E0E0E0;
+}
 
 .beerCategoryDiv {
+    padding-top: 1%;
+    padding-bottom: 1%;
     margin-top: 5px;
     margin-bottom: 5px;
+    cursor: pointer;
 }
 
 .beerCategory {

@@ -11,8 +11,16 @@ export const BeerStyleCategories = ({toggleCategories, beerCategories}) => {
     );
     return (
         <div>
-            <span id="directoryMenuHeadingText">Let's begin to narrow down our choices.</span>
+            <span id="directoryMenuHeadingText">Let's start narrowing down our choices.</span>
+            <div className="directoryMenuDivider row">
+                <div className="col-sm-6 col-sm-offset-3 greyBB"></div>
+            </div>
             {beerCategoriesElements}
+            <div className="row">
+                <div className="col-sm-1 col-sm-offset-10">
+                    <img src="/statics/beerMenuBottom.png"/>
+                </div>
+            </div>
         </div>
     );
 };

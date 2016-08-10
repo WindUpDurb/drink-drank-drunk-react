@@ -11,11 +11,19 @@ export const BeerCategoryStylesMenu = ({grabStyle, toggleCategories, styles}) =>
         <div className="text-center">
             <div className="row">
                 <div className="col-sm-3">
-                    <span id="backArrow" onClick={returnToCategories}><img src="/statics/backArrow.png"/></span>
+                    <span id="backArrow" onClick={returnToCategories}><img src="/statics/return.png"/></span>
                 </div>
             </div>
             <span id="directoryMenuHeadingText">{styles.categoryName}</span>
+            <div className="directoryMenuDivider row">
+                <div className="col-sm-6 col-sm-offset-3 greyBB"></div>
+            </div>
             {styleMenu}
+            <div className="row">
+                <div className="col-sm-1 col-sm-offset-10">
+                    <img src="/statics/beerMenuBottom.png"/>
+                </div>
+            </div>
         </div>
     );
 };

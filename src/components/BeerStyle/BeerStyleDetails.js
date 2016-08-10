@@ -61,7 +61,9 @@ const BeerStyleDescription = ({pageNumber, beerStyle}) => {
                         <span className="blueFontColor styleDescriptionHeadText">For your beer studies</span>
                         <div className="blueSectionDivider"></div>
                         <div className="text-center">
-                            <span style={{fontSize: "1.2em"}}>Acquaint yourself with this style some more.</span>
+                            <br/>
+                            <br/>
+                            <br/>
                             <BeerTaxonomyModal />
                         </div>
                     </div>
