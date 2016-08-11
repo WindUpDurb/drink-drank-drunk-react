@@ -9,16 +9,16 @@ export const HomeNavbar = ({login, sendLogout, activeUser, updateSearchFieldStat
     if (activeUser && activeUser.email) {
         return (
             <div className="row">
-                <div className="col-sm-1 homeNavText">
+                <div className="col-xs-12 text-center col-md-1 homeNavText">
                     <Link className="homeNavButton" to="/">Home</Link>
                 </div>
-                <div className="col-sm-2 homeNavText">
+                <div className="col-xs-12 text-center col-md-2 homeNavText">
                     <Link className="homeNavButton" to="/beerStyles">Browse Beers</Link>
                 </div>
-                <div className="col-sm-2 homeNavText">
+                <div className="col-xs-12 text-center col-md-2 homeNavText">
                     <Link className="homeNavButton" to="/breweriesNearby">Find a Brewery</Link>
                 </div>
-                <div className="col-sm-2 col-sm-offset-1 homeNavText">
+                <div className="col-xs-12 col-md-2 col-md-offset-1 homeNavText">
                     <form onSubmit={beerSearch}>
                         <div className="form-group">
                             <input
@@ -30,10 +30,10 @@ export const HomeNavbar = ({login, sendLogout, activeUser, updateSearchFieldStat
                         </div>
                     </form>
                 </div>
-                <div className="col-sm-2 homeNavText">
+                <div className="col-xs-12 text-center col-md-2 homeNavText">
                     <Link className="homeNavButton" to="/profile">Profile</Link>
                 </div>
-                <div className="col-sm-offset-2 homeNavText">
+                <div className="col-xs-12 text-center col-md-2 homeNavText">
                     <span onClick={sendLogout} className="homeNavButton">Logout</span>
                 </div>
             </div>
@@ -41,16 +41,16 @@ export const HomeNavbar = ({login, sendLogout, activeUser, updateSearchFieldStat
     } else {
         return (
             <div className="row">
-                <div className="col-sm-1 homeNavText">
+                <div className="col-xs-12 text-center col-md-1 homeNavText">
                     <Link className="homeNavButton" to="/">Home</Link>
                 </div>
-                <div className="col-sm-2 homeNavText">
+                <div className="col-xs-12 text-center col-md-2 homeNavText">
                     <Link className="homeNavButton" to="/beerStyles">Browse Beers</Link>
                 </div>
-                <div className="col-sm-2 homeNavText">
+                <div className="col-xs-12 text-center col-md-2 homeNavText">
                     <Link className="homeNavButton" to="/breweriesNearby">Find a Brewery</Link>
                 </div>
-                <div className="col-sm-2 col-sm-offset-1 homeNavText">
+                <div className="col-xs-12 col-md-2 col-md-offset-1 homeNavText">
                     <form onSubmit={beerSearch}>
                         <div className="form-group">
                             <input
@@ -62,10 +62,10 @@ export const HomeNavbar = ({login, sendLogout, activeUser, updateSearchFieldStat
                         </div>
                     </form>
                 </div>
-                <div className="col-sm-2 homeNavText">
+                <div className="col-xs-12 text-center col-md-2 homeNavText">
                     <a className="homeNavButton" onClick={notifyLogin}>Profile</a>
                 </div>
-                <div className="col-sm-2 homeNavText">
+                <div className="col-xs-12 text-center col-md-2 homeNavText">
                     <a className="homeNavButton" onClick={login}>Login</a>
                 </div>
             </div>

@@ -13,7 +13,7 @@ export const ProfileHeaderAndNav = ({leafThrough, activeUser}) => {
                 homePage/>
             <div id="profileCardDiv" className="container text-center">
                 <div className="row">
-                    <div className="well col-sm-4 col-sm-offset-4" id="activeUserCard">
+                    <div className="well col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4" id="activeUserCard">
                         <img className="img-circle userProfileImage" src={activeUser.picture}/>
                         <br/><span className="beerLogDetailsBrewery">{activeUser.given_name}</span>
                         <br/><span className="beerLogDetailsBrewery">{activeUser.email}</span>

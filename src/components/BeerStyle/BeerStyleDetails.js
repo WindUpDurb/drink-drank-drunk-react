@@ -17,15 +17,15 @@ const BeerStyleDescription = ({pageNumber, changePage, nextPage, previousPage, b
                 </div>
                 <div className="blueSectionDivider"></div>
                 <div className="row">
-                    <div className="col-sm-11 fivepxmarginTB">
+                    <div className="col-xs-12 col-md-11 fivepxmarginTB">
                         <span className="styleDescriptionBodyText">{beerStyle.description}</span>
                     </div>
                 </div>
                 <div className="row styleSectionDiv">
-                    <div className="col-sm-5">
+                    <div className="col-xs-12 col-md-5">
                         <img className="img-responsive img-thumbnail" src="/statics/breweryImage.jpg"/>
                     </div>
-                    <div className="col-sm-6 col-sm-offset-1">
+                    <div className="col-xs-12 col-md-6 col-md-offset-1">
                         <span className="blueFontColor styleDescriptionHeadText">This style brewed with these statistics</span>
                         <div className="blueSectionDivider">
                             <table className="table table-hover">
@@ -62,7 +62,7 @@ const BeerStyleDescription = ({pageNumber, changePage, nextPage, previousPage, b
                 </div>
 
                 <div className="row styleSectionDiv">
-                    <div className="col-sm-6">
+                    <div className="col-xs-12 col-md-6">
                         <span className="blueFontColor styleDescriptionHeadText">For your beer studies</span>
                         <div className="blueSectionDivider"></div>
                         <div className="text-center">
@@ -72,23 +72,23 @@ const BeerStyleDescription = ({pageNumber, changePage, nextPage, previousPage, b
                             <BeerTaxonomyModal />
                         </div>
                     </div>
-                    <div className="col-sm-5 col-sm-offset-1">
+                    <div className="col-xs-12 col-md-5 col-md-offset-1">
                         <img className="img-responsive img-thumbnail" src="/statics/breweryImage2.jpg"/>
                     </div>
                 </div>
 
                 <div className="row styleSectionDiv">
-                    <div className="col-sm-10">
+                    <div className="col-xs-12 col-md-10">
                         <span className="blueFontColor styleDescriptionHeadText">Page {pageNumber} of {beerStyle.name} beers</span>
                         <div className="blueSectionDivider"></div>
                     </div>
                 </div>
 
                 <div className="row">
-                    <div className="col-sm-1">
+                    <div className="col-xs-3 col-md-1">
                         {previousPageButton}
                     </div>
-                    <div className="col-sm-1 col-sm-offset-9">
+                    <div className="col-xs-3 col-xs-offset-5 col-md-1 col-md-offset-9">
                         {nextPageButton}
                     </div>
                 </div>
