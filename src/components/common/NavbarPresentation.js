@@ -44,7 +44,7 @@ export const NavbarPresentation = ({sendLogout, login, activeUser, updateSearchF
                                         <br/> <span id="dropdownTextEmail">{activeUser.email}</span>
                                     </li>
                                     <li className="divider"/>
-                                    <li onClick={sendLogout}><Link to="/" activeClassName="active">Logout</Link></li>
+                                    <li onClick={sendLogout}><Link to="/home" activeClassName="active">Logout</Link></li>
                                 </ul>
                             </li>
                         </ul>

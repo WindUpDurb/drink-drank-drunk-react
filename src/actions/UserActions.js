@@ -2,6 +2,7 @@
 
 import * as types from "./actionTypes";
 import * as requestStatusActions from "./requestStatusActions";
+import {browserHistory} from "react-router";
 
 export function activeUserConfirmed(activeUser) {
     return {
@@ -44,6 +45,7 @@ export function dispatchLogout() {
         };
         fetch("/api/users/logout", options)
             .then(response => {
+                browserHistory.push("/home");
                 localStorage.removeItem("profile");
                 localStorage.removeItem("id_token");
                 dispatch(dispatchLogoutAction());
