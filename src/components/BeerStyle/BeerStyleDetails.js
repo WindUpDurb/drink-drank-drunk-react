@@ -3,7 +3,12 @@
 import React, {PropTypes} from "react";
 import {BeerTaxonomyModal} from "../common/BeerTaxonomyModal";
 
-const BeerStyleDescription = ({pageNumber, beerStyle}) => {
+const BeerStyleDescription = ({pageNumber, changePage, nextPage, previousPage, beerStyle}) => {
+    let turnNexPage = () => changePage("next");
+    let turnPreviousPage = () => changePage("previous");
+    let nextPageButton, previousPageButton;
+    if (previousPage) previousPageButton = <button onClick={turnPreviousPage} className="btn">Previous Page</button>;
+    if (nextPage) nextPageButton = <button onClick={turnNexPage} className="btn">Next Page</button>;
     if (beerStyle) {
         return (
             <div>
@@ -79,6 +84,15 @@ const BeerStyleDescription = ({pageNumber, beerStyle}) => {
                     </div>
                 </div>
 
+                <div className="row">
+                    <div className="col-sm-1">
+                        {previousPageButton}
+                    </div>
+                    <div className="col-sm-1 col-sm-offset-9">
+                        {nextPageButton}
+                    </div>
+                </div>
+
             </div>
         );
     } else {
@@ -91,7 +105,10 @@ const BeerStyleDescription = ({pageNumber, beerStyle}) => {
 
 BeerStyleDescription.propTypes = {
     beerStyle: PropTypes.object,
-    pageNumber: PropTypes.string
+    pageNumber: PropTypes.string,
+    nextPage: PropTypes.bool,
+    previousPage: PropTypes.bool,
+    changePage: PropTypes.func
 };
 
 export default BeerStyleDescription;

@@ -34,11 +34,12 @@ export function updateBeerDiscussion(discussion) {
     };
 }
 
-export function fetchStyleContentsSuccess(styleContents, pageNumber) {
+export function fetchStyleContentsSuccess(styleContents, currentPage, numberOfPages) {
     return {
         type: types.FETCH_STYLE_CONTENTS_SUCCESS,
-        styleContents: styleContents,
-        pageNumber: pageNumber
+        styleContents,
+        currentPage,
+        numberOfPages
     };
 }
 
@@ -125,7 +126,7 @@ export function fetchStyleContents(styleId, pageNumber) {
             .then(parsedResponse => {
                 dispatch(requestStatusActions.receivedRequestSuccess());
                 if (parsedResponse.status === "success") {
-                    dispatch(fetchStyleContentsSuccess(parsedResponse.data));
+                    dispatch(fetchStyleContentsSuccess(parsedResponse.data, parsedResponse.currentPage, parsedResponse.numberOfPages));
                     //localStorage.setItem(`${styleId}${pageNumber}`, JSON.stringify(parsedResponse.data));
                     browserHistory.push(`/beerStyles/${styleId}/${pageNumber}`);
                 }

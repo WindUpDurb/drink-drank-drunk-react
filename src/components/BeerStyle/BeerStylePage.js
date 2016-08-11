@@ -17,6 +17,7 @@ class BeerStylePage extends React.Component {
     constructor(props) {
         super(props);
         this.setBeerAndTransition = this.setBeerAndTransition.bind(this);
+        this.changePage = this.changePage.bind(this);
     }
 
     componentWillMount() {
@@ -27,6 +28,13 @@ class BeerStylePage extends React.Component {
 
     setBeerAndTransition(beerData) {
         this.props.BeerActions.setCurrentBeerAndTransistion(beerData);
+    }
+    
+    changePage(page) {
+        let currentPage = parseInt(this.props.pageNumber);
+        let style = parseInt(this.props.currentStyleParam);
+        if (page === "previous") this.props.BeerActions.fetchStyleContents(style, currentPage - 1);
+        if (page === "next") this.props.BeerActions.fetchStyleContents(style, currentPage + 1);
     }
 
     render() {
@@ -49,7 +57,10 @@ class BeerStylePage extends React.Component {
                    <div className="container">
                        <div className="row">
                            <div id="directoryMenuDiv" className="well col-sm-10 col-sm-offset-1">
-                               <BeerStyleDetails 
+                               <BeerStyleDetails
+                                   changePage={this.changePage}
+                                   nextPage={this.props.nextPage}
+                                   previousPage={this.props.previousPage}
                                    pageNumber={this.props.pageNumber}
                                    beerStyle={this.props.styleDescription}/>
                                {beerResults}
@@ -71,14 +82,19 @@ BeerStylePage.propTypes = {
     BeerActions: PropTypes.object.isRequired,
     currentStyleParam: PropTypes.string.isRequired,
     localStorageKey: PropTypes.string.isRequired,
-    pageNumber: PropTypes.string.isRequired
+    pageNumber: PropTypes.string.isRequired,
+    previousPage: PropTypes.bool,
+    nextPage: PropTypes.bool
 };
 
 function mapStateToProps(state, ownProps) {
-    let styleInState, styleDescription, activeUser;
+    let styleInState, styleDescription, activeUser, previousPage, nextPage;
     if (state.beerDirectories.currentBeerStyle && state.beerDirectories.currentBeerStyle.styleContents) {
-        styleInState = state.beerDirectories.currentBeerStyle.styleContents;
-        styleDescription = state.beerDirectories.currentBeerStyle.styleContents[0].style;
+        let currentStyle = state.beerDirectories.currentBeerStyle;
+        styleInState = currentStyle.styleContents;
+        styleDescription = currentStyle.styleContents[0].style;
+        if (currentStyle.currentPage > 1) previousPage = true;
+        if (currentStyle.currentPage <= currentStyle.numberOfPages) nextPage = true;
     }
     if (state.userAndAuth && state.userAndAuth.email) {
         activeUser = Object.assign({}, state.userAndAuth);
@@ -89,7 +105,9 @@ function mapStateToProps(state, ownProps) {
         currentStyleParam: ownProps.routeParams.style,
         localStorageKey: `${ownProps.params.style}${ownProps.params.page}`,
         pageNumber: ownProps.params.page,
-        activeUser
+        activeUser,
+        previousPage,
+        nextPage
     };
 }
 
