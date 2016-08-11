@@ -7,8 +7,8 @@ const BeerStyleDescription = ({pageNumber, changePage, nextPage, previousPage, b
     let turnNexPage = () => changePage("next");
     let turnPreviousPage = () => changePage("previous");
     let nextPageButton, previousPageButton;
-    if (previousPage) previousPageButton = <button onClick={turnPreviousPage} className="btn">Previous Page</button>;
-    if (nextPage) nextPageButton = <button onClick={turnNexPage} className="btn">Next Page</button>;
+    if (previousPage) previousPageButton = <button onClick={turnPreviousPage} className="btn btn-info">Previous Page</button>;
+    if (nextPage) nextPageButton = <button onClick={turnNexPage} className="btn btn-info">Next Page</button>;
     if (beerStyle) {
         return (
             <div>

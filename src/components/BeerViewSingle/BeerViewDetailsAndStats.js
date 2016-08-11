@@ -55,7 +55,7 @@ export const BeerDetailsAndStats = ({beerData}) => {
             <div className="subjectBreak container-fluid"></div>
 
             <div className="row">
-                <div id="beerSpecifics" className="col-sm-5">
+                <div id="beerSpecifics" className="col-xs-10 col-xs-offset-1 col-md-5">
                     <h3>Beer Specifics</h3>
                     <table className="table table-striped table-hover">
                         <tbody>
@@ -93,7 +93,7 @@ export const BeerDetailsAndStats = ({beerData}) => {
                     </table>
                 </div>
 
-                <div className="col-sm-5 col-sm-offset-1">
+                <div className="col-xs-10 col-xs-offset-1 col-md-5 col-md-offset-1">
                     <div className="center-block">
                         <h3 className="center">{styleName || "This data is unavailable."}</h3>
                         <p className="paragarphFormat">

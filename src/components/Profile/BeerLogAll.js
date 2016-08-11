@@ -2,6 +2,7 @@
 
 import React, {PropTypes} from "react";
 import {ListedBeer} from "../common/ListedBeer";
+import {BeerLogFilter} from "./BeerLogFilter";
 
 function extractAllBeers (beerAndUserData) {
     let toReturn = [];
@@ -19,14 +20,15 @@ export const BeerLogAll = ({setBeer, beerAndUserData}) => {
         extractAllBeers(beerAndUserData))
         .map((beer, index) => {
             if (beer.drank) {
-                return <ListedBeer setBeer={setBeer} drank key={index} beerData={beer} />;
+                return <ListedBeer setBeer={setBeer} inProfile drank key={index} beerData={beer} />;
             } else {
-                return <ListedBeer setBeer={setBeer} key={index} beerData={beer} />;
+                return <ListedBeer setBeer={setBeer} inProfile key={index} beerData={beer} />;
             }
         })
     ;
     return (
         <div id="profileMenuDiv" className="well col-sm-10 col-sm-offset-1">
+            <BeerLogFilter/>
             {allBeer}
         </div>
     );

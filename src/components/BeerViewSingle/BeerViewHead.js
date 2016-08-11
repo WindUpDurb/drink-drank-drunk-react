@@ -25,13 +25,13 @@ export const BeerViewHead = ({consumed, globalRating, personalRating, updateBeer
         return (
             <div className="container">
                 <div className="row">
-                    <div className="col-sm-2 col-sm-offset-10">
+                    <div className="col-xs-4 col-xs-offset-8 col-md-2 col-md-offset-10">
                         {beerStatusInDB}
                         {consumedIcon}
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-sm-3">
+                    <div className="col-xs-8 col-md-3">
                         <span>Overall Rating:</span>
                         <span id="globalRating">{overallRating}</span>
                         <br/>
@@ -41,7 +41,7 @@ export const BeerViewHead = ({consumed, globalRating, personalRating, updateBeer
 
                 <div className="row">
                     <div className="form-group">
-                        <div className="col-sm-4">
+                        <div className="col-xs-8 col-md-4">
                             <label className="control-label">Rate this beer:</label>
                             {rateBeer}
                         </div>
@@ -54,12 +54,12 @@ export const BeerViewHead = ({consumed, globalRating, personalRating, updateBeer
     return (
         <div className="container">
             <div className="row"></div>
-            <div className="col-sm-2 col-sm-offset-10">
+            <div className="col-xs-4 col-xs-offset-8 col-md-2 col-md-offset-10">
                 {beerStatusInDB}
                 {consumedIcon}
             </div>
             <div className="row">
-                <div className="col-sm-4">
+                <div className="col-xs-8 col-md-3">
                     <span>Overall Rating:</span>
                     <span id="globalRating">{overallRating}</span>
                 </div>

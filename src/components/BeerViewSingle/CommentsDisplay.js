@@ -8,7 +8,7 @@ export const CommentsDisplay = ({beerName, comments}) => {
         let beerComments = comments.map((comment, index )=> <BeerComment key={index} comment={comment}/>);
         return (
             <div id="commentDisplayDiv" className="container">
-                <div className="col-sm-8 col-sm-offset-2">
+                <div className="col-xs-11 col-md-8 col-md-offset-2">
                     {beerComments}
                 </div>
             </div>
@@ -23,7 +23,7 @@ export const CommentsDisplay = ({beerName, comments}) => {
         return (
             <div id="commentDisplayDiv" className="text-center">
                 <div id="commentDisplayDiv" className="container">
-                    <div className="col-sm-8 col-sm-offset-2">
+                    <div className="col-xs-11 col-md-8 col-md-offset-2">
                         <BeerComment comment={firstComment}/>
                     </div>
                 </div>

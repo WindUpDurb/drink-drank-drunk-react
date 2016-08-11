@@ -20,12 +20,14 @@ export const ListedBeer = ({drank, inProfile, setBeer, beerData}) => {
     }
     return (
         <div className="col-md-5 col-md-offset-1 col-lg-4 col-lg-offset-1 cardEffect text-center beerCard">
-            <img className="beerCardImage" onClick={setAndTransition} src={beerData.beerImage || beerImage}/>
+            <div className="beerCardImageDiv">
+                <img className="beerCardImage" onClick={setAndTransition} src={beerData.beerImage || beerImage}/>
+            </div>
             <br/>
             <span onClick={setAndTransition} className="beerCardBeerName">{beerData.name || beerData.beerName}</span>
             <br/>
             <span className="beerCardBreweryName">{breweryName || beerData.breweryName || "Brewery data is unavailable."}</span>
-            <div className="row">
+            <div className="beerCardIconRow row">
                 <div className="col-sm-2 col-sm-offset-9">
                     {drankIcon}
                 </div>

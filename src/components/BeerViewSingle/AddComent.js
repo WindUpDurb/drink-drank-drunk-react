@@ -9,18 +9,18 @@ export const AddComment = ({newComment, cancelComment, updateComment, addComment
                 <div className="subjectBreak container-fluid"></div>
                 <form onSubmit={addComment} className="form-group">
                     <div className="row">
-                        <div className="col-sm-1 text-center col-sm-offset-3">
+                        <div className="col-xs-2 col-xs-offset-1 col-md-1 text-center col-md-offset-3">
                             <label className="control-label">{activeUser.given_name}</label>
                             <img className="commentUserImage img-responsive" src={activeUser.picture}/>
                         </div>
-                        <div className="col-sm-4">
+                        <div className="col-xs-7 col-md-4">
                             <textarea value={newComment} onChange={updateComment} className="form-control" rows="3" id="textArea" placeholder="Add a public comment to the discussion."/>
                             <span className="help-block">{`What's your thoughts on this ${beerName}`}?</span>
                         </div>
                     </div>
 
                     <div style={{marginTop: "9px"}} className="row">
-                        <div className="col-sm-3 col-sm-offset-6">
+                        <div className="col-xs-5 col-xs-offset-5 col-md-3 col-md-offset-6">
                             <span className="cancelComment">
                                 <button type="button" onClick={cancelComment} className="btn btn-raised btn-default btn-sm">Cancel</button>
                             </span>

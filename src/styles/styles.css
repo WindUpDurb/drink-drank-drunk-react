@@ -439,6 +439,10 @@ body {
     cursor: pointer;
 }
 
+.beerCardImageDiv {
+    padding: 2%;
+}
+
 .styleSectionDiv {
     padding-top: 25px;
     padding-bottom: 18px;
@@ -548,6 +552,10 @@ body {
     background-position: center bottom;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.beerCardIconRow {
+    padding: 2%;
 }
 
 #directoryMenuDiv {
