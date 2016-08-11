@@ -6,7 +6,6 @@
 ##Future updates:
 #####Improve Mobile View
 #####React Native App
-#####Pagination
 ######Update Profile Page
 ######Friend-to-Friend/Drink-On-Me Functionality
 ######HTTPS for Find Near Me Breweries
