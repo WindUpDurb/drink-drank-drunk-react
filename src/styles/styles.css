@@ -782,29 +782,36 @@ body {
     background-image: url(/images/paddle_next_fff.png);
 }
 
+.checkboxCustom {
+    cursor: pointer;
+    font-size: 2.5em;
+}
 
+.checkBoxBeerIcon {
+    position: absolute;
+    margin: auto;
+    display: inline-block;
+    bottom: 20%;
+}
 
+.checkBoxDiv {
+    padding-top: 2%;
+}
 
+.padding5 {
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
 
+.noBeersFilter {
+    font-size: 1.7em;
+}
 
+.noBeersFilterDiv {
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.checkboxCustom:hover {
+    color: #009688;
+}

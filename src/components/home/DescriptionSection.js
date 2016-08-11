@@ -2,7 +2,6 @@
 
 import React, {PropTypes} from "react";
 
-
 const DescriptionSection = () => {
     return (
         <div className="homeDescriptionText container text-center">

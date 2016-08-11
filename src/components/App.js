@@ -2,10 +2,8 @@
 import React, { PropTypes } from "react";
 import FooterSection from "./common/FooterSection";
 import ScrollToTop from "react-scroll-up";
-import $ from "jquery";
 import * as UserActions from "../actions/UserActions";
 import {bindActionCreators} from "redux";
-import * as material from "../../node_modules/bootstrap-material-design/dist/js/material.min";
 import {connect} from "react-redux";
 
 class App extends React.Component {
@@ -27,6 +25,8 @@ class App extends React.Component {
                 {this.props.children}
                 <FooterSection/>
                 <script>
+                    import * as material from "../../node_modules/bootstrap-material-design/dist/js/material.min";
+                    import $ from "jquery";
                     $(document).ready(function () {
                     $.material.init()
                 });
