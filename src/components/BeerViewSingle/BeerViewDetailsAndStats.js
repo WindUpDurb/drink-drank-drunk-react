@@ -34,8 +34,10 @@ export const BeerDetailsAndStats = ({beerData}) => {
                 <div className="text-center">
                     <h3>{beerName || "N/A"}</h3>
                 </div>
-                <div>
-                    <p className="paragarphFormat">{description || "No Description is Available"}</p>
+                <div className="row">
+                    <div className="col-xs-10 col-xs-offset-1 col-md-9 col-md-offset-1">
+                        <p className="paragarphFormat">{description || "No Description is Available"}</p>
+                    </div>
                 </div>
             </div>
             <div className="subjectBreak container-fluid"></div>
@@ -46,9 +48,11 @@ export const BeerDetailsAndStats = ({beerData}) => {
                         <h4>Established: {established || "N/A"}</h4>
                     </div>
                 </div>
-                <div>
-                    <p className="breweryExternalSiteText paragarphFormat">{breweryDescription}</p>
-                    <p className="breweryExternalSiteText"><a href={breweryWebsite || "N/A"} target="_blank">{breweryName}</a></p>
+                <div className="row">
+                    <div className="col-xs-10 col-xs-offset-1 col-md-9 col-md-offset-1">
+                        <p className="paragarphFormat">{breweryDescription}</p>
+                        <p className="breweryExternalSiteText"><a href={breweryWebsite || "N/A"} target="_blank">{breweryName}</a></p>
+                    </div>
                 </div>
             </div>
 
@@ -93,7 +97,7 @@ export const BeerDetailsAndStats = ({beerData}) => {
                     </table>
                 </div>
 
-                <div className="col-xs-10 col-xs-offset-1 col-md-5 col-md-offset-1">
+                <div className="col-xs-10 col-xs-offset-1 col-md-4">
                     <div className="center-block">
                         <h3 className="center">{styleName || "This data is unavailable."}</h3>
                         <p className="paragarphFormat">
